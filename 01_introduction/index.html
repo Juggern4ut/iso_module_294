@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>Modul 293 - Lektion 01</title>
+    <title>Modul 294 - Lektion 01</title>
 
     <link rel="stylesheet" href="dist/reset.css" />
     <link rel="stylesheet" href="dist/reveal.css" />
@@ -137,24 +137,32 @@
 
             </section>
 
-            <!-- Selbstschliessende Tags -->
+            <!-- Implementation von JavaScript -->
             <section>
-                <h2>Selbstschliessende Tags</h2>
+                <h2>Implementation</h2>
                 <p>
-                    Keine Regel ohne Ausnahme! Einige Tags erlauben keinen Inhalt oder
-                    Verschachtelung
+                    JavaScript wird in der Regel mit einer (oder mehreren) der folgenden Möglichkeiten in eine Webseite eingebunden. 
                 </p>
-                <p>
-                    Hierbei wird der öffnende Tag direkt mit einem
-                    <code class="inline-code">/</code> am Ende geschlossen.
-                </p>
-                <pre data-id="code-animation">
+                <ul>
+                    <li>Inline</li>
+                    <li>Direkt im <code class="inline-code">&lt;head&gt;</code></li>
+                    <li>Als Skript in einer externen Datei</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Inline</h2>
+                <uL>
+                    <li>JavaScript kann inline direkt in einem HTML-Tag erfasst werden.</li>
+                    <li>Einfach zu nutzen aber stark limitiert.</li>
+                    <li>Kann nur bei bestimmten Events genutzt werden.</li>
+                </ul>
+                <pre>
                     <code class="hljs html" data-trim data-line-numbers>
-                        &lt;img src="bild.jpg" /> <!-- Bild-Tag -->
-                        &lt;br /> <!-- Zeilenumbruch -->
-                        &lt;hr /> <!-- Horizontale Linie -->
+                        &lt;button onclick='alert("I got clicked!")'&gt;Click me!&lt;/button&gt;
                     </code>
                 </pre>
+                <button onclick='alert("I got clicked!")'>Click me!</button>
             </section>
 
             <!-- Die meistgenutzen Tags -->
