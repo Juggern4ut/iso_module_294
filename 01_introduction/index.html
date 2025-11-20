@@ -33,6 +33,19 @@
             font-weight: bold;
             font-size: 24px;
         }
+
+        .tile.blink{
+            animation: 200ms blink infinite;
+        }
+
+        @keyframes blink{
+            0%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 
@@ -179,7 +192,8 @@
                     <li>Als Skript in einer externen Datei</li>
                 </ul>
             </section>
-
+        
+            <!-- Inline -->
             <section>
                 <h2>Inline</h2>
                 <uL>
@@ -194,131 +208,39 @@
                 </pre>
                 <button onclick='alert("I got clicked!")'>Click me!</button>
             </section>
-
-            <!-- Die meistgenutzen Tags -->
+            
+            <!-- Direkt im Head -->
             <section>
-                <h2>Die meistgenutzen Tags</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>Tagname</td>
-                            <td>Verwendungszweck</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <code class="inline-code">h1</code>,
-                                <code class="inline-code">h2</code>,
-                                <code class="inline-code">h3</code> ...
-                            </td>
-                            <td>Überschriften in unterschiedlichen grössen</td>
-                        </tr>
-                        <tr>
-                            <td><code class="inline-code">p</code></td>
-                            <td>Einfacher Paragraf, um Textinhalte darzustellen</td>
-                        </tr>
-                        <tr>
-                            <td><code class="inline-code">a</code></td>
-                            <td>
-                                Link (Anchor), um zu anderen Seiten oder Inhalten zu
-                                verlinken.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code class="inline-code">img</code></td>
-                            <td>Bild, um visuelle Inhalte einzufügen.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="inline-code">ol</code>,
-                                <code class="inline-code">ul</code>
-                            </td>
-                            <td>(Nummerierte) Listen, um Inhalte zu strukturieren.</td>
-                        </tr>
-                        <tr>
-                            <td><code class="inline-code">li</code></td>
-                            <td>Listenelement in (nummerierten) Listen.</td>
-                        </tr>
-                        <tr>
-                            <td><code class="inline-code">div</code></td>
-                            <td>Allgemeiner Container um Inhalte zu gruppieren.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <code class="inline-code">main</code>,
-                                <code class="inline-code">section</code>,
-                                <code class="inline-code">article</code>,
-                                <code class="inline-code">aside</code>
-                            </td>
-                            <td>Bestimmte Container</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <!-- Verschachtelung -->
-            <section>
-                <h2>Verschachtelung</h2>
-                <p>
-                    HTML-Tags können ineinander verschachtelt werden, um komplexe
-                    Strukturen zu erstellen. Die Tiefe der Verschachtelung ist hierbei
-                    so gut wie unbegrenzt.
-                </p>
-                <pre data-id="code-animation">
-                    <code class="hljs html" data-trim data-line-numbers>
-                        <section>
-                            <ul>
-                                <li>
-                                    <a href="https://google.com">Google</a>
-                                </li>
-                            </ul>
-                        </section>
-                    </code>
-                </pre>
-            </section>
-
-            <!-- Head- und Body-Tag -->
-            <section>
-                <h2>Head- und Body-Tag</h2>
-                <p>
-                    Jedes HTML-Dokument besteht aus zwei Hauptteilen: Dem
-                    <code class="inline-code">&lt;head&gt;</code> und dem
-                    <code class="inline-code">&lt;body&gt;</code>.
-                </p>
+                <h2>Direkt im Head</h2>
                 <ul>
-                    <li>
-                        Der <code class="inline-code">&lt;head&gt;</code> enthält
-                        Metadaten über das Dokument, wie den Titel, Skripte und andere
-                        Informationen. Diese Elemente sind im Browser nicht sichtbar.
-                    </li>
-                    <li>
-                        Der <code class="inline-code">&lt;body&gt;</code> enthält den
-                        eigentlichen Inhalt der Webseite, der im Browser dargestellt wird.
-                    </li>
+                    <li class='tile'>Im <code class="inline-code">&lt;head&gt;</code> kann mithilfe eines Skript-Tags direkt JavaScript erfasst werden</li>
+                    <li class='tile'>Bietet (beinahe) das gesamte Arsenal von JavaScript</li>
+                    <li class='tile'>Für grosse Projekte schnell unübersichtlich</li>
                 </ul>
-            </section>
 
-            <!-- Struktur einer Webseite -->
-            <section>
-                <h2>Struktur einer Webseite</h2>
-                <p>
-                    Eine grundlegende Webseite sollte immer mindestens die folgende
-                    Struktur aufweisen
-                </p>
-                <pre data-id="code-animation">
+                <pre>
                     <code class="hljs html" data-trim data-line-numbers>
-                        &lt;!DOCTYPE html> <!-- Definiert den Dokumententyp -->
-                        &lt;html> <!-- Äusserster Tag beinhaltet alles -->
-                        &lt;head> <!-- Unsichtbar, beinhaltet Meta-Information -->
-                        ...
-                        &lt;/head>
-                        &lt;body> <!-- Beinhaltet die sichtbaren Elemente der Webseite -->
-                        ...
-                        &lt;/body>
-                        &lt;/html>
+                        &lt;head&gt;
+                            &lt;script&gt;
+                                const elements = document.querySelectorAll(".tile");
+                                elements.forEach(e => {
+                                    e.addEventListener("click", event => {
+                                        e.classList.toggle("blink");
+                                    })
+                                })
+                            &lt;/script&gt;
+                        &lt;/head&gt;
                     </code>
                 </pre>
+            </section>
+
+            <section>
+                <h2>Externe Datei</h2>
+                <ul>
+                    <li>Etwas aufändiger einzurichten</li>
+                    <li>Bietet alle Features von JavaScript</li>
+                    <li>Auch für grosse Projekte (oder die die es noch werden wollen) geeignet</li>
+                </ul>
             </section>
 
             <!-- tldr -->
