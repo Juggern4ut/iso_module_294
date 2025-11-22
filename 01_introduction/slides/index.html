@@ -34,15 +34,16 @@
             font-size: 24px;
         }
 
-        .tile.blink{
+        .tile.blink {
             animation: 200ms blink infinite;
         }
 
-        @keyframes blink{
-            0%{
+        @keyframes blink {
+            0% {
                 opacity: 1;
             }
-            100%{
+
+            100% {
                 opacity: 0;
             }
         }
@@ -124,10 +125,10 @@
             <section>
                 <h2>Beispiel</h2>
                 <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
-                    <button onclick="document.getElementById('myImage').src='/assets/img/happy.webp'">Make
+                    <button onclick="document.getElementById('myImage').src='./assets/img/happy.webp'">Make
                         happy</button>
-                    <img id="myImage" src="/assets/img/happy.webp" style="width:75px">
-                    <button onclick="document.getElementById('myImage').src='/assets/img/sad.png'">Make sad</button>
+                    <img id="myImage" src="./assets/img/happy.webp" style="width:75px">
+                    <button onclick="document.getElementById('myImage').src='./assets/img/sad.png'">Make sad</button>
                 </div>
 
                 <pre>
@@ -139,7 +140,7 @@
 
                         &lt;img
                         id="myId"
-                        src="/assets/img/happy.webp" style="width:100px"
+                        src="happy.webp" style="width:100px"
                         />
 
                         &lt;button
@@ -154,25 +155,25 @@
                 <h2>Showroom</h2>
                 <div style="display: flex; gap: 20px; align-items: center;">
                     <a href="https://juggern4ut.github.io/typescript_raycast/dist/index.html" target="_blank">
-                        <img width="100" src="/assets/img/ray_tracer.png" />
+                        <img width="100" src="./assets/img/ray_tracer.png" />
                     </a>
                     <h5>Einfacher Ray-Tracer</h5>
                 </div>
                 <div style="display: flex; gap: 20px; align-items: center;">
                     <a href="https://ecosystem2.lmeier.ch/" target="_blank">
-                        <img width="100" src="/assets/img/ecosystem.png" />
+                        <img width="100" src="./assets/img/ecosystem.png" />
                     </a>
                     <h5>Evolutionsbasiertes Ökosystem</h5>
                 </div>
                 <div style="display: flex; gap: 20px; align-items: center;">
                     <a href="https://juggern4ut.github.io/metaballs/dist/" target="_blank">
-                        <img width="100" src="/assets/img/metaballs.png" />
+                        <img width="100" src="./assets/img/metaballs.png" />
                     </a>
                     <h5>Metaballs</h5>
                 </div>
                 <div style="display: flex; gap: 20px; align-items: center;">
                     <a href="https://juggern4ut.github.io/Beadify/" target="_blank">
-                        <img width="100" src="/assets/img/dotify.jpg" />
+                        <img width="100" src="./assets/img/dotify.jpg" />
                     </a>
                     <h5>Dotify</h5>
                 </div>
@@ -192,7 +193,7 @@
                     <li>Als Skript in einer externen Datei</li>
                 </ul>
             </section>
-        
+
             <!-- Inline -->
             <section>
                 <h2>Inline</h2>
@@ -208,12 +209,13 @@
                 </pre>
                 <button onclick='alert("I got clicked!")'>Click me!</button>
             </section>
-            
+
             <!-- Direkt im Head -->
             <section>
                 <h2>Direkt im Head</h2>
                 <ul>
-                    <li class='tile'>Im <code class="inline-code">&lt;head&gt;</code> kann mithilfe eines Skript-Tags direkt JavaScript erfasst werden</li>
+                    <li class='tile'>Im <code class="inline-code">&lt;head&gt;</code> kann mithilfe eines Skript-Tags
+                        direkt JavaScript erfasst werden</li>
                     <li class='tile'>Bietet (beinahe) das gesamte Arsenal von JavaScript</li>
                     <li class='tile'>Für grosse Projekte schnell unübersichtlich</li>
                 </ul>
@@ -221,19 +223,20 @@
                 <pre>
                     <code class="hljs html" data-trim data-line-numbers>
                         &lt;head&gt;
-                            &lt;script&gt;
-                                const elements = document.querySelectorAll(".tile");
-                                elements.forEach(e => {
-                                    e.addEventListener("click", event => {
-                                        e.classList.toggle("blink");
-                                    })
-                                })
-                            &lt;/script&gt;
+                        &lt;script&gt;
+                        const elements = document.querySelectorAll(".tile");
+                        elements.forEach(e => {
+                        e.addEventListener("click", event => {
+                        e.classList.toggle("blink");
+                        })
+                        })
+                        &lt;/script&gt;
                         &lt;/head&gt;
                     </code>
                 </pre>
             </section>
 
+            <!-- Externe Datei -->
             <section>
                 <h2>Externe Datei</h2>
                 <ul>
@@ -247,6 +250,27 @@
                         &lt;script src="/path/to/my/file.js"&gt;&lt;/script>
                     </code>
                 </pre>
+            </section>
+            
+            <!-- TL;DR -->
+            <section>
+                <h2>TL;DR</h2>
+                <ul>
+                    <li>
+                        JavaScript, die Programmiersprache des Webs, berechnet, manipuliert und validiert Daten.
+                    </li>
+                    <li>
+                        Wurde innert 10 Tagen von Brendan Eich in 1995 entwickelt.
+                    </li>
+                    <li>
+                        <b>Integrationstypen:</b>
+                        <ul>
+                            <li><b>Inline</b>: Einfach, aber limitiert.</li>
+                            <li><b>Direkt im Head</b>: Alle JavaScript-Funktionalitäten, nicht gut skalierbar.</li>
+                            <li><b>Externe Datei</b>: Modular und skalierbar, ideal für grössere Projekte.</li>
+                        </ul>
+                    </li>
+                </ul>
             </section>
 
         </div>
