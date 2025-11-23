@@ -1,27 +1,94 @@
-\documentclass{article}
-
+\documentclass[a4paper,12pt]{article}
 \usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
 \usepackage{amsmath}
+\usepackage{parskip}
+
+\setlength{\parindent}{0pt} % Keine Einrückungen
 
 \title{Modul 294 - Aufgabenblatt 01}
-\author{Lukas Meier}
-\date{\today}
+\author{von Lukas Meier}
+\date{Unterricht vom 25.11.2025}
 
 \begin{document}
 
 \maketitle
 
-\pagebreak
-
 \section*{Aufgaben}
-Um die soeben behandelte Theorie zu festigen und um einen ersten Eindruck von der Anwendungsweise von JavaScript zu erhalten. Sollten sie die folgenden Aufgaben der Reihe nach abschliessen.
+
+Um die soeben behandelte Theorie zu festigen und um einen ersten Eindruck von der Anwendungsweise von JavaScript zu erhalten, sollten Sie die folgenden Aufgaben der Reihe nach abschliessen.
 
 \subsection*{Einrichten der Entwicklungsumgebung}
 
-Da JavaScript nativ in jedem modernen Browser ausgeführt werden kann, ist keine Installation einer Runtime notwendig. 
-Um den Code optimal zu bearbeiten, sollten Sie jedoch eine IDE oder einen simplen Codeeditor installiert haben. 
-Beliebte Lösungen hierfür sind: \textbf{Visual Studio Code}, \textbf{Sublime Text} oder \textbf{NetBeans}. (Oder, für die fanatischten unter euch NeoVim.)
+Da JavaScript nativ in jedem modernen Browser ausgeführt werden kann, ist keine Installation einer Runtime notwendig. Um den Code optimal zu bearbeiten, sollten Sie jedoch eine IDE oder einen simplen Code-Editor installiert haben\dots
 
-\subsection*{}
+Beliebte Lösungen hierfür sind: Visual Studio Code, Sublime Text oder NetBeans. Oder, für die fanatischsten unter euch, NeoVim.
+
+\subsection*{Erste Schritte im Umgang mit JavaScript}
+
+Öffnen Sie die Datei \texttt{index.html} aus den Unterrichtsunterlagen in Ihrem Code-Editor und lesen Sie die HTML-Struktur. Gibt es Unklarheiten oder Fragen zu der grundlegenden HTML-Struktur mit eingebundenem CSS, so stellen Sie mir diese. 
+
+Um den Start in die Welt von JavaScript für Sie so einfach wie möglich zu machen, ist es wichtig, die Grundlagen von HTML und CSS aus Modul 293 verstanden zu haben. 
+
+\subsection*{Eine einfache Ausgabe}
+
+Erstellen Sie nun im Head der HTML-Datei einen \texttt{<script>}-Tag und schreiben Sie den folgenden JavaScript Code:
+
+\begin{verbatim}
+<script>
+	alert("Hello World");
+</script>
+\end{verbatim}
+
+Speichern Sie die Datei und öffnen Sie sie in einem Browser Ihrer Wahl. Was passiert?
+
+\subsection*{Arbeiten mit Variablen}
+
+In JavaScript können veränderbare Variablen mit dem Keyword \texttt{let} erfasst werden. Konstanten (Variablen, die nicht verändert werden können) definieren Sie mit dem Keyword \texttt{const}. 
+
+\begin{verbatim}
+let myVar = 10;
+const PI = 3.14;
+\end{verbatim}
+
+Erstellen Sie nun eine neue Variable mit dem Namen \texttt{myName}. Sie soll als Wert Ihren Namen beinhalten. 
+
+Passen Sie nun den Alert so an, dass anstelle von "Hello World" der Wert der Variable \texttt{myName} ausgegeben wird.
+
+\subsection*{console.log}
+
+Da es nicht zweckmässig ist, immer eine Alert-Box wegklicken zu müssen und die Ausgaben dieser Box stark limitiert sind, werden wir für die kommenden Aufgaben das besser geeignete Objekt \texttt{console} und die darauf vorhandene Methode \texttt{log} nutzen. 
+
+Entfernen Sie den Aufruf für die Alert-Box aus dem vorherigen Code und ersetzen Sie diesen mit \texttt{console.log("Hello World");}. 
+
+Wenn Sie die Datei nun speichern und in Ihrem Browser neu laden, werden Sie keinen Output mehr feststellen. Das liegt daran, dass die Konsole im Browser per Default deaktiviert ist. 
+
+Aktivieren Sie die Entwicklertools mithilfe von F12 und wählen Sie im neu erschienenen Fenster "Konsole". Wenn Sie die Seite nun erneut neu laden, sollten Sie den Output nun in der Konsole sehen können. 
+
+Probieren Sie zusätzlich die Methoden \texttt{warn} und \texttt{error} auf dem Objekt \texttt{console} aus und vergleichen Sie die Ausgaben.
+
+\subsection*{Unterschiedliche Variablentypen}
+
+JavaScript umfasst keine Typsicherheit. Eine Variable kann also jeden Typ haben und auch während der Laufzeit unterschiedliche Werte annehmen. Sie als Entwickler haben die Verantwortung, Ihren Code so zu schreiben, dass keine Probleme entstehen können. 
+
+Erstellen Sie eine Variable mit dem Namen \texttt{number1} und eine weitere mit dem Namen \texttt{number2} und geben Sie beiden eine beliebige Zahl als Wert. 
+
+Erstellen Sie einen zweiten Aufruf der Log-Methode, welcher die Summe von \texttt{number1} und \texttt{number2} ausgeben soll. 
+
+Was erwarten Sie, passiert, wenn Sie vor dem Aufruf der Alert-Methode den folgenden Code einfügen?
+
+\begin{verbatim}
+number2 = "Ich bin nun ein String!"
+\end{verbatim}
+
+Spielen Sie weiter mit mathematischen Operatoren und unterschiedlichen Datentypen herum. Was passiert zum Beispiel, wenn Sie eine Variable mit dem Wert \texttt{true} und eine Variable mit dem Wert \texttt{false} addieren/subtrahieren? Lassen Sie Ihrer Kreativität freien Lauf.
+
+Die Experimentierfreudigen können sich auch einmal Folgendes ausgeben lassen und versuchen herauszufinden, wieso hier ein Obst in die Konsole geschrieben wird: \texttt{"b" + "a" + +"a" + "a";}
+
+\subsection*{Typeof}
+
+Mit Hilfe der \texttt{typeof}-Funktion lassen sich die Typen von Variablen ausgeben und vergleichen. 
+
+\texttt{typeof} hat für gewisse Entwickler eine ungewohnte Syntax. Machen Sie sich im Internet oder via AI schlau, wie dieser genutzt wird, was er genau macht, und wenden Sie ihn an einigen Ihrer Variablen an.
 
 \end{document}
