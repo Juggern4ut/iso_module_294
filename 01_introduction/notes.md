@@ -1,0 +1,2 @@
+- Folien dürfen etwas länger/ausfühlricher sein. (Variablentypen aufnehmen, basics wie if/else und loops haben in dieser Lektion gut noch platz.)
+- Aufgabenblatt mit mehr Aufgaben und Beispielen erweitern.
