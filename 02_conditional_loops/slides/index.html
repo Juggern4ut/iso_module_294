@@ -63,9 +63,9 @@
 
             <!-- Titelfolie -->
             <section>
-                <h2>02 - Operators, Conditionals, Loops</h2>
+                <h2>02 - DOM-Manipulation</h2>
                 <hr />
-                <h3>0.1 + 0.2 = 0.30000000004</h3>
+                <h3>Loops, Conditionals and more</h3>
                 <img style="width: 200px" src="assets/img/js-logo.webp" alt="Web Icon" />
             </section>
 
@@ -74,13 +74,13 @@
                 <h2>Lernziele dieser Lektion</h2>
                 <ul>
                     <li>
-                        Kennen der Operatoren und diese korrekt verwenden können.
+                        Kennen der Operatoren
                     </li>
                     <li>
-                        Verstehen wie Loops funktionieren und diese selber schreiben können.
+                        Verstehen und Anwenden von Loops
                     </li>
                     <li>
-                        if/else-Conditionals korrekt anwenden können.
+                        Grundlegende DOM-Manipulationen umsetzen
                     </li>
                 </ul>
             </section>
@@ -88,189 +88,209 @@
             <!-- Operatoren -->
             <section>
                 <h2>Operatoren</h2>
-                <ul>
-                    <li>The Assignment Operator = assigns values</li>
-                    <li>The Addition Operator + adds values</li>
-                    <li>The Multiplication Operator * multiplies values</li>
-                    <li>The Comparison Operator &gt; compares values</li>
-                </ul>
+                <p>JavaScript umfasst die meisten Arithmetischen Operatoren welche Sie bereits aus anderen
+                    Programmiersprachen kennnen
+                    sollten</p>
+                <table>
+                    <tr>
+                        <td>Zuweisungen</td>
+                        <td><code class="inline-code">=</code></td>
+                    </tr>
+                    <tr>
+                        <td>Additionen / Subtraktion</td>
+                        <td><code class="inline-code">+</code> <code class="inline-code">-</code></td>
+                    </tr>
+                    <tr>
+                        <td>Multiplikation / Division</td>
+                        <td><code class="inline-code">*</code> <code class="inline-code">/</code></td>
+                    </tr>
+                    <tr>
+                        <td>Potenzierung</td>
+                        <td><code class="inline-code">**</code></td>
+                    </tr>
+                    <tr>
+                        <td>Modulo</td>
+                        <td><code class="inline-code">%</code></td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- Operatoren -->
+            <section>
+                <h2>Operatoren</h2>
+                <p>Auch die logischen Vergleichsoperatoren sollten bekannt sein.</p>
+                <table>
+                    <tr>
+                        <td>Grösser als</td>
+                        <td><code class="inline-code">&gt;</code></td>
+                    </tr>
+                    <tr>
+                        <td>Grösser-gleich als</td>
+                        <td><code class="inline-code">&gt;=</code></td>
+                    </tr>
+                    <tr>
+                        <td>Kleiner als</td>
+                        <td><code class="inline-code">&lt;</code></td>
+                    </tr>
+                    <tr>
+                        <td>Kleiner-gleich als</td>
+                        <td><code class="inline-code">&lt;=</code></td>
+                    </tr>
+                    <tr>
+                        <td>Gleich</td>
+                        <td><code class="inline-code">==</code></td>
+                    </tr>
+                    <tr>
+                        <td>Gleicher Wert und Typ</td>
+                        <td><code class="inline-code">===</code></td>
+                    </tr>
+                    <tr>
+                        <td>Ungleich</td>
+                        <td><code class="inline-code">!=</code></td>
+                    </tr>
+                    <tr>
+                        <td>Wert oder Typ ungleich</td>
+                        <td><code class="inline-code">!==</code></td>
+                    </tr>
+                </table>
             </section>
 
             <!-- Conditionals -->
             <section>
                 <h2>Conditionals</h2>
-                <ul>
-                    <li>Use if to specify a code block to be executed, if a specified condition is true</li>
-                    <li>Use else to specify a code block to be executed, if the same condition is false</li>
-                    <li>Use else if to specify a new condition to test, if the first condition is false</li>
-                    <li>Use switch to specify many alternative code blocks to be executed</li>
-                    <li>Use (? :) (ternary) as a shorthand for if...else</li>
-                </ul>
+                <p>Um Konditionen zu prüfen und so den Fluss ihres Codes zu steuern verwenden wir <code
+                        class="inline-code">if/else</code>, <code class="inline-code">switch</code> oder ein <code
+                        class="inline-code">ternary</code></p>
+            </section>
+
+            <!-- If / Else -->
+            <section>
+                <h2>If / Else</h2>
+                <p>Das Vergleichen von Werten mit if/else verhält sich intuitiv wie in den meisten anderen
+                    Programmiersprachen.</p>
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        const userAge = 10;
+
+                        if(userAge >= 18) {
+                        alert("You are an adult");
+                        } else if (userAge >= 13) {
+                        alert("You are a teenager");
+                        } else {
+                        alert(You are a kid);
+                        }
+                    </code>
+                </pre>
+            </section>
+
+            <!-- Switch -->
+            <section>
+                <h2>Switch</h2>
+                <p>Um grosse if/else-Blöcke leserlicher zu machen, verwenden wir <code class="inline-code">switch</code>
+                </p>
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        let fruit = "apple";
+
+                        switch (fruit) {
+                        case "apple":
+                        console.log("You have chosen an apple.");
+                        break;
+                        case "orange":
+                        console.log("You have chosen an orange.");
+                        break;
+                        default:
+                        console.log("Unknown fruit.");
+                        break;
+                        }
+                    </code>
+                </pre>
+            </section>
+
+            <!-- Ternary -->
+            <section>
+                <h2>Ternary</h2>
+                <p>Ein short-hand für if/else. <code class="inline-code">? :</code></p>
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        // condition ? expression1 : expression2
+
+                        const user = {
+                        name: "Müller",
+                        gender: "female"
+                        }
+
+                        const salutation = user.gender == 'male' ? 'Mr.' : 'Mrs.';
+
+                        console.log("Hello " + salutation + " " + user.name);
+                    </code>
+                </pre>
             </section>
 
             <!-- Arrays -->
             <section>
                 <h2>Arrays</h2>
-                    <p>Key characteristics of JavaScript arrays are:</p>
-                    <ul>
-                        <li>Elements: An array is a list of values, known as elements.</li>
-                        <li>Ordered: Array elements are ordered based on their index.</li>
-                        <li>Zero indexed: The first element is at index 0, the second at index 1, and so on.</li>
-                        <li>Dynamic size: Arrays can grow or shrink as elements are added or removed.</li>
-                        <li>Heterogeneous: Arrays can store elements of different data types (numbers, strings, objects and other arrays).</li>
-                    </ul>
-            </section>
-
-            <!-- Beispiel -->
-            <section>
-                <h2>Beispiel</h2>
-                <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
-                    <button onclick="document.getElementById('myImage').src='./assets/img/happy.webp'">Make
-                        happy</button>
-                    <img id="myImage" src="./assets/img/happy.webp" style="width:75px">
-                    <button onclick="document.getElementById('myImage').src='./assets/img/sad.png'">Make sad</button>
-                </div>
-
-                <pre>
-                    <code class="html" data-trim data-line-numbers>
-                        &lt;button
-                        onclick="document.getElementById('myId').src='happy.webp'">
-                        Make happy
-                        &lt;/button>
-
-                        &lt;img
-                        id="myId"
-                        src="happy.webp" style="width:100px"
-                        />
-
-                        &lt;button
-                        onclick="document.getElementById('myId').src='sad.webp'">
-                        Make sad
-                        &lt;/button>
-                    </code>
-                </pre>
-            </section>
-
-            <section>
-                <h2>Showroom</h2>
-                <div style="display: flex; gap: 20px; align-items: center;">
-                    <a href="https://juggern4ut.github.io/typescript_raycast/dist/index.html" target="_blank">
-                        <img width="100" src="./assets/img/ray_tracer.png" />
-                    </a>
-                    <h5>Einfacher Ray-Tracer</h5>
-                </div>
-                <div style="display: flex; gap: 20px; align-items: center;">
-                    <a href="https://ecosystem2.lmeier.ch/" target="_blank">
-                        <img width="100" src="./assets/img/ecosystem.png" />
-                    </a>
-                    <h5>Evolutionsbasiertes Ökosystem</h5>
-                </div>
-                <div style="display: flex; gap: 20px; align-items: center;">
-                    <a href="https://juggern4ut.github.io/metaballs/dist/" target="_blank">
-                        <img width="100" src="./assets/img/metaballs.png" />
-                    </a>
-                    <h5>Metaballs</h5>
-                </div>
-                <div style="display: flex; gap: 20px; align-items: center;">
-                    <a href="https://juggern4ut.github.io/Beadify/" target="_blank">
-                        <img width="100" src="./assets/img/dotify.jpg" />
-                    </a>
-                    <h5>Dotify</h5>
-                </div>
-                <!--Diese und weitere Beispiele unter https://lmeier.ch -->
-            </section>
-
-            <!-- Implementation von JavaScript -->
-            <section>
-                <h2>Implementation</h2>
-                <p>
-                    JavaScript wird in der Regel mit einer (oder mehreren) der folgenden Möglichkeiten in eine Webseite
-                    eingebunden.
-                </p>
+                <p>Wesentliche Merkmale von JavaScript-Arrays:</p>
                 <ul>
-                    <li>Inline</li>
-                    <li>Direkt im <code class="inline-code">&lt;head&gt;</code></li>
-                    <li>Als Skript in einer externen Datei</li>
+                    <li><b>Elemente:</b> Eine Liste von Werten.</li>
+                    <li><b>Ordnung:</b> Elemente sind nach Index geordnet.</li>
+                    <li><b>Nullbasiert:</b> Indexierung startet bei 0</li>
+                    <li><b>Dynamische Grösse:</b> Kann sich laufend ändern</li>
+                    <li><b>Heterogen:</b> Erlaubt unterschiedliche Datentypen</li>
                 </ul>
             </section>
-
-            <!-- Inline -->
+            
+            <!-- Arrays -->
             <section>
-                <h2>Inline</h2>
-                <uL>
-                    <li>JavaScript kann inline direkt in einem HTML-Tag erfasst werden.</li>
-                    <li>Einfach zu nutzen aber stark limitiert.</li>
-                    <li>Kann nur bei bestimmten Events genutzt werden.</li>
-                </ul>
+                <h2>Arrays</h2>
+                <p>Einige Beispiele für Arrays</p>
                 <pre>
-                    <code class="hljs html" data-trim data-line-numbers>
-                        &lt;button onclick='alert("I got clicked!")'&gt;Click me!&lt;/button&gt;
-                    </code>
-                </pre>
-                <button onclick='alert("I got clicked!")'>Click me!</button>
-            </section>
+                    <code class="js" data-trim data-line-numbers>
+                        // Normale Arrays
+                        const numbers = [1, 2, 4, 8, 16, 32]; 
+                        const words = ["a", "hello", "example"];
 
-            <!-- Direkt im Head -->
-            <section>
-                <h2>Direkt im Head</h2>
-                <ul>
-                    <li class='tile'>Im <code class="inline-code">&lt;head&gt;</code> kann mithilfe eines Skript-Tags
-                        direkt JavaScript erfasst werden</li>
-                    <li class='tile'>Bietet (beinahe) das gesamte Arsenal von JavaScript</li>
-                    <li class='tile'>Für grosse Projekte schnell unübersichtlich</li>
-                </ul>
-
-                <pre>
-                    <code class="hljs html" data-trim data-line-numbers>
-                        &lt;head&gt;
-                        &lt;script&gt;
-                        const elements = document.querySelectorAll(".tile");
-                        elements.forEach(e => {
-                        e.addEventListener("click", event => {
-                        e.classList.toggle("blink");
-                        })
-                        })
-                        &lt;/script&gt;
-                        &lt;/head&gt;
-                    </code>
-                </pre>
-            </section>
-
-            <!-- Externe Datei -->
-            <section>
-                <h2>Externe Datei</h2>
-                <ul>
-                    <li>Etwas aufändiger einzurichten</li>
-                    <li>Bietet alle Features von JavaScript</li>
-                    <li>Auch für grosse Projekte (oder die die es noch werden wollen) geeignet</li>
-                    <li>Erlaubt das Im- und Exportieren von Code</li>
-                </ul>
-                <pre>
-                    <code class="hljs html" data-trim data-line-numbers>
-                        &lt;script src="/path/to/my/file.js"&gt;&lt;/script>
+                        // Heterogenes Array
+                        const heterogene = [1, "sample", true, 15, true];
                     </code>
                 </pre>
             </section>
             
+            <!-- Arrays -->
+            <section>
+                <h2>Arrays</h2>
+                <p>Um mit Arrays zu arbeiten bietet JavaScript viele Möglichkeiten, die wichtigsten werden hier aufgeführt.</p>
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        const numbers = [1, 2, 4, 8, 16, 32];
+                        
+                        // Auslesen eines Elementes 
+                        alert(numbers[2]);
+
+                        // Zuweisung eines neuen Elements 
+                        numbers[0] = 4;
+
+                        // Länge eines Arrays auslesen 
+                        console.log(numbers.length);
+                    </code>
+                </pre>
+            </section>
+
+            <!-- Loops -->
+            <section>
+                <h2>Loops</h2>
+                <p>Um durch eine Liste von Daten zu iterieren nutzen wir Schleifen. Hierfür gibt es mehrere
+                    Möglichkeiten.</p>
+                <ul>
+                    <li><code class="inline-code">While</code>-Loop</li>
+                    <li><code class="inline-code">For</code>-Loop</li>
+                    <li><code class="inline-code">For-Each</code>-Loop</li>
+                </ul>
+            </section>
+
             <!-- TL;DR -->
             <section>
                 <h2>TL;DR</h2>
-                <ul>
-                    <li>
-                        JavaScript, die Programmiersprache des Webs, berechnet, manipuliert und validiert Daten.
-                    </li>
-                    <li>
-                        Wurde innert 10 Tagen von Brendan Eich in 1995 entwickelt.
-                    </li>
-                    <li>
-                        <b>Integrationstypen:</b>
-                        <ul>
-                            <li><b>Inline</b>: Einfach, aber limitiert.</li>
-                            <li><b>Direkt im Head</b>: Alle JavaScript-Funktionalitäten, nicht gut skalierbar.</li>
-                            <li><b>Externe Datei</b>: Modular und skalierbar, ideal für grössere Projekte.</li>
-                        </ul>
-                    </li>
-                </ul>
             </section>
 
         </div>
