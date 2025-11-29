@@ -95,22 +95,27 @@
                     <tr>
                         <td>Zuweisungen</td>
                         <td><code class="inline-code">=</code></td>
+                        <td><code class="inline-code">const a = 10;</code></td>
                     </tr>
                     <tr>
                         <td>Additionen / Subtraktion</td>
                         <td><code class="inline-code">+</code> <code class="inline-code">-</code></td>
+                        <td><code class="inline-code">const b = a + 10;</code></td>
                     </tr>
                     <tr>
                         <td>Multiplikation / Division</td>
                         <td><code class="inline-code">*</code> <code class="inline-code">/</code></td>
+                        <td><code class="inline-code">const c = b * 3;</code></td>
                     </tr>
                     <tr>
                         <td>Potenzierung</td>
                         <td><code class="inline-code">**</code></td>
+                        <td><code class="inline-code">const d = 3 ** 3;</code></td>
                     </tr>
                     <tr>
                         <td>Modulo</td>
                         <td><code class="inline-code">%</code></td>
+                        <td><code class="inline-code">const e = 10 % 2;</code></td>
                     </tr>
                 </table>
             </section>
@@ -172,12 +177,12 @@
                     <code class="js" data-trim data-line-numbers>
                         const userAge = 10;
 
-                        if(userAge >= 18) {
-                        alert("You are an adult");
-                        } else if (userAge >= 13) {
-                        alert("You are a teenager");
+                        if( userAge &gt;= 18 ) {
+                            alert("You are an adult");
+                        } else if ( userAge &gt;= 13 ) {
+                            alert("You are a teenager");
                         } else {
-                        alert(You are a kid);
+                            alert("You are a kid");
                         }
                     </code>
                 </pre>
@@ -193,15 +198,15 @@
                         let fruit = "apple";
 
                         switch (fruit) {
-                        case "apple":
-                        console.log("You have chosen an apple.");
-                        break;
-                        case "orange":
-                        console.log("You have chosen an orange.");
-                        break;
-                        default:
-                        console.log("Unknown fruit.");
-                        break;
+                            case "apple":
+                                console.log("You have chosen an apple.");
+                                break;
+                            case "orange":
+                                console.log("You have chosen an orange.");
+                                break;
+                            default:
+                                console.log("Unknown fruit.");
+                                break;
                         }
                     </code>
                 </pre>
@@ -216,8 +221,8 @@
                         // condition ? expression1 : expression2
 
                         const user = {
-                        name: "Müller",
-                        gender: "female"
+                            name: "Müller",
+                            gender: "female"
                         }
 
                         const salutation = user.gender == 'male' ? 'Mr.' : 'Mrs.';
@@ -259,7 +264,7 @@
             <!-- Arrays -->
             <section>
                 <h2>Arrays</h2>
-                <p>Um mit Arrays zu arbeiten bietet JavaScript viele Möglichkeiten, die wichtigsten werden hier aufgeführt.</p>
+                <p>JavaScript bietet viele Methoden um mit Arrays zu arbeiten</p>
                 <pre>
                     <code class="js" data-trim data-line-numbers>
                         const numbers = [1, 2, 4, 8, 16, 32];
@@ -287,6 +292,163 @@
                     <li><code class="inline-code">For-Each</code>-Loop</li>
                 </ul>
             </section>
+
+            <!-- While-Loop -->
+            <section>
+                <h2>While-Loop</h2>
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        const numbers = [1, 2, 4, 8, 16, 32];
+                        let i = 0;
+                        
+                        // Klassisch
+                        while(i &lt; numbers.length){
+                            console.log(numbers[i]);
+                            i++;
+                        }
+
+                        // Oder mit direktem Inkrement
+                        while(i &lt; numbers.length){
+                            console.log(numbers[i++]);
+                        }
+                    </code>
+                </pre>
+            </section>
+
+            <!-- For-Loop -->
+            <section>
+                <h2>For-Loop</h2>
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        const numbers = [1, 2, 4, 8, 16, 32];
+                        
+                        for( let i = 0; i &lt; numbers.length; i++ ){
+                            console.log(numbers[i]);
+                        }
+                    </code>
+                </pre>
+            </section>
+
+            <!-- For-Loop -->
+            <section>
+                <h2>For-Each-Loop</h2>
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        const numbers = [1, 2, 4, 8, 16, 32];
+
+                        numbers.forEach( function(num) {
+                            console.log( num );
+                        });
+                    </code>
+                </pre>
+            </section>
+
+            <!-- DOM-Manipulation -->
+            <section>
+                <h2>DOM-Manipulation</h2>
+                
+                <ul>
+                    <li><code class="inline-code">getElementById</code>, <code class="inline-code">querySelector</code> oder <code class="inline-code">querySelectorAll</code> selektieren Elemente</li>
+                    <li>Existieren alle in der document-root (<code class="inline-code">document</code>)</li>
+                    <li><code class="inline-code">querySelector[All]</code> kann ausserdem auf allen anderen DOM-Elementen ausgeführt werden</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>DOM-Manipulation</h2>
+
+                <pre>
+                    <code class="html" data-trim data-line-numbers>
+                        &lt;section id='cart'&gt;
+                            &lt;p&gt;Warenkorb&lt;p&gt;
+                            &lt;article&gt;
+                                &lt;p&gt;Dyson Staubsauger&lt;p&gt;
+                                &lt;span&gt;CHF 199&lt;span&gt;
+                            &lt;/article&gt;
+                            &lt;article&gt;
+                                &lt;p&gt;Sennheiser Kopfhörer&lt;p&gt;
+                                &lt;span&gt;CHF 325&lt;span&gt;
+                            &lt;/article&gt;
+                        &lt;/section&gt;
+                    </code>
+                </pre>
+
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        const wrapper = document.getElementById("cart");
+                        const allArticles = wrapper.querySelectorAll("article");
+                        const firstPrice = allArticles[0].querySelector("span");
+                    </code>
+                </pre>
+            </section>
+
+            <section>
+                <h2>DOM-Manipulation</h2>
+                
+                <ul>
+                    <li>Die Elemente welche Sie aus diesen Methoden erhalten werden als <code class="inline-code">Nodes</code> bezeichnet</li>
+                    <li>Für JavaScript handelt es sich um einfache Objekte <br>(<code class="inline-code">typeof</code> bestätigt das)</li>
+                    <li>Diese <code class="inline-code">Nodes</code> bieten enorm viele Attribute</li>
+                    <li>Die meisten werden selten bis nie genutzt</li>
+                </ul>
+
+            </section>
+
+            <section>
+                <h2>DOM-Manipulation</h2>
+                <p>Einige der meist genutzten<br>Attribute/Methoden von Nodes</p> 
+                    
+                <table>
+                    <tr>
+                        <td><code class="inline-code">classList</code></td>
+                        <td>Ein Objekt welches alle Klassen des Elements beinhaltet</td>
+                    </tr>
+                    <tr>
+                        <td><code class="inline-code">innerHTML</code></td>
+                        <td>Der gesamte Inhalt des Elements</td>
+                    </tr>
+                    <tr>
+                        <td><code class="inline-code">getAttribute('attr')</code></td>
+                        <td>Gibt den Wert des Attributes des Elements zurück</td>
+                    </tr>
+                    <tr>
+                        <td><code class="inline-code">setAttribute('attr', 'val')</code></td>
+                        <td>Setzt ein Attribut auf einem Element</td>
+                    </tr>
+                    <tr>
+                        <td><code class="inline-code">style</code></td>
+                        <td>Objekt in dem Stylings definiert und ausgelesen werden können</td>
+                    </tr>
+                </table>
+            </section>
+            
+            <section>
+                <h2>DOM-Manipulation</h2>
+                <pre>
+                    <code class="html" data-trim data-line-numbers>
+                        &lt;h1 class='big important'&gt;Mein Titel&lt;/h1&gt;
+                    </code>
+                </pre>
+
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        const title = document.getElementById("myTitle");
+
+                        title.classList //-&gt; DOMTokenList [ "big", "important" ]
+
+                        title.innerHTML = "Der Titel"; //-&gt; 'Mein Titel' nun 'Der Titel'
+
+                        title.setAttribute("alt", "Das ist mein Titel");
+
+                        title.getAttribute("alt")) //-&gt; "Das ist mein Titel";
+
+                        title.style.backgroundColor = "#ccff00";
+                    </code>
+                </pre>
+            </section>
+
+
+
 
             <!-- TL;DR -->
             <section>
