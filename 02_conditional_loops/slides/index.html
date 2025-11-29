@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Modul 294 - Lektion 01</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+
+    <style>
+        td {
+            font-size: 21px;
+        }
+
+        .inline-code {
+            font-family: "Consolas", "Monaco", "Andale Mono", "Ubuntu Mono",
+                monospace;
+            display: inline-block;
+            background-color: #2d2d2d;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-size: 75%;
+        }
+
+        thead td {
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .tile.blink {
+            animation: 200ms blink infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Modulfolie -->
+            <section>
+                <h2>Modul 294</h2>
+                <hr />
+                <h3>Frontend einer interaktiven Webapplikation realisieren</h3>
+                <img style="width: 200px" src="assets/img/web-icon.png" alt="Web Icon" />
+            </section>
+
+            <!-- Titelfolie -->
+            <section>
+                <h2>02 - Operators, Conditionals, Loops</h2>
+                <hr />
+                <h3>0.1 + 0.2 = 0.30000000004</h3>
+                <img style="width: 200px" src="assets/img/js-logo.webp" alt="Web Icon" />
+            </section>
+
+            <!-- Lernziele -->
+            <section>
+                <h2>Lernziele dieser Lektion</h2>
+                <ul>
+                    <li>
+                        Kennen der Operatoren und diese korrekt verwenden können.
+                    </li>
+                    <li>
+                        Verstehen wie Loops funktionieren und diese selber schreiben können.
+                    </li>
+                    <li>
+                        if/else-Conditionals korrekt anwenden können.
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Operatoren -->
+            <section>
+                <h2>Operatoren</h2>
+                <ul>
+                    <li>The Assignment Operator = assigns values</li>
+                    <li>The Addition Operator + adds values</li>
+                    <li>The Multiplication Operator * multiplies values</li>
+                    <li>The Comparison Operator &gt; compares values</li>
+                </ul>
+            </section>
+
+            <!-- Conditionals -->
+            <section>
+                <h2>Conditionals</h2>
+                <ul>
+                    <li>Use if to specify a code block to be executed, if a specified condition is true</li>
+                    <li>Use else to specify a code block to be executed, if the same condition is false</li>
+                    <li>Use else if to specify a new condition to test, if the first condition is false</li>
+                    <li>Use switch to specify many alternative code blocks to be executed</li>
+                    <li>Use (? :) (ternary) as a shorthand for if...else</li>
+                </ul>
+            </section>
+
+            <!-- Arrays -->
+            <section>
+                <h2>Arrays</h2>
+                    <p>Key characteristics of JavaScript arrays are:</p>
+                    <ul>
+                        <li>Elements: An array is a list of values, known as elements.</li>
+                        <li>Ordered: Array elements are ordered based on their index.</li>
+                        <li>Zero indexed: The first element is at index 0, the second at index 1, and so on.</li>
+                        <li>Dynamic size: Arrays can grow or shrink as elements are added or removed.</li>
+                        <li>Heterogeneous: Arrays can store elements of different data types (numbers, strings, objects and other arrays).</li>
+                    </ul>
+            </section>
+
+            <!-- Beispiel -->
+            <section>
+                <h2>Beispiel</h2>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+                    <button onclick="document.getElementById('myImage').src='./assets/img/happy.webp'">Make
+                        happy</button>
+                    <img id="myImage" src="./assets/img/happy.webp" style="width:75px">
+                    <button onclick="document.getElementById('myImage').src='./assets/img/sad.png'">Make sad</button>
+                </div>
+
+                <pre>
+                    <code class="html" data-trim data-line-numbers>
+                        &lt;button
+                        onclick="document.getElementById('myId').src='happy.webp'">
+                        Make happy
+                        &lt;/button>
+
+                        &lt;img
+                        id="myId"
+                        src="happy.webp" style="width:100px"
+                        />
+
+                        &lt;button
+                        onclick="document.getElementById('myId').src='sad.webp'">
+                        Make sad
+                        &lt;/button>
+                    </code>
+                </pre>
+            </section>
+
+            <section>
+                <h2>Showroom</h2>
+                <div style="display: flex; gap: 20px; align-items: center;">
+                    <a href="https://juggern4ut.github.io/typescript_raycast/dist/index.html" target="_blank">
+                        <img width="100" src="./assets/img/ray_tracer.png" />
+                    </a>
+                    <h5>Einfacher Ray-Tracer</h5>
+                </div>
+                <div style="display: flex; gap: 20px; align-items: center;">
+                    <a href="https://ecosystem2.lmeier.ch/" target="_blank">
+                        <img width="100" src="./assets/img/ecosystem.png" />
+                    </a>
+                    <h5>Evolutionsbasiertes Ökosystem</h5>
+                </div>
+                <div style="display: flex; gap: 20px; align-items: center;">
+                    <a href="https://juggern4ut.github.io/metaballs/dist/" target="_blank">
+                        <img width="100" src="./assets/img/metaballs.png" />
+                    </a>
+                    <h5>Metaballs</h5>
+                </div>
+                <div style="display: flex; gap: 20px; align-items: center;">
+                    <a href="https://juggern4ut.github.io/Beadify/" target="_blank">
+                        <img width="100" src="./assets/img/dotify.jpg" />
+                    </a>
+                    <h5>Dotify</h5>
+                </div>
+                <!--Diese und weitere Beispiele unter https://lmeier.ch -->
+            </section>
+
+            <!-- Implementation von JavaScript -->
+            <section>
+                <h2>Implementation</h2>
+                <p>
+                    JavaScript wird in der Regel mit einer (oder mehreren) der folgenden Möglichkeiten in eine Webseite
+                    eingebunden.
+                </p>
+                <ul>
+                    <li>Inline</li>
+                    <li>Direkt im <code class="inline-code">&lt;head&gt;</code></li>
+                    <li>Als Skript in einer externen Datei</li>
+                </ul>
+            </section>
+
+            <!-- Inline -->
+            <section>
+                <h2>Inline</h2>
+                <uL>
+                    <li>JavaScript kann inline direkt in einem HTML-Tag erfasst werden.</li>
+                    <li>Einfach zu nutzen aber stark limitiert.</li>
+                    <li>Kann nur bei bestimmten Events genutzt werden.</li>
+                </ul>
+                <pre>
+                    <code class="hljs html" data-trim data-line-numbers>
+                        &lt;button onclick='alert("I got clicked!")'&gt;Click me!&lt;/button&gt;
+                    </code>
+                </pre>
+                <button onclick='alert("I got clicked!")'>Click me!</button>
+            </section>
+
+            <!-- Direkt im Head -->
+            <section>
+                <h2>Direkt im Head</h2>
+                <ul>
+                    <li class='tile'>Im <code class="inline-code">&lt;head&gt;</code> kann mithilfe eines Skript-Tags
+                        direkt JavaScript erfasst werden</li>
+                    <li class='tile'>Bietet (beinahe) das gesamte Arsenal von JavaScript</li>
+                    <li class='tile'>Für grosse Projekte schnell unübersichtlich</li>
+                </ul>
+
+                <pre>
+                    <code class="hljs html" data-trim data-line-numbers>
+                        &lt;head&gt;
+                        &lt;script&gt;
+                        const elements = document.querySelectorAll(".tile");
+                        elements.forEach(e => {
+                        e.addEventListener("click", event => {
+                        e.classList.toggle("blink");
+                        })
+                        })
+                        &lt;/script&gt;
+                        &lt;/head&gt;
+                    </code>
+                </pre>
+            </section>
+
+            <!-- Externe Datei -->
+            <section>
+                <h2>Externe Datei</h2>
+                <ul>
+                    <li>Etwas aufändiger einzurichten</li>
+                    <li>Bietet alle Features von JavaScript</li>
+                    <li>Auch für grosse Projekte (oder die die es noch werden wollen) geeignet</li>
+                    <li>Erlaubt das Im- und Exportieren von Code</li>
+                </ul>
+                <pre>
+                    <code class="hljs html" data-trim data-line-numbers>
+                        &lt;script src="/path/to/my/file.js"&gt;&lt;/script>
+                    </code>
+                </pre>
+            </section>
+            
+            <!-- TL;DR -->
+            <section>
+                <h2>TL;DR</h2>
+                <ul>
+                    <li>
+                        JavaScript, die Programmiersprache des Webs, berechnet, manipuliert und validiert Daten.
+                    </li>
+                    <li>
+                        Wurde innert 10 Tagen von Brendan Eich in 1995 entwickelt.
+                    </li>
+                    <li>
+                        <b>Integrationstypen:</b>
+                        <ul>
+                            <li><b>Inline</b>: Einfach, aber limitiert.</li>
+                            <li><b>Direkt im Head</b>: Alle JavaScript-Funktionalitäten, nicht gut skalierbar.</li>
+                            <li><b>Externe Datei</b>: Modular und skalierbar, ideal für grössere Projekte.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+        </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [RevealZoom, RevealMarkdown, RevealHighlight, RevealNotes],
+        });
+    </script>
+</body>
+
+</html>
