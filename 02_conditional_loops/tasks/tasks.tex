@@ -1,0 +1,117 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\setlength{\parindent}{0pt} % Keine Einrückungen
+
+\title{Modul 294 - Aufgabenblatt 02}
+\author{von Lukas Meier}
+\date{Unterricht vom 25.11.2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Vorbereitung}
+
+Erstellen Sie einen Ordner an einem Ort Ihrer Wahl und speichern Sie die Datei \texttt{index.html} welche Sie auf dem Netzwerkordner finden darin. 
+
+\section{Array-Loop}
+
+Im script-Tag der index.html-Datei finden Sie bereits ein vordefiniertes Array. Schreiben Sie insgesamt 3 Loops welche der Reihe nach alle Zahlen aus dem Array in der Konsole des Browsers ausgeben. Nutzen sie \texttt{while}, \texttt{for} und \texttt{forEach} für die Schleifen.
+
+\section{Mathematische Operatoren}
+
+Erweitern Sie einen Loop ihrer Wahl so, dass anstelle der Zahl im Array, die Zahl plus 8 ausgegeben wird.
+
+\section{Array-Loop mit Conditional}
+
+Erweitern Sie einen Loop ihrer Wahl so, dass nur noch die Zahlen asugegeben werden, welche gerade sind.
+
+\section{Prüfen des Indexes}
+
+Erweitern Sie einen anderen Loop ihrer Wahl so, dass nur noch jede dritte Zahl ausgegeben wird. 
+
+\section{Mathematische Operatoren mit Index}
+
+Ändern Sie den Loop aus der Aufgabe 'Mathematische Operatoren' so, dass nicht die Zahl 8 addiert wird, sondern die aktuelle Position der zahl im Array. (Die erste Zahl also +0 die zweite +1 die dritte +2 usw.)
+
+\section{Selektieren und Entfernen eines Elementes}
+
+Schreiben Sie JavaScript Code in der index.html Datei, welcher das h1-Element aus dem DOM-Entfernt, sie können dazu die Methode \texttt{remove} ohne Parameter auf dem Element aufrufen. Verwenden Sie dazu \texttt{document.getElementById}.
+
+\section{Entfernen aus einer Liste}
+
+Unterhalb des h1 finden Sie eine Liste von Elementen, entfernen Sie das dritte \texttt{li} Element aus dem DOM. Verwenden Sie dazu die folgenden Selektoren der Reihe nach: \texttt{querySelector}, \texttt{querySelectorAll} und \texttt{getElementById}.
+
+\section{Prüfen des Inhalts}
+
+Selektieren Sie via JavaScript alle Elemente mit der Klasse \texttt{item}. Schreiben Sie nun eine Schleife über alle Elemente und entfernen Sie jedes Element, welches den Inhalt \texttt{Element 5} hat. Passen Sie das DOM danach so an, dass mehrere Elemente der Liste den Inhalt Element 5 haben und prüfen Sie ob alle ordnungsgemäss entfernt werden. (Reminder: Auf jedem Element existiert das Property 'innerHTML', damit können Inhalt eines Elementes abgefragt und auch neu gesetzt werden.)
+
+\section{Anpassen des Inhaltes}
+
+Erweitern Sie die Schleife der vorherigen Aufgabe so, dass zusätzlich das zweite Element der Liste den neuen Inhalt \texttt{Ich wurde bearbeitet} hat.
+
+\section{Anpassen der CSS-Klassen}
+
+
+\begin{verbatim}
+<script>
+	alert("Hello World");
+</script>
+\end{verbatim}
+
+Speichern Sie die Datei und öffnen Sie sie in einem Browser Ihrer Wahl. Was passiert?
+
+\subsection*{Arbeiten mit Variablen}
+
+In JavaScript können veränderbare Variablen mit dem Keyword \texttt{let} erfasst werden. Konstanten (Variablen, die nicht verändert werden können) definieren Sie mit dem Keyword \texttt{const}. 
+
+\begin{verbatim}
+let myVar = 10;
+const PI = 3.14;
+\end{verbatim}
+
+Erstellen Sie nun eine neue Variable mit dem Namen \texttt{myName}. Sie soll als Wert Ihren Namen beinhalten. 
+
+Passen Sie nun den Alert so an, dass anstelle von "Hello World" der Wert der Variable \texttt{myName} ausgegeben wird.
+
+\subsection*{console.log}
+
+Da es nicht zweckmässig ist, immer eine Alert-Box wegklicken zu müssen und die Ausgaben dieser Box stark limitiert sind, werden wir für die kommenden Aufgaben das besser geeignete Objekt \texttt{console} und die darauf vorhandene Methode \texttt{log} nutzen. 
+
+Entfernen Sie den Aufruf für die Alert-Box aus dem vorherigen Code und ersetzen Sie diesen mit \texttt{console.log("Hello World");}. 
+
+Wenn Sie die Datei nun speichern und in Ihrem Browser neu laden, werden Sie keinen Output mehr feststellen. Das liegt daran, dass die Konsole im Browser per Default deaktiviert ist. 
+
+Aktivieren Sie die Entwicklertools mithilfe von F12 und wählen Sie im neu erschienenen Fenster "Konsole". Wenn Sie die Seite nun erneut neu laden, sollten Sie den Output nun in der Konsole sehen können. 
+
+Probieren Sie zusätzlich die Methoden \texttt{warn} und \texttt{error} auf dem Objekt \texttt{console} aus und vergleichen Sie die Ausgaben.
+
+\subsection*{Unterschiedliche Variablentypen}
+
+JavaScript umfasst keine Typsicherheit. Eine Variable kann also jeden Typ haben und auch während der Laufzeit unterschiedliche Werte annehmen. Sie als Entwickler haben die Verantwortung, Ihren Code so zu schreiben, dass keine Probleme entstehen können. 
+
+Erstellen Sie eine Variable mit dem Namen \texttt{number1} und eine weitere mit dem Namen \texttt{number2} und geben Sie beiden eine beliebige Zahl als Wert. 
+
+Erstellen Sie einen zweiten Aufruf der Log-Methode, welcher die Summe von \texttt{number1} und \texttt{number2} ausgeben soll. 
+
+Was erwarten Sie, passiert, wenn Sie vor dem Aufruf der Alert-Methode den folgenden Code einfügen?
+
+\begin{verbatim}
+number2 = "Ich bin nun ein String!"
+\end{verbatim}
+
+Spielen Sie weiter mit mathematischen Operatoren und unterschiedlichen Datentypen herum. Was passiert zum Beispiel, wenn Sie eine Variable mit dem Wert \texttt{true} und eine Variable mit dem Wert \texttt{false} addieren/subtrahieren? Lassen Sie Ihrer Kreativität freien Lauf.
+
+Die Experimentierfreudigen können sich auch einmal Folgendes ausgeben lassen und versuchen herauszufinden, wieso hier ein Obst in die Konsole geschrieben wird: \texttt{'b' + 'a' + +'a' + 'a';}
+
+\subsection*{Typeof}
+
+Mit Hilfe der \texttt{typeof}-Funktion lassen sich die Typen von Variablen ausgeben und vergleichen. 
+
+\texttt{typeof} hat für gewisse Entwickler eine ungewohnte Syntax. Machen Sie sich im Internet oder via AI schlau, wie dieser genutzt wird, was er genau macht, und wenden Sie ihn an einigen Ihrer Variablen an.
+
+\end{document}
