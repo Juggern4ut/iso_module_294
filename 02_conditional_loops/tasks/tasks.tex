@@ -8,7 +8,7 @@
 
 \title{Modul 294 - Aufgabenblatt 02}
 \author{von Lukas Meier}
-\date{Unterricht vom 25.11.2025}
+\date{Unterricht vom 02.12.2025}
 
 \begin{document}
 
@@ -20,7 +20,11 @@ Erstellen Sie einen Ordner an einem Ort Ihrer Wahl und speichern Sie die Datei \
 
 \section{Array-Loop}
 
-Im script-Tag der index.html-Datei finden Sie bereits ein vordefiniertes Array. Schreiben Sie insgesamt 3 Loops welche der Reihe nach alle Zahlen aus dem Array in der Konsole des Browsers ausgeben. Nutzen sie \texttt{while}, \texttt{for} und \texttt{forEach} für die Schleifen.
+Im script-Tag der index.html-Datei finden Sie bereits ein vordefiniertes Array. Schreiben Sie insgesamt 3 Loops welche der Reihe nach alle Zahlen aus dem Array in der Konsole des Browsers ausgeben. Nutzen sie \texttt{while}, \texttt{for} und \texttt{forEach} für die Schleifen\dots
+
+\section{Reverse}
+
+Passen Sie einen Loop ihrer Wahl so an, dass die Zahlen in der umgekehrten Reihenfolge ausgegeben werden. (Empfehlung: for oder while).
 
 \section{Mathematische Operatoren}
 
@@ -36,11 +40,13 @@ Erweitern Sie einen anderen Loop ihrer Wahl so, dass nur noch jede dritte Zahl a
 
 \section{Mathematische Operatoren mit Index}
 
-Ändern Sie den Loop aus der Aufgabe 'Mathematische Operatoren' so, dass nicht die Zahl 8 addiert wird, sondern die aktuelle Position der zahl im Array. (Die erste Zahl also +0 die zweite +1 die dritte +2 usw.)
+Ändern Sie den Loop aus der Aufgabe \texttt{Mathematische Operatoren} so, dass nicht die Zahl 8 addiert wird, sondern die aktuelle Position der zahl im Array. (Die erste Zahl also +0 die zweite +1 die dritte +2 usw.)
 
 \section{Selektieren und Entfernen eines Elementes}
 
-Schreiben Sie JavaScript Code in der index.html Datei, welcher das h1-Element aus dem DOM-Entfernt, sie können dazu die Methode \texttt{remove} ohne Parameter auf dem Element aufrufen. Verwenden Sie dazu \texttt{document.getElementById}.
+Schreiben Sie JavaScript Code in der index.html Datei, welcher das h1-Element aus dem DOM-Entfernt, sie können dazu die Methode \texttt{remove} ohne Parameter auf dem Element aufrufen. 
+
+Verwenden Sie dazu \texttt{document.getElementById}.
 
 \section{Entfernen aus einer Liste}
 
@@ -48,7 +54,7 @@ Unterhalb des h1 finden Sie eine Liste von Elementen, entfernen Sie das dritte \
 
 \section{Prüfen des Inhalts}
 
-Selektieren Sie via JavaScript alle Elemente mit der Klasse \texttt{item}. Schreiben Sie nun eine Schleife über alle Elemente und entfernen Sie jedes Element, welches den Inhalt \texttt{Element 5} hat. Passen Sie das DOM danach so an, dass mehrere Elemente der Liste den Inhalt Element 5 haben und prüfen Sie ob alle ordnungsgemäss entfernt werden. (Reminder: Auf jedem Element existiert das Property 'innerHTML', damit können Inhalt eines Elementes abgefragt und auch neu gesetzt werden.)
+Selektieren Sie via JavaScript alle Elemente mit der Klasse \texttt{item}. Schreiben Sie nun eine Schleife über alle Elemente und entfernen Sie jedes Element, welches den Inhalt \texttt{Element 5} hat. Passen Sie das DOM danach so an, dass mehrere Elemente der Liste den Inhalt Element 5 haben und prüfen Sie ob alle ordnungsgemäss entfernt werden. (Reminder: Auf jedem Element existiert das Property \texttt{innerHTML}, damit können Inhalt eines Elementes abgefragt und auch neu gesetzt werden.)
 
 \section{Anpassen des Inhaltes}
 
@@ -56,62 +62,20 @@ Erweitern Sie die Schleife der vorherigen Aufgabe so, dass zusätzlich das zweit
 
 \section{Anpassen der CSS-Klassen}
 
+Selektieren Sie den Text im Footer und geben Sie ihm zusätzlich zu der Klasse \texttt{text} noch die Klasse \texttt{blink}. Sie können dafür die Methode \texttt{add} auf dem Objekt \texttt{classList} nutzen welches sie auf der Node vorfinden.
 
-\begin{verbatim}
-<script>
-	alert("Hello World");
-</script>
-\end{verbatim}
+\section{Umschalten von CSS-Klassen}
 
-Speichern Sie die Datei und öffnen Sie sie in einem Browser Ihrer Wahl. Was passiert?
+Passen Sie das HTML so an, dass im Footer noch ein zweiter Paragraph mit der Klasse \texttt{text} existiert. Geben Sie ihm ausserdem bereits die Klasse \texttt{blink}. 
 
-\subsection*{Arbeiten mit Variablen}
+Passen Sie ihren JavaScript-Code so an, dass alle Paragrafen im Footer, welche die Klasse Blink haben, diese verlieren und die Paragrafen welche sie nicht haben diese erhalten.
 
-In JavaScript können veränderbare Variablen mit dem Keyword \texttt{let} erfasst werden. Konstanten (Variablen, die nicht verändert werden können) definieren Sie mit dem Keyword \texttt{const}. 
+Das Ganze sollte auch funktionieren, wenn die Reihenfolge der Texte im Footer geändert wird. Nutzen Sie dafür die \texttt{contains}-Methode auf der Klassenliste der Elemente.
 
-\begin{verbatim}
-let myVar = 10;
-const PI = 3.14;
-\end{verbatim}
+\section{CSS-Styling anpassen}
 
-Erstellen Sie nun eine neue Variable mit dem Namen \texttt{myName}. Sie soll als Wert Ihren Namen beinhalten. 
+Um nicht nur über CSS-Klassen das Styling der Elemente anzupassen, können wir CSS-Properties auch direkt via JavaScript anpassen/definieren. Dafür gibt es auf dem Objekt \texttt{style} jedes CSS-Property als Attribut welches ausgelesen und gesetzt werden kann. Der einzige Unterschied besteht darin, dass die Properties in JavaScript in \texttt{camelCase} definiert sind und nicht wie in CSS in \texttt{kebab-case}. 
 
-Passen Sie nun den Alert so an, dass anstelle von "Hello World" der Wert der Variable \texttt{myName} ausgegeben wird.
-
-\subsection*{console.log}
-
-Da es nicht zweckmässig ist, immer eine Alert-Box wegklicken zu müssen und die Ausgaben dieser Box stark limitiert sind, werden wir für die kommenden Aufgaben das besser geeignete Objekt \texttt{console} und die darauf vorhandene Methode \texttt{log} nutzen. 
-
-Entfernen Sie den Aufruf für die Alert-Box aus dem vorherigen Code und ersetzen Sie diesen mit \texttt{console.log("Hello World");}. 
-
-Wenn Sie die Datei nun speichern und in Ihrem Browser neu laden, werden Sie keinen Output mehr feststellen. Das liegt daran, dass die Konsole im Browser per Default deaktiviert ist. 
-
-Aktivieren Sie die Entwicklertools mithilfe von F12 und wählen Sie im neu erschienenen Fenster "Konsole". Wenn Sie die Seite nun erneut neu laden, sollten Sie den Output nun in der Konsole sehen können. 
-
-Probieren Sie zusätzlich die Methoden \texttt{warn} und \texttt{error} auf dem Objekt \texttt{console} aus und vergleichen Sie die Ausgaben.
-
-\subsection*{Unterschiedliche Variablentypen}
-
-JavaScript umfasst keine Typsicherheit. Eine Variable kann also jeden Typ haben und auch während der Laufzeit unterschiedliche Werte annehmen. Sie als Entwickler haben die Verantwortung, Ihren Code so zu schreiben, dass keine Probleme entstehen können. 
-
-Erstellen Sie eine Variable mit dem Namen \texttt{number1} und eine weitere mit dem Namen \texttt{number2} und geben Sie beiden eine beliebige Zahl als Wert. 
-
-Erstellen Sie einen zweiten Aufruf der Log-Methode, welcher die Summe von \texttt{number1} und \texttt{number2} ausgeben soll. 
-
-Was erwarten Sie, passiert, wenn Sie vor dem Aufruf der Alert-Methode den folgenden Code einfügen?
-
-\begin{verbatim}
-number2 = "Ich bin nun ein String!"
-\end{verbatim}
-
-Spielen Sie weiter mit mathematischen Operatoren und unterschiedlichen Datentypen herum. Was passiert zum Beispiel, wenn Sie eine Variable mit dem Wert \texttt{true} und eine Variable mit dem Wert \texttt{false} addieren/subtrahieren? Lassen Sie Ihrer Kreativität freien Lauf.
-
-Die Experimentierfreudigen können sich auch einmal Folgendes ausgeben lassen und versuchen herauszufinden, wieso hier ein Obst in die Konsole geschrieben wird: \texttt{'b' + 'a' + +'a' + 'a';}
-
-\subsection*{Typeof}
-
-Mit Hilfe der \texttt{typeof}-Funktion lassen sich die Typen von Variablen ausgeben und vergleichen. 
-
-\texttt{typeof} hat für gewisse Entwickler eine ungewohnte Syntax. Machen Sie sich im Internet oder via AI schlau, wie dieser genutzt wird, was er genau macht, und wenden Sie ihn an einigen Ihrer Variablen an.
+Fügen Sie im Footer einen Link hinzu, den Inhalt und das Ziel definieren Sie selbst. Schreiben Sie nun einen JavaScript code, welcher die Farbe auf den Wert \texttt{\#333333} setzt. Setzen Sie zusätzlich die Schriftgrösse auf 8 Pixel.
 
 \end{document}
