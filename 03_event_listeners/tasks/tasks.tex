@@ -1,0 +1,81 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\setlength{\parindent}{0pt} % Keine Einrückungen
+
+\title{Modul 294 - Aufgabenblatt 02}
+\author{von Lukas Meier}
+\date{Unterricht vom 02.12.2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Vorbereitung}
+
+Erstellen Sie einen Ordner an einem Ort Ihrer Wahl und speichern Sie die Datei \texttt{index.html} welche Sie auf dem Netzwerkordner finden darin. 
+
+\section{Array-Loop}
+
+Im script-Tag der index.html-Datei finden Sie bereits ein vordefiniertes Array. Schreiben Sie insgesamt 3 Loops welche der Reihe nach alle Zahlen aus dem Array in der Konsole des Browsers ausgeben. Nutzen sie \texttt{while}, \texttt{for} und \texttt{forEach} für die Schleifen\dots
+
+\section{Reverse}
+
+Passen Sie einen Loop ihrer Wahl so an, dass die Zahlen in der umgekehrten Reihenfolge ausgegeben werden. (Empfehlung: for oder while).
+
+\section{Mathematische Operatoren}
+
+Erweitern Sie einen Loop ihrer Wahl so, dass anstelle der Zahl im Array, die Zahl plus 8 ausgegeben wird.
+
+\section{Array-Loop mit Conditional}
+
+Erweitern Sie einen Loop ihrer Wahl so, dass nur noch die Zahlen asugegeben werden, welche gerade sind.
+
+\section{Prüfen des Indexes}
+
+Erweitern Sie einen anderen Loop ihrer Wahl so, dass nur noch jede dritte Zahl ausgegeben wird. 
+
+\section{Mathematische Operatoren mit Index}
+
+Ändern Sie den Loop aus der Aufgabe \texttt{Mathematische Operatoren} so, dass nicht die Zahl 8 addiert wird, sondern die aktuelle Position der zahl im Array. (Die erste Zahl also +0 die zweite +1 die dritte +2 usw.)
+
+\section{Selektieren und Entfernen eines Elementes}
+
+Schreiben Sie JavaScript Code in der index.html Datei, welcher das h1-Element aus dem DOM-Entfernt, sie können dazu die Methode \texttt{remove} ohne Parameter auf dem Element aufrufen. 
+
+Verwenden Sie dazu \texttt{document.getElementById}.
+
+\section{Entfernen aus einer Liste}
+
+Unterhalb des h1 finden Sie eine Liste von Elementen, entfernen Sie das dritte \texttt{li} Element aus dem DOM. Verwenden Sie dazu die folgenden Selektoren der Reihe nach: \texttt{querySelector}, \texttt{querySelectorAll} und \texttt{getElementById}.
+
+\section{Prüfen des Inhalts}
+
+Selektieren Sie via JavaScript alle Elemente mit der Klasse \texttt{item}. Schreiben Sie nun eine Schleife über alle Elemente und entfernen Sie jedes Element, welches den Inhalt \texttt{Element 5} hat. Passen Sie das DOM danach so an, dass mehrere Elemente der Liste den Inhalt Element 5 haben und prüfen Sie ob alle ordnungsgemäss entfernt werden. (Reminder: Auf jedem Element existiert das Property \texttt{innerHTML}, damit können Inhalt eines Elementes abgefragt und auch neu gesetzt werden.)
+
+\section{Anpassen des Inhaltes}
+
+Erweitern Sie die Schleife der vorherigen Aufgabe so, dass zusätzlich das zweite Element der Liste den neuen Inhalt \texttt{Ich wurde bearbeitet} hat.
+
+\section{Anpassen der CSS-Klassen}
+
+Selektieren Sie den Text im Footer und geben Sie ihm zusätzlich zu der Klasse \texttt{text} noch die Klasse \texttt{blink}. Sie können dafür die Methode \texttt{add} auf dem Objekt \texttt{classList} nutzen welches sie auf der Node vorfinden.
+
+\section{Umschalten von CSS-Klassen}
+
+Passen Sie das HTML so an, dass im Footer noch ein zweiter Paragraph mit der Klasse \texttt{text} existiert. Geben Sie ihm ausserdem bereits die Klasse \texttt{blink}. 
+
+Passen Sie ihren JavaScript-Code so an, dass alle Paragrafen im Footer, welche die Klasse Blink haben, diese verlieren und die Paragrafen welche sie nicht haben diese erhalten.
+
+Das Ganze sollte auch funktionieren, wenn die Reihenfolge der Texte im Footer geändert wird. Nutzen Sie dafür die \texttt{contains}-Methode auf der Klassenliste der Elemente.
+
+\section{CSS-Styling anpassen}
+
+Um nicht nur über CSS-Klassen das Styling der Elemente anzupassen, können wir CSS-Properties auch direkt via JavaScript anpassen/definieren. Dafür gibt es auf dem Objekt \texttt{style} jedes CSS-Property als Attribut welches ausgelesen und gesetzt werden kann. Der einzige Unterschied besteht darin, dass die Properties in JavaScript in \texttt{camelCase} definiert sind und nicht wie in CSS in \texttt{kebab-case}. 
+
+Fügen Sie im Footer einen Link hinzu, den Inhalt und das Ziel definieren Sie selbst. Schreiben Sie nun einen JavaScript code, welcher die Farbe auf den Wert \texttt{\#333333} setzt. Setzen Sie zusätzlich die Schriftgrösse auf 8 Pixel.
+
+\end{document}

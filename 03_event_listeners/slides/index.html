@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Modul 294 - Lektion 01</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+
+    <style>
+        td {
+            font-size: 21px;
+        }
+
+        .inline-code {
+            font-family: "Consolas", "Monaco", "Andale Mono", "Ubuntu Mono",
+                monospace;
+            display: inline-block;
+            background-color: #2d2d2d;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-size: 75%;
+        }
+
+        thead td {
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .tile.blink {
+            animation: 200ms blink infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h2>03 – Funktionen & Events</h2>
+                <hr />
+                <h3>Funktionen, Arrow-Functions und EventListeners</h3>
+                <img style="width: 200px" src="assets/img/js-logo.webp" alt="JS Logo" />
+            </section>
+
+            <!-- Lernziele -->
+            <section>
+                <h2>Lernziele dieser Lektion</h2>
+                <ul>
+                    <li>Verstehen, was Funktionen sind und wieso sie genutzt werden</li>
+                    <li>Den Aufbau einer Funktion kennen</li>
+                    <li>Return-Werte verstehen und anwenden</li>
+                    <li>Die gängigsten Funktionstypen kennen</li>
+                    <li>Wissen, was EventListener sind</li>
+                    <li>Gängige Events kennen und anwenden</li>
+                    <li>Events hinzufügen und entfernen können</li>
+                </ul>
+            </section>
+
+            <!-- Theorie Funktionen -->
+            <section>
+                <h2>Funktionen</h2>
+                <p>Funktionen sind wiederverwendbare Code-Blöcke, welche eine spezifische Aufgabe erfüllen.</p>
+                <ul>
+                    <li>Sie verhindern Code-Wiederholung</li>
+                    <li>Erhöhen Lesbarkeit und Struktur</li>
+                    <li>Erlauben komplexe Logik zu kapseln</li>
+                </ul>
+            </section>
+
+            <!-- Aufbau Funktion -->
+            <section>
+                <h2>Wie ist eine Funktion aufgebaut?</h2>
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        function greet(name) {
+                            console.log("Hallo " + name);
+                        }
+
+                        greet("Anna");
+                    </code>
+                </pre>
+            </section>
+
+            <!-- Return-Werte -->
+            <section>
+                <h2>Return-Werte</h2>
+                <p>Eine Funktion kann einen Wert zurückgeben, der weiterverwendet werden kann.</p>
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        function add(a, b) {
+                            return a + b;
+                        }
+
+                        const result = add(5, 7);
+                        console.log(result); // -> 12
+                    </code>
+                </pre>
+            </section>
+
+            <!-- Funktionstypen -->
+            <section>
+                <h2>Funktionstypen</h2>
+                <ul>
+                    <li>Normale Funktionen (Function Declaration)</li>
+                    <li>Anonyme Funktionen (Function Expression)</li>
+                    <li>Arrow Functions</li>
+                    <li>IIFE (Selbstausführende Funktion)</li>
+                </ul>
+            </section>
+
+            <!-- Normale Funktion -->
+            <section>
+                <h2>Normale Funktion</h2>
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        function sayHi() {
+                            console.log("Hi!");
+                        }
+
+                        sayHi();
+                    </code>
+                </pre>
+            </section>
+
+            <!-- Anonyme Funktion -->
+            <section>
+                <h2>Anonyme Funktion</h2>
+                <p>Wird häufig Variablen oder EventListeners zugeordnet.</p>
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        const multiply = function(a, b) {
+                            return a * b;
+                        };
+
+                        console.log(multiply(3, 4)); // -> 12
+                    </code>
+                </pre>
+            </section>
+
+            <!-- Arrow Function -->
+            <section>
+                <h2>Arrow Function</h2>
+                <p>Kürzere Schreibweise, kein eigenes <code class="inline-code">this</code>.</p>
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        const subtract = (a, b) => {
+                            return a - b;
+                        };
+
+                        console.log(subtract(10, 4)); // -> 6
+                    </code>
+                </pre>
+            </section>
+
+            <!-- IIFE -->
+            <section>
+                <h2>IIFE – Immediately Invoked Function Expression</h2>
+                <p>Selbstausführende Funktion, nützlich zur Kapselung.</p>
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        (function() {
+                            console.log("Ich führe mich selbst aus!");
+                        })();
+                    </code>
+                </pre>
+            </section>
+
+            <!-- EventListeners -->
+            <section>
+                <h2>EventListeners</h2>
+                <p>EventListeners reagieren auf Benutzeraktionen.</p>
+                <ul>
+                    <li>Klicks</li>
+                    <li>Tastatureingaben</li>
+                    <li>Mausbewegungen</li>
+                    <li>Seiten-Interaktionen (z.B. Scroll)</li>
+                </ul>
+            </section>
+
+            <!-- Häufig genutzte EventListener -->
+            <section>
+                <h2>Meist genutzte EventListener</h2>
+                <table>
+                    <tr>
+                        <td><code class="inline-code">click</code></td>
+                        <td>Reagiert auf Mausklicks</td>
+                    </tr>
+                    <tr>
+                        <td><code class="inline-code">input</code></td>
+                        <td>Reagiert bei Benutzereingaben</td>
+                    </tr>
+                    <tr>
+                        <td><code class="inline-code">submit</code></td>
+                        <td>Reagiert bei Formular-Übermittlung</td>
+                    </tr>
+                    <tr>
+                        <td><code class="inline-code">mouseover</code></td>
+                        <td>Reagiert, wenn die Maus über ein Element fährt</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- EventListener definieren -->
+            <section>
+                <h2>EventListener definieren</h2>
+                <pre>
+                    <code class="html" data-trim data-line-numbers>
+                        &lt;button id="btn"&gt;Klick mich&lt;/button&gt;
+                    </code>
+                </pre>
+
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        const btn = document.getElementById("btn");
+
+                        btn.addEventListener("click", function() {
+                            console.log("Button wurde geklickt!");
+                        });
+                    </code>
+                </pre>
+            </section>
+
+            <!-- Arrow Function im Event -->
+            <section>
+                <h2>EventListener mit Arrow Function</h2>
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        btn.addEventListener("click", () => {
+                            console.log("Arrow Function Event!");
+                        });
+                    </code>
+                </pre>
+            </section>
+
+            <!-- EventListener entfernen -->
+            <section>
+                <h2>EventListener entfernen</h2>
+                <p>Ein Event kann nur entfernt werden, wenn die Funktion benannt ist.</p>
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        function onClick() {
+                            console.log("Click!");
+                        }
+
+                        btn.addEventListener("click", onClick);
+                        btn.removeEventListener("click", onClick);
+                    </code>
+                </pre>
+            </section>
+
+            <!-- TL;DR -->
+            <section>
+                <h2>TL;DR</h2>
+                <ul>
+                    <li>Funktionen kapseln wiederverwendbaren Code</li>
+                    <li>Return-Werte geben Ergebnisse zurück</li>
+                    <li>Funktionstypen: normal, anonym, Arrow, IIFE</li>
+                    <li>EventListener reagieren auf User-Interaktionen</li>
+                    <li>Events können hinzugefügt und entfernt werden</li>
+                </ul>
+            </section>
+        </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [RevealZoom, RevealMarkdown, RevealHighlight, RevealNotes],
+        });
+    </script>
+</body>
+
+</html>
