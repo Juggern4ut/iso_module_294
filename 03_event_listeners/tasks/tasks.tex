@@ -4,11 +4,11 @@
 \usepackage{amsmath}
 \usepackage{parskip}
 
-\setlength{\parindent}{0pt} % Keine Einrückungen
+\setlength{\parindent}{0pt}
 
-\title{Modul 294 - Aufgabenblatt 02}
+\title{Modul 294 - Aufgabenblatt 03}
 \author{von Lukas Meier}
-\date{Unterricht vom 02.12.2025}
+\date{Unterricht vom 09.12.2025}
 
 \begin{document}
 
@@ -16,66 +16,123 @@
 
 \section{Vorbereitung}
 
-Erstellen Sie einen Ordner an einem Ort Ihrer Wahl und speichern Sie die Datei \texttt{index.html} welche Sie auf dem Netzwerkordner finden darin. 
+Erstellen Sie einen neuen Ordner und speichern Sie die Datei \texttt{index.html} aus dem Netzwerkordner darin. Öffnen Sie die Datei anschliessend im Code-Editor Ihrer Wahl und fügen Sie ein \texttt{script}-Tag ein, falls dieses noch nicht existiert.
 
-\section{Array-Loop}
+\section{Erste Funktion}
 
-Im script-Tag der index.html-Datei finden Sie bereits ein vordefiniertes Array. Schreiben Sie insgesamt 3 Loops welche der Reihe nach alle Zahlen aus dem Array in der Konsole des Browsers ausgeben. Nutzen sie \texttt{while}, \texttt{for} und \texttt{forEach} für die Schleifen\dots
+Schreiben Sie eine Funktion \texttt{begruessen(name)}, welche eine personalisierte Begrüssung in der Konsole ausgibt. Rufen Sie die Funktion zweimal mit unterschiedlichen Namen auf.
 
-\section{Reverse}
+\section{Return-Werte}
 
-Passen Sie einen Loop ihrer Wahl so an, dass die Zahlen in der umgekehrten Reihenfolge ausgegeben werden. (Empfehlung: for oder while).
+Erstellen Sie eine Funktion \texttt{addieren(a, b)}, welche die beiden übergebenen Werte addiert und \texttt{return} zur Rückgabe des Ergebnisses nutzt.
 
-\section{Mathematische Operatoren}
+Geben Sie das Resultat anschliessend in der Konsole aus.  
+Erstellen Sie zusätzlich eine weitere Funktion \texttt{laenge(text)}, welche die Länge des übergebenen Strings zurückgibt.
 
-Erweitern Sie einen Loop ihrer Wahl so, dass anstelle der Zahl im Array, die Zahl plus 8 ausgegeben wird.
+\section{Anonyme Funktion und Arrow Function}
 
-\section{Array-Loop mit Conditional}
+Wandeln Sie folgende normale Funktion zuerst in eine anonyme Funktion und danach in eine Arrow Function um. Testen Sie alle drei Varianten im Browser:
 
-Erweitern Sie einen Loop ihrer Wahl so, dass nur noch die Zahlen asugegeben werden, welche gerade sind.
+\begin{verbatim}
+function multiplizieren(x, y) {
+    return x * y;
+}
+\end{verbatim}
 
-\section{Prüfen des Indexes}
+\section{IIFE}
 
-Erweitern Sie einen anderen Loop ihrer Wahl so, dass nur noch jede dritte Zahl ausgegeben wird. 
+Schreiben Sie eine selbstausführende Funktion (IIFE), welche beim Laden der Seite in der Konsole den Text \glqq Programm gestartet\grqq{} ausgibt.
 
-\section{Mathematische Operatoren mit Index}
+\section{EventListener hinzufügen}
 
-Ändern Sie den Loop aus der Aufgabe \texttt{Mathematische Operatoren} so, dass nicht die Zahl 8 addiert wird, sondern die aktuelle Position der zahl im Array. (Die erste Zahl also +0 die zweite +1 die dritte +2 usw.)
+Ergänzen Sie folgendes HTML in der \texttt{index.html}, falls es noch nicht vorhanden ist:
 
-\section{Selektieren und Entfernen eines Elementes}
+\begin{verbatim}
+<button id="btn">Klick mich</button>
+<p id="ausgabe"></p>
+\end{verbatim}
 
-Schreiben Sie JavaScript Code in der index.html Datei, welcher das h1-Element aus dem DOM-Entfernt, sie können dazu die Methode \texttt{remove} ohne Parameter auf dem Element aufrufen. 
+Fügen Sie im JavaScript einen EventListener hinzu, welcher bei jedem Klick auf den Button im Element \texttt{ausgabe} den Text \glqq Der Button wurde gedrückt\grqq{} setzt. Nutzen Sie dafür eine normale Funktion.
 
-Verwenden Sie dazu \texttt{document.getElementById}.
+\section{EventListener mit Arrow Function}
 
-\section{Entfernen aus einer Liste}
+Ersetzen Sie nun die Funktion aus der vorherigen Aufgabe durch eine Arrow Function und prüfen Sie, ob alles wie zuvor funktioniert.
 
-Unterhalb des h1 finden Sie eine Liste von Elementen, entfernen Sie das dritte \texttt{li} Element aus dem DOM. Verwenden Sie dazu die folgenden Selektoren der Reihe nach: \texttt{querySelector}, \texttt{querySelectorAll} und \texttt{getElementById}.
+\section{EventListener entfernen}
 
-\section{Prüfen des Inhalts}
+Schreiben Sie eine benannte Funktion \texttt{melden()}, die den Text \glqq Klick erkannt\grqq{} in der Konsole ausgibt.  
+Fügen Sie diese Funktion als \texttt{click}-EventListener auf den Button hinzu und entfernen Sie sie nach dem ersten Klick sofort wieder.
 
-Selektieren Sie via JavaScript alle Elemente mit der Klasse \texttt{item}. Schreiben Sie nun eine Schleife über alle Elemente und entfernen Sie jedes Element, welches den Inhalt \texttt{Element 5} hat. Passen Sie das DOM danach so an, dass mehrere Elemente der Liste den Inhalt Element 5 haben und prüfen Sie ob alle ordnungsgemäss entfernt werden. (Reminder: Auf jedem Element existiert das Property \texttt{innerHTML}, damit können Inhalt eines Elementes abgefragt und auch neu gesetzt werden.)
+(Hinweis: \texttt{removeEventListener} funktioniert nur mit benannten Funktionen.)
 
-\section{Anpassen des Inhaltes}
+\section{Mehrere Events}
 
-Erweitern Sie die Schleife der vorherigen Aufgabe so, dass zusätzlich das zweite Element der Liste den neuen Inhalt \texttt{Ich wurde bearbeitet} hat.
+Fügen Sie eine zweite Interaktion hinzu:
 
-\section{Anpassen der CSS-Klassen}
+\begin{itemize}
+    \item Ein \texttt{mouseover}-Event auf dem Button soll den Text im \texttt{ausgabe}-Element auf \glqq Maus darüber\grqq{} setzen.
+    \item Ein \texttt{mouseout}-Event soll den Text wieder löschen.
+\end{itemize}
 
-Selektieren Sie den Text im Footer und geben Sie ihm zusätzlich zu der Klasse \texttt{text} noch die Klasse \texttt{blink}. Sie können dafür die Methode \texttt{add} auf dem Objekt \texttt{classList} nutzen welches sie auf der Node vorfinden.
+\section{Unterschiedliche Funktionstypen anwenden}
 
-\section{Umschalten von CSS-Klassen}
+Erstellen Sie zu jedem Event aus Abschnitt 9 einen anderen Funktionstyp:
 
-Passen Sie das HTML so an, dass im Footer noch ein zweiter Paragraph mit der Klasse \texttt{text} existiert. Geben Sie ihm ausserdem bereits die Klasse \texttt{blink}. 
+\begin{itemize}
+    \item \texttt{click}: normale benannte Funktion
+    \item \texttt{mouseover}: anonyme Funktion
+    \item \texttt{mouseout}: Arrow Function
+\end{itemize}
 
-Passen Sie ihren JavaScript-Code so an, dass alle Paragrafen im Footer, welche die Klasse Blink haben, diese verlieren und die Paragrafen welche sie nicht haben diese erhalten.
+\section{Event-Toggle}
 
-Das Ganze sollte auch funktionieren, wenn die Reihenfolge der Texte im Footer geändert wird. Nutzen Sie dafür die \texttt{contains}-Methode auf der Klassenliste der Elemente.
+Erstellen Sie einen zweiten Button mit dem Text \texttt{Toggle}.  
+Wenn dieser Button gedrückt wird, soll der EventListener auf dem Eingabefeld entweder aktiviert oder deaktiviert werden – je nach aktuellem Zustand.
 
-\section{CSS-Styling anpassen}
+(Hinweis: Nutzen Sie \texttt{classList.contains} oder eine eigene Statusvariable.)
 
-Um nicht nur über CSS-Klassen das Styling der Elemente anzupassen, können wir CSS-Properties auch direkt via JavaScript anpassen/definieren. Dafür gibt es auf dem Objekt \texttt{style} jedes CSS-Property als Attribut welches ausgelesen und gesetzt werden kann. Der einzige Unterschied besteht darin, dass die Properties in JavaScript in \texttt{camelCase} definiert sind und nicht wie in CSS in \texttt{kebab-case}. 
+\section{Mini-Projekt: Dynamische Eingabe}
 
-Fügen Sie im Footer einen Link hinzu, den Inhalt und das Ziel definieren Sie selbst. Schreiben Sie nun einen JavaScript code, welcher die Farbe auf den Wert \texttt{\#333333} setzt. Setzen Sie zusätzlich die Schriftgrösse auf 8 Pixel.
+Erweitern Sie das HTML um folgendes Element:
+
+\begin{verbatim}
+<input id="eingabe" type="text" placeholder="Geben Sie etwas ein...">
+\end{verbatim}
+
+Erstellen Sie nun eine Funktion \texttt{textAktualisieren()}, welche bei jeder Eingabe den aktuellen Inhalt des Feldes in das \texttt{ausgabe}-Element schreibt.
+
+Binden Sie diese Funktion über einen \texttt{input}-EventListener ein.
+
+\section{Mini-Projekt: Interaktive Farbwahlen}
+
+Erweitern Sie das HTML-Dokument um die folgenden Elemente:
+
+\begin{verbatim}
+<div id="farbBox" style="width:150px; height:150px; border:1px solid #000;">
+</div>
+
+<label for="rot">Rot:</label>
+<input id="rot" type="range" min="0" max="255" value="125">
+
+<label for="gruen">Grün:</label>
+<input id="gruen" type="range" min="0" max="255" value="125">
+
+<label for="blau">Blau:</label>
+<input id="blau" type="range" min="0" max="255" value="125">
+
+<button id="reset">Zurücksetzen</button>
+\end{verbatim}
+
+Erstellen Sie nun eine kleine Anwendung, welche es ermöglicht, die Farbe der Box dynamisch anzupassen. Gehen Sie dabei wie folgt vor:
+
+\begin{enumerate}
+    \item Schreiben Sie eine Funktion \texttt{farbeAktualisieren()}, welche die aktuellen Werte der drei Regler ausliest und daraus eine gültige CSS-\texttt{rgb}-Farbe zusammensetzt.
+    \item Sorgen Sie dafür, dass die Funktion bei jeder Veränderung eines der Regler ausgeführt wird. Nutzen Sie hierzu den \texttt{input}-EventListener.
+    \item Setzen Sie die Hintergrundfarbe der \texttt{farbBox} dynamisch anhand der berechneten Werte.
+    \item Schreiben Sie ausserdem eine Funktion \texttt{zuruecksetzen()}, welche alle Regler wieder auf den Ausgangswert \texttt{125} setzt und die Box wieder auf eine neutrale Farbe stellt.
+    \item Binden Sie diese Funktion an den Button \texttt{reset}.
+    \item Nutzen Sie bei der Umsetzung der Funktionen unterschiedliche Funktionstypen (normale Funktion, anonyme Funktion, Arrow Function), wie in den vorherigen Aufgaben behandelt.
+    \item Erweitern Sie das Projekt so, dass die erzeugte Farbe zusätzlich in einem Absatz unterhalb der Box als Text ausgegeben wird, z.\,B.\ \glqq Aktuelle Farbe: rgb(125, 200, 50)\grqq{}.
+\end{enumerate}
 
 \end{document}

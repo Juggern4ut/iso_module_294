@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.20)  2 DEC 2025 10:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.25)  4 DEC 2025 20:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -179,31 +179,61 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
- [1
 
-{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
- (./tasks.aux)
+Overfull \hbox (12.1217pt too wide) in paragraph at lines 29--31
+[]\OT1/cmr/m/n/12 Geben Sie das Re-sul-tat an-sch-lies-send in der Kon-so-le au
+s. Er-stel-len Sie zus[]atzlich
+ []
+
+[1
+
+{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (5.21506pt too wide) in paragraph at lines 73--74
+[]\OT1/cmr/m/n/12 Ein \OT1/cmtt/m/n/12 mouseover\OT1/cmr/m/n/12 -Event auf dem 
+But-ton soll den Text im \OT1/cmtt/m/n/12 ausgabe\OT1/cmr/m/n/12 -Element
+ []
+
+[2]
+Overfull \hbox (36.07521pt too wide) in paragraph at lines 100--100
+[]\OT1/cmtt/m/n/12 <input id="eingabe" type="text" placeholder="Geben Sie etwas
+ ein...">[] 
+ []
+
+
+Overfull \hbox (79.30023pt too wide) in paragraph at lines 124--124
+[]\OT1/cmtt/m/n/12 <div id="farbBox" style="width:150px; height:150px; border:1
+px solid #000;">[] 
+ []
+
+[3]
+Overfull \hbox (0.18895pt too wide) in paragraph at lines 135--136
+[]\OT1/cmr/m/n/12 Erweitern Sie das Pro-jekt op-tio-nal so, dass die er-zeug-te
+ Far-be zus[]atzlich
+ []
+
+[4] (./tasks.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-11-06>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3074 strings out of 469010
- 50455 string characters out of 5455910
- 468656 words of memory out of 5000000
- 31779 multiletter control sequences out of 15000+600000
- 630457 words of font info for 50 fonts, out of 8000000 for 9000
+ 3083 strings out of 469010
+ 50663 string characters out of 5455910
+ 469656 words of memory out of 5000000
+ 31787 multiletter control sequences out of 15000+600000
+ 630794 words of font info for 51 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 57i,6n,65p,540b,193s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+ 57i,6n,65p,498b,322s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </home/luki/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600p
+k></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><
 /usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></u
 sr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on tasks.pdf (3 pages, 62564 bytes).
+Output written on tasks.pdf (4 pages, 67251 bytes).
 PDF statistics:
- 34 PDF objects out of 1000 (max. 8388607)
- 20 compressed objects within 1 object stream
+ 42 PDF objects out of 1000 (max. 8388607)
+ 26 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
