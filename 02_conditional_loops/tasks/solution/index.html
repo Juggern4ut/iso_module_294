@@ -89,6 +89,40 @@
         thirdLi = document.querySelectorAll(".item")[2];
         thirdLi = document.querySelector(".item:nth-child(3)");
 
+        thirdLi.remove();
+
+        // Aufgabe 10
+        const items = document.querySelectorAll(".item");
+        items.forEach( i => {
+            if( i.innerHTML === "Element 5" ){
+                i.remove();
+            }
+        })
+
+        // Aufgabe 11
+        const items = document.querySelectorAll(".item");
+        for(let x = 0; x < items.length; x++){
+            if( items[x].innerHTML === "Element 5" ){
+                items[x].remove();
+            }
+
+            if(x === 1){
+                items[x].innerHTML = "Ich wurde bearbeitet";
+            }
+        }
+
+        // Aufgabe 12
+        const footerText = document.querySelector("footer .text");
+        footerText.classList.add("blink");
+        
+        // Aufgabe 13
+        const footerTexts = document.querySelectorAll("footer .text");
+        footerTexts.forEach(f => f.classList.toggle("blink"));
+    
+        // Aufgabe 14
+        const footerLink = document.querySelector("footer a");
+        footerLink.style.color = "#333333";
+        footerLink.style.fontSize = "8px";
     </script>
 
 </head>
