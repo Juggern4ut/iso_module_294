@@ -1,0 +1,131 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\setlength{\parindent}{0pt}
+
+\title{Modul 294 - Aufgabenblatt 04}
+\author{von Lukas Meier}
+\date{Unterricht vom 16.12.2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Vorbereitung}
+
+Erstellen Sie einen neuen Ordner und speichern Sie die Datei \texttt{index.html} aus dem Netzwerkordner darin. Öffnen Sie die Datei anschliessend im Browser und im Code-Editor Ihrer Wahl.
+
+Stellen Sie sicher, dass ein \texttt{script}-Tag im Dokument vorhanden ist.
+
+\section{Erstes Objekt}
+
+Erstellen Sie ein JavaScript Objekt mit dem Namen \texttt{person}.  
+Das Objekt soll folgende Properties besitzen:
+
+\begin{itemize}
+    \item \texttt{name}
+    \item \texttt{alter}
+    \item \texttt{wohnort}
+\end{itemize}
+
+Geben Sie anschliessend alle Properties einzeln in der Browser-Konsole aus.
+
+\section{Methoden im Objekt}
+
+Erweitern Sie das Objekt \texttt{person} um eine Methode \texttt{greet()}, welche in der Konsole eine persönliche Begrüssung ausgibt.
+
+Nutzen Sie innerhalb der Methode das Keyword \texttt{this}, um auf die Properties des Objekts zuzugreifen.
+
+\section{Objekte verändern}
+
+Passen Sie das Objekt \texttt{person} wie folgt an:
+
+\begin{itemize}
+    \item Ändern Sie den Wert von \texttt{alter}
+    \item Fügen Sie eine neue Property \texttt{beruf} hinzu
+\end{itemize}
+
+Geben Sie das aktualisierte Objekt vollständig in der Konsole aus.
+
+\section{Mehrere Objekte}
+
+Erstellen Sie ein zweites Objekt \texttt{person2} mit denselben Properties, aber anderen Werten.
+
+Vergleichen Sie die beiden Objekte in der Konsole und beschreiben Sie kurz, was Ihnen auffällt.
+
+\section{Einführung Klassen}
+
+Erstellen Sie eine Klasse \texttt{Person}.  
+Die Klasse soll einen \texttt{constructor} besitzen, welcher folgende Werte entgegennimmt:
+
+\begin{itemize}
+    \item name
+    \item alter
+    \item wohnort
+\end{itemize}
+
+Speichern Sie diese Werte als Properties der Klasse.
+
+\section{Methoden in Klassen}
+
+Erweitern Sie die Klasse \texttt{Person} um eine Methode \texttt{vorstellen()}, welche in der Konsole einen vollständigen Vorstellungssatz ausgibt.
+
+Beispiel: \glqq Hallo, ich heisse Max, bin 20 Jahre alt und wohne in Bern.\grqq
+
+\section{Instanzen erstellen}
+
+Erstellen Sie mithilfe des \texttt{new}-Keywords mindestens zwei Instanzen der Klasse \texttt{Person}.
+
+Rufen Sie anschliessend auf beiden Instanzen die Methode \texttt{vorstellen()} auf.
+
+\section{Klassen und Methoden erweitern}
+
+Erweitern Sie die Klasse \texttt{Person} um eine weitere Methode \texttt{hatGeburtstag()}, welche das Alter der Person um 1 erhöht.
+
+Testen Sie die Methode an einer bestehenden Instanz und geben Sie das neue Alter aus.
+
+\section{Objekte im DOM verwenden}
+
+Erstellen Sie im HTML einen Button mit einer passenden ID sowie ein leeres \texttt{p}-Element.
+
+Wenn der Button geklickt wird, soll eine zuvor erstellte \texttt{Person}-Instanz ihre Vorstellung im \texttt{p}-Element anzeigen.
+
+Nutzen Sie dafür einen EventListener und greifen Sie auf die Methode der Klasse zu.
+
+\section{Mehrere Instanzen verwalten}
+
+Erstellen Sie ein Array, welches mehrere \texttt{Person}-Instanzen enthält.
+
+Schreiben Sie eine Funktion, welche alle Personen aus dem Array der Reihe nach in der Konsole ausgibt oder im DOM darstellt.
+
+\section{Mini-Projekt: Benutzerverwaltung}
+
+Erstellen Sie eine kleine Benutzerverwaltung:
+
+\begin{itemize}
+    \item Erstellen Sie eine Klasse \texttt{User} mit den Properties \texttt{username} und \texttt{email}
+    \item Fügen Sie eine Methode \texttt{anzeigen()} hinzu, welche die Benutzerdaten formatiert zurückgibt
+    \item Erstellen Sie mehrere User-Instanzen
+    \item Speichern Sie diese in einem Array
+    \item Geben Sie alle Benutzer beim Laden der Seite im Browser aus
+\end{itemize}
+
+Achten Sie auf saubere Struktur und verständliche Variablennamen.
+
+\section{Mini-Projekt 2: Interaktive Benutzerliste}
+
+Erstellen Sie eine interaktive Benutzerverwaltung im Browser:
+
+\begin{itemize}
+    \item Verwenden Sie wieder die Klasse \texttt{User} mit den Properties \texttt{username} und \texttt{email} sowie der Methode \texttt{anzeigen()}.
+    \item Erstellen Sie ein Formular, über das neue Benutzer angelegt werden können (Eingabefelder für \texttt{username} und \texttt{email} und ein "Hinzufügen"-Button).
+    \item Speichern Sie die Benutzer in einem Array.
+    \item Zeigen Sie alle Benutzer dynamisch in einer Liste auf der Webseite an.
+    \item Fügen Sie für jeden Benutzer einen "Löschen"-Button hinzu, mit dem der Benutzer aus der Liste entfernt werden kann.
+    \item Achten Sie auf eine übersichtliche Darstellung und verständliche Variablennamen.
+\end{itemize}
+
+\end{document}

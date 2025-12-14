@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Modul 294 – Lektion 04</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+
+    <style>
+        td {
+            font-size: 21px;
+        }
+
+        .inline-code {
+            font-family: Consolas, Monaco, monospace;
+            background-color: #2d2d2d;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-size: 75%;
+        }
+    </style>
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section>
+    <h2>04 – Objekte & Klassen</h2>
+    <hr />
+    <h3>JavaScript Objects, Classes & Instanzen</h3>
+    <img style="width: 200px" src="assets/img/js-logo.webp" alt="JS Logo" />
+</section>
+
+<section>
+    <h2>Lernziele dieser Lektion</h2>
+    <ul>
+        <li>Verstehen, was Objekte in JavaScript sind</li>
+        <li>Eigenschaften und Methoden von Objekten kennen</li>
+        <li>Objekte lesen, ändern und erweitern</li>
+        <li>Klassen als Bauplan für Objekte verstehen</li>
+        <li>Instanzen mit dem <span class="inline-code">new</span>-Keyword erstellen</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Was ist ein Objekt?</h2>
+    <p>Ein Objekt ist eine Sammlung von zusammengehörigen Daten und Funktionen.</p>
+    <ul>
+        <li>Daten werden als <b>Properties</b> gespeichert</li>
+        <li>Funktionen innerhalb von Objekten heissen <b>Methoden</b></li>
+        <li>Objekte beschreiben reale oder logische Dinge</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Einfaches Objekt</h2>
+    <pre><code class="js" data-trim>
+        const person = {
+            name: "Anna",
+            alter: 22,
+            greet: function() {
+                console.log("Hallo, ich bin " + this.name);
+            }
+        };
+    </code></pre>
+</section>
+
+<section>
+    <h2>Auf Properties zugreifen</h2>
+    <pre><code class="js" data-trim>
+        console.log(person.name);
+        console.log(person["alter"]);
+    </code></pre>
+
+    <p>Beide Varianten sind gültig.</p>
+</section>
+
+<section>
+    <h2>Methoden aufrufen</h2>
+    <pre><code class="js" data-trim>
+        person.greet();
+    </code></pre>
+
+    <p><span class="inline-code">this</span> verweist auf das aktuelle Objekt.</p>
+</section>
+
+<section>
+    <h2>Objekte verändern</h2>
+    <pre><code class="js" data-trim>
+        person.alter = 23;
+        person.wohnort = "Zürich";
+    </code></pre>
+
+    <ul>
+        <li>Properties können geändert werden</li>
+        <li>Neue Properties können jederzeit hinzugefügt werden</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Warum Klassen?</h2>
+    <p>Klassen sind Baupläne für Objekte.</p>
+    <ul>
+        <li>Vermeiden Code-Wiederholung</li>
+        <li>Erlauben strukturierte Objekt-Erstellung</li>
+        <li>Sehr wichtig für grössere Anwendungen</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Eine Klasse definieren</h2>
+    <pre><code class="js" data-trim>
+        class Person {
+            constructor(name, alter) {
+                this.name = name;
+                this.alter = alter;
+            }
+
+            greet() {
+                console.log("Hallo, ich bin " + this.name);
+            }
+        }
+    </code></pre>
+</section>
+
+<section>
+    <h2>Der Constructor</h2>
+    <ul>
+        <li>Wird automatisch beim Erstellen eines Objekts aufgerufen</li>
+        <li>Initialisiert die Properties</li>
+        <li>Nutzen von <span class="inline-code">this</span> zwingend notwendig</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Objekte aus Klassen erstellen</h2>
+    <pre><code class="js" data-trim>
+        const p1 = new Person("Luca", 19);
+        const p2 = new Person("Mia", 21);
+
+        p1.greet();
+        p2.greet();
+    </code></pre>
+</section>
+
+<section>
+    <h2>Mehrere Methoden</h2>
+    <pre><code class="js" data-trim>
+        class Auto {
+            constructor(marke, km) {
+                this.marke = marke;
+                this.km = km;
+            }
+
+            fahren(strecke) {
+                this.km += strecke;
+            }
+        }
+    </code></pre>
+</section>
+
+<section>
+    <h2>Objekte vs Klassen</h2>
+    <table>
+        <tr>
+            <td><b>Objekt</b></td>
+            <td>Konkrete Instanz</td>
+        </tr>
+        <tr>
+            <td><b>Klasse</b></td>
+            <td>Bauplan</td>
+        </tr>
+        <tr>
+            <td><b>Instanz</b></td>
+            <td>Objekt aus einer Klasse</td>
+        </tr>
+    </table>
+</section>
+
+<section>
+    <h2>Typische Einsatzgebiete</h2>
+    <ul>
+        <li>Benutzer</li>
+        <li>Produkte</li>
+        <li>Fahrzeuge</li>
+        <li>Spielelemente</li>
+        <li>UI-Komponenten</li>
+    </ul>
+</section>
+
+<section>
+    <h2>TL;DR</h2>
+    <ul>
+        <li>Objekte speichern Daten und Funktionen</li>
+        <li>Properties = Werte, Methoden = Funktionen</li>
+        <li>Klassen sind Baupläne für Objekte</li>
+        <li>Instanzen werden mit <span class="inline-code">new</span> erstellt</li>
+        <li><span class="inline-code">this</span> verweist auf das aktuelle Objekt</li>
+    </ul>
+</section>
+
+</div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+    Reveal.initialize({
+        hash: true,
+        plugins: [RevealHighlight]
+    });
+</script>
+
+</body>
+</html>
