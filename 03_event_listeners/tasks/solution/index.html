@@ -32,84 +32,164 @@
             }
         }
     </style>
-
-    <script>
-        const array = [1, 2, 3, 4, 5, 6, 9, 12, 15, 662, 1899, 1122]
-        
-        // Aufgabe 2
-        let i = 0; 
-        while(i<array.length){
-            console.log(array[i]);
-        }
-
-        for(let j = 0; j<array.lenght; j++){
-            console.log(array[j]);
-        }
-
-        array.forEach( e => {
-            console.log(e);
-        });
-
-
-        // Aufgabe 3
-        for(let k = array.length - 1; k <= 0; k--){
-            console.log(array[k]);
-        }
-
-        // Aufgabe 4 
-        for(let l = 0; l<array.length; l++){
-            console.log(array[k] + 8);
-        }
-
-        // Aufgabe 5
-        for(let m = 0; m < array.length; m++){
-            if(array[m] % 2 === 0){
-                console.log(array[m]);
-            }
-        }
-
-        // Aufgabe 6
-        for(let n = 0; n < array.length; n++){
-            if(n % 3 === 0){
-                console.log(array[n]);
-            }
-        }
-
-        // Aufgabe 7
-        for(let o = 0; o < array.length; o++){
-            console.log(array[o] + o);
-        }
-
-        // Aufgabe 8
-        const title = document.getElementById("title");
-        title.remove();
-
-        // Aufgabe 9
-        let thirdLi = document.getElementById("list-item-3");
-        thirdLi = document.querySelectorAll(".item")[2];
-        thirdLi = document.querySelector(".item:nth-child(3)");
-
-    </script>
-
 </head>
 
 <body>
-    <h1 id="title">Willkommen bei Modul 294</h1>
-    <p class="text">Das ist eine Testseite, in welcher ihr das erste Mal mit JavaScript in Berührung kommt.</p>
-    <ul>
-        <li id="list-item-1" class="item">Element 1</li>
-        <li id="list-item-2" class="item">Element 2</li>
-        <li id="list-item-3" class="item">Element 3</li>
-        <li id="list-item-4" class="item">Element 4</li>
-        <li id="list-item-5" class="item">Element 5</li>
-        <li id="list-item-6" class="item">Element 6</li>
-    </ul>
+    <button id="btn">Klick mich</button>
+    <p id="ausgabe"></p>
+    
+    <hr />
 
-    <p class="text">Hier ist noch ein weiterer Paragraf</p>
+    <button id="btn2">Klick mich</button>
+    <p id="ausgabe2"></p>
 
-    <footer class="footer">
-        <p class="text">Ich bin der Footer</p>
-    </footer>
+    <hr />
+
+    <button id="btn3">Klick mich</button>
+    <button id="btn3-toggle">Event toggle</button>
+    <p id="ausgabe3"></p>
+
+    <hr />
+
+    <input id="eingabe" type="text" placeholder="Geben Sie etwas ein...">
+    <p id="ausgabe4"></p>
+
+    <hr />
+    <hr />
+
+    <div id="farbBox" style="width:150px; height:150px; border:1px solid #000;"></div>
+    <label for="rot">Rot:</label>
+    <input id="rot" type="range" min="0" max="255" value="125">
+    <label for="gruen">Grün:</label>
+    <input id="gruen" type="range" min="0" max="255" value="125">
+    <label for="blau">Blau:</label>
+    <input id="blau" type="range" min="0" max="255" value="125">
+    <button id="reset">Zurücksetzen</button>
+    <p id="ausgabe5"></p>
+
+    <script>
+        function begruessen(name){
+            console.log("Hallo " + name);
+        }
+
+        begruessen("Lukas");
+        begruessen("Tamara");
+
+        function addieren(a, b){
+            return a + b;
+        }
+
+        console.log(addieren(10, 5));
+
+        function laenge(text){
+            return text.length;
+        }
+
+        console.log(laenge("Das ist ein Text"));
+
+        const multiplizieren = function(a, b){
+            return a * b;
+        }
+
+        const multiplizieren2 = (a, b) => {
+            return a * b;
+        }
+
+        console.log(multiplizieren(4, 10));
+        console.log(multiplizieren2(4, 10));
+
+        (function(){
+            console.log("Programm gestartet");
+        })();
+        
+        const btnElement = document.getElementById("btn");
+        const outputElement = document.getElementById("ausgabe");
+        
+
+        btnElement.addEventListener("click", function(){
+            outputElement.innerHTML = "Der Button wurde gedrückt";
+        })
+
+        btnElement.addEventListener("click", () => {
+            outputElement.innerHTML = "Der Button wurde gedrückt";
+        })
+
+        const btn2Element = document.getElementById("btn2");
+        const outputElement2 = document.getElementById("ausgabe2");
+
+        const melden = () => {
+            console.log("Click erkannt");
+            btn2Element.removeEventListener("click", melden);
+        }
+
+        btn2Element.addEventListener("click", melden);
+        
+        btn2Element.addEventListener("mouseover", function(){
+           outputElement2.innerHTML = "Maus drüber!"; 
+        });
+
+        btn2Element.addEventListener("mouseleave", () => {
+           outputElement2.innerHTML = ""; 
+        });
+
+        const btn3Element = document.getElementById("btn3");
+        const btnToggle3Element = document.getElementById("btn3-toggle");
+        const outputElement3 = document.getElementById("ausgabe3");
+
+        let eventActive = false;
+
+        const eventMethod = () => {
+            alert("Button gedrückt!");
+        }
+
+        btnToggle3Element.addEventListener("click", () => {
+            if(eventActive){
+                btn3Element.addEventListener("click", eventMethod);
+            }else{
+                btn3Element.removeEventListener("click", eventMethod);
+            }
+            eventActive = !eventActive;
+        });
+
+        const inputElement = document.getElementById("eingabe");
+        const outputElement4 = document.getElementById("ausgabe4");
+
+        inputElement.addEventListener("input", () => {
+            outputElement4.innerHTML = inputElement.value;
+        });
+
+        const colorBox = document.getElementById("farbBox");
+        const red = document.getElementById("rot");
+        const green = document.getElementById("gruen");
+        const blue = document.getElementById("blau");
+        const reset = document.getElementById("reset");
+        const output5 = document.getElementById("ausgabe5");
+
+        const changeColor = () => {
+            const r = red.value;
+            const g = green.value;
+            const b = blue.value;
+            const color = 'rgb('+r+', '+g+', '+b+')';
+            colorBox.style.backgroundColor = color;
+            output5.innerHTML = "Aktuelle Farbe ist: "+color;
+        }
+
+        red.addEventListener("input", changeColor);
+        green.addEventListener("input", changeColor);
+        blue.addEventListener("input", changeColor);
+
+        const res = () => {
+            red.value = 125;
+            green.value = 125;
+            blue.value = 125;
+        }
+
+        reset.addEventListener("click", () => {
+            res();
+            changeColor();
+        });
+
+    </script>
 </body>
 
 </html>

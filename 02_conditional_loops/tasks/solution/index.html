@@ -40,6 +40,7 @@
         let i = 0; 
         while(i<array.length){
             console.log(array[i]);
+            i++;
         }
 
         for(let j = 0; j<array.lenght; j++){
@@ -72,7 +73,11 @@
         for(let n = 0; n < array.length; n++){
             if(n % 3 === 0){
                 console.log(array[n]);
+            }else{
+                null;
             }
+
+            n % 3 == 0 ? console.log(array[n]) : null;
         }
 
         // Aufgabe 7
