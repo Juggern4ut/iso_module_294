@@ -37,7 +37,7 @@
 <body>
     <button id="btn">Klick mich</button>
     <p id="ausgabe"></p>
-    
+
     <hr />
 
     <button id="btn2">Klick mich</button>
@@ -68,26 +68,26 @@
     <p id="ausgabe5"></p>
 
     <script>
-        function begruessen(name){
+        function begruessen(name) {
             console.log("Hallo " + name);
         }
 
         begruessen("Lukas");
         begruessen("Tamara");
 
-        function addieren(a, b){
+        function addieren(a, b) {
             return a + b;
         }
 
         console.log(addieren(10, 5));
 
-        function laenge(text){
+        function laenge(text) {
             return text.length;
         }
 
         console.log(laenge("Das ist ein Text"));
 
-        const multiplizieren = function(a, b){
+        const multiplizieren = function (a, b) {
             return a * b;
         }
 
@@ -98,21 +98,23 @@
         console.log(multiplizieren(4, 10));
         console.log(multiplizieren2(4, 10));
 
-        (function(){
+        (function () {
             console.log("Programm gestartet");
         })();
-        
+
+
         const btnElement = document.getElementById("btn");
         const outputElement = document.getElementById("ausgabe");
-        
 
-        btnElement.addEventListener("click", function(){
+        btnElement.addEventListener("click", function () {
             outputElement.innerHTML = "Der Button wurde gedrückt";
         })
 
         btnElement.addEventListener("click", () => {
             outputElement.innerHTML = "Der Button wurde gedrückt";
         })
+
+
 
         const btn2Element = document.getElementById("btn2");
         const outputElement2 = document.getElementById("ausgabe2");
@@ -123,18 +125,21 @@
         }
 
         btn2Element.addEventListener("click", melden);
-        
-        btn2Element.addEventListener("mouseover", function(){
-           outputElement2.innerHTML = "Maus drüber!"; 
+
+        btn2Element.addEventListener("mouseover", function () {
+            outputElement2.innerHTML = "Maus drüber!";
         });
 
-        btn2Element.addEventListener("mouseleave", () => {
-           outputElement2.innerHTML = ""; 
+        btn2Element.addEventListener("mouseout", () => {
+            outputElement2.innerHTML = "";
         });
+
+
+
+
 
         const btn3Element = document.getElementById("btn3");
         const btnToggle3Element = document.getElementById("btn3-toggle");
-        const outputElement3 = document.getElementById("ausgabe3");
 
         let eventActive = false;
 
@@ -143,13 +148,19 @@
         }
 
         btnToggle3Element.addEventListener("click", () => {
-            if(eventActive){
+            if (eventActive) {
                 btn3Element.addEventListener("click", eventMethod);
-            }else{
+                btn3Element.disabled = false;
+            } else {
                 btn3Element.removeEventListener("click", eventMethod);
+                btn3Element.disabled = true;
             }
             eventActive = !eventActive;
         });
+
+
+
+
 
         const inputElement = document.getElementById("eingabe");
         const outputElement4 = document.getElementById("ausgabe4");
@@ -157,6 +168,10 @@
         inputElement.addEventListener("input", () => {
             outputElement4.innerHTML = inputElement.value;
         });
+
+
+
+
 
         const colorBox = document.getElementById("farbBox");
         const red = document.getElementById("rot");
@@ -167,11 +182,13 @@
 
         const changeColor = () => {
             const r = red.value;
-            const g = green.value;
+            const g = green.value
             const b = blue.value;
-            const color = 'rgb('+r+', '+g+', '+b+')';
+            const color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+            const color2 = `rgb(${r}, ${g}, ${b})`;
+
             colorBox.style.backgroundColor = color;
-            output5.innerHTML = "Aktuelle Farbe ist: "+color;
+            output5.innerHTML = "Aktuelle Farbe ist: " + color;
         }
 
         red.addEventListener("input", changeColor);
@@ -182,12 +199,10 @@
             red.value = 125;
             green.value = 125;
             blue.value = 125;
+            changeColor();
         }
 
-        reset.addEventListener("click", () => {
-            res();
-            changeColor();
-        });
+        reset.addEventListener("click", res);
 
     </script>
 </body>
