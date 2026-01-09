@@ -1,0 +1,122 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\setlength{\parindent}{0pt}
+
+\title{Modul 294 - Aufgabenblatt 05}
+\author{von Lukas Meier}
+\date{Unterricht vom 23.12.2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Vorbereitung}
+
+Erstellen Sie einen neuen Ordner und speichern Sie die Datei \texttt{index.html} aus dem Netzwerkordner darin.  
+Öffnen Sie die Datei im Browser sowie in einem Code-Editor Ihrer Wahl und stellen Sie sicher, dass ein \texttt{script}-Tag vorhanden ist.
+
+\section{Synchroner und asynchroner Code}
+
+Schreiben Sie zwei \texttt{console.log}-Ausgaben direkt untereinander.  
+Erstellen Sie anschliessend einen \texttt{setTimeout}, welcher nach 2 Sekunden eine weitere Meldung in der Konsole ausgibt.
+
+Beobachten und beschreiben Sie die Reihenfolge der Ausgaben.
+
+\section{Erstes Promise}
+
+Erstellen Sie ein Promise, welches nach 1 Sekunde erfolgreich aufgelöst wird und den Text \glqq Promise erfüllt\grqq{} zurückgibt.
+
+Geben Sie das Resultat mithilfe von \texttt{then} in der Konsole aus.
+
+\section{Promise mit Fehler}
+
+Erweitern Sie das Promise aus der vorherigen Aufgabe so, dass es alternativ abgelehnt wird.
+
+Fangen Sie den Fehler mit \texttt{catch} ab und geben Sie eine sinnvolle Fehlermeldung in der Konsole aus.
+
+\section{Asynchrone Funktion}
+
+Schreiben Sie eine Funktion \texttt{ladeDaten()}, welche mit dem Keyword \texttt{async} definiert ist und einen Text zurückgibt.
+
+Rufen Sie die Funktion auf und geben Sie den Rückgabewert in der Konsole aus.  
+Beobachten Sie, welchen Datentyp der Rückgabewert hat.
+
+\section{await verwenden}
+
+Erstellen Sie innerhalb einer \texttt{async}-Funktion ein Promise, welches nach 2 Sekunden den Wert \texttt{42} zurückgibt.
+
+Nutzen Sie \texttt{await}, um den Wert in einer Variable zu speichern, und geben Sie diese anschliessend aus.
+
+\section{Fehlerbehandlung mit try / catch}
+
+Erweitern Sie die Funktion aus der vorherigen Aufgabe so, dass das Promise auch fehlschlagen kann.
+
+Behandeln Sie diesen Fall mit einem \texttt{try / catch}-Block und geben Sie eine Fehlermeldung in der Konsole aus.
+
+\section{Fetch – erste Anfrage}
+
+Nutzen Sie die \texttt{fetch}-Methode, um Daten von folgendem Endpoint zu laden:
+
+\texttt{https://jsonplaceholder.typicode.com/todos/}
+
+Geben Sie die geladenen Daten vollständig in der Konsole aus.  
+Verwenden Sie hierfür \texttt{then}.
+
+\section{Fetch mit async / await}
+
+Schreiben Sie die Fetch-Anfrage aus der vorherigen Aufgabe um, sodass sie mithilfe von \texttt{async / await} umgesetzt ist.
+
+Lagern Sie den Code in eine Funktion \texttt{loadTodos()} aus und rufen Sie diese beim Laden der Seite auf.
+
+\section{ToDos im DOM darstellen}
+
+Erstellen Sie im HTML ein leeres \texttt{ul}-Element.
+
+Stellen Sie nun alle geladenen ToDos als \texttt{li}-Elemente dar.  
+Jedes ToDo soll mindestens folgende Informationen anzeigen:
+
+\begin{itemize}
+    \item Titel
+    \item Status (completed / not completed)
+\end{itemize}
+
+Kennzeichnen Sie erledigte ToDos visuell (z.\,B.\ durch Text oder CSS-Klasse).
+
+\section{User zu ToDos laden}
+
+Laden Sie zusätzlich die Benutzerdaten vom folgenden Endpoint:
+
+\texttt{https://jsonplaceholder.typicode.com/users/}
+
+Die ToDos enthalten eine \texttt{userId}, welche einem Benutzer entspricht.
+
+Ordnen Sie jedem ToDo den passenden Benutzernamen zu und zeigen Sie diesen ebenfalls im \texttt{li}-Element an.
+
+\section{Kombinierte Darstellung}
+
+Erweitern Sie die Darstellung der ToDos so, dass pro Eintrag folgende Informationen sichtbar sind:
+
+\begin{itemize}
+    \item Titel des ToDos
+    \item Name des Benutzers
+    \item Status des ToDos
+\end{itemize}
+
+Achten Sie darauf, dass die Daten sauber strukturiert und übersichtlich dargestellt sind.
+
+\section{Optional: Filter}
+
+Erweitern Sie die Anwendung optional um eine Filterfunktion:
+
+\begin{itemize}
+    \item Ein Button zeigt nur erledigte ToDos
+    \item Ein weiterer Button zeigt nur nicht erledigte ToDos
+\end{itemize}
+
+Nutzen Sie hierfür bereits geladene Daten und führen Sie keine erneuten Fetch-Anfragen aus.
+
+\end{document}
