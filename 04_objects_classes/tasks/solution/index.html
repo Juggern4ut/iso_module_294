@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Hier werden die Metadaten der Seite definiert -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Der Titel definiert, was im Browser-Tab dargestellt wird -->
+    <title>Modul 294 - 04 Objekte und Klassen</title>
+
+    <!-- Einfache CSS-Stile für die Seite -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="greet_button">Greet</button>
+    <p id="greet_output"></p>
+
+    <hr />
+    <h1>Benutzerliste</h1>
+    <section id="userlist"></section>
+
+    <hr />
+
+    <h1>Benutzerverwaltung</h1>
+
+    <form id="benutzerForm">
+        <label for="username">Benutzername:</label>
+        <input type="text" id="username" required>
+        <label for="email">E-Mail:</label>
+        <input type="email" id="email" required>
+        <button id="addUser" type="submit">Hinzufügen</button>
+    </form>
+
+    <h2>Benutzerliste</h2>
+    <ul id="benutzerListe"></ul>
+
+    <script>
+        const person = {
+            name: 'Maxim',
+            alter: 32,
+            wohnort: 'Olten',
+            beruf: 'Musiker',
+            greet: function() {
+                console.log(`Hallo, mein Name ist ${this.name}`);
+            },
+            vorstellen: function(){
+                console.log(`Hallo, ich heisse ${this.name}, bin ${this.alter} Jahre alt und wohne in ${this.wohnort}`);
+            }
+        };
+
+        const person2 = {
+            name: 'Nico',
+            alter: 29,
+            wohnort: 'Aarau',
+            beruf: 'Künstler',
+            greet: function() {
+                console.log(`Hallo, mein Name ist ${this.name}`);
+            },
+        };
+
+        class Person {
+            constructor(name, alter, wohnort){
+                this.name = name; 
+                this.alter = alter;
+                this.wohnort = wohnort;
+            }
+
+            vorstellen(){
+                console.log(`Hallo, ich heisse ${this.name}, bin ${this.alter} Jahre alt und wohne in ${this.wohnort}`);
+                return `Hallo, ich heisse ${this.name}, bin ${this.alter} Jahre alt und wohne in ${this.wohnort}`;
+            }
+
+            hatGeburtstag(){
+                this.alter++;
+            }
+        }
+
+        console.log(person.alter);
+        console.log(person.wohnort);
+
+        person.greet();
+
+        console.log(person);
+        
+        const p1 = new Person('Lukas', 32, 'Niedergösgen');
+        const p2 = new Person('Joana', 29, 'Zürich');
+        p1.vorstellen();
+        p2.vorstellen();
+
+        p1.hatGeburtstag();
+
+        p1.vorstellen();
+
+        const button = document.getElementById("greet_button");
+        const output = document.getElementById("greet_output");
+
+        button.addEventListener("click", () => {
+           greet_output.innerHTML = p1.vorstellen(); 
+        });
+
+
+        const people = [
+            new Person('Markus', 42, 'Aarburg'),
+            new Person('Fabienne', 28, 'Lostorf'),
+            new Person('Marco', 37, 'Brugg')
+        ];
+
+        people.forEach(p => {
+            p.vorstellen();
+        });
+
+        // Aufgabe 12
+        console.warn("Aufgabe 12");
+
+        class User {
+            constructor(username, email) {
+                this.username = username;
+                this.email = email;
+            }
+            anzeigen() {
+                return `Benutzername: ${this.username}, E-Mail: ${this.email}`;
+            }
+        }
+
+        const benutzerArray = [
+            new User('Hans', 'hans@example.com'),
+            new User('Maria', 'maria@example.com'),
+            new User('Lisa', 'lisa@example.com')
+        ];
+
+        function alleBenutzerAnzeigen() {
+            const listElement = document.getElementById("userlist");
+            benutzerArray.forEach(u => {
+                const el = document.createElement("p");
+                el.innerHTML = u.anzeigen();
+                listElement.append(el);
+            });
+        }
+
+        window.addEventListener("load", () => alleBenutzerAnzeigen());
+        
+        // Aufgabe 13
+        console.warn("Aufgabe 13");
+    
+        const benutzerArray2 = [];
+        const benutzerForm = document.getElementById('benutzerForm');
+        const benutzerListe = document.getElementById('benutzerListe');
+        const addUserButton = document.getElementById("addUser");
+
+        addUserButton.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+
+            const neuerBenutzer = new User(username, email);
+            benutzerArray2.push(neuerBenutzer);
+            benutzerForm.reset();
+            aktualisiereBenutzerListe();
+        });
+
+        function aktualisiereBenutzerListe() {
+            benutzerListe.innerHTML = '';
+            benutzerArray2.forEach((benutzer, index) => {
+                const li = document.createElement('li');
+                li.textContent = benutzer.anzeigen();
+
+                const loeschenButton = document.createElement('button');
+                loeschenButton.textContent = 'Löschen';
+                loeschenButton.addEventListener('click', function() {
+                    benutzerArray2.splice(index, 1);
+                    aktualisiereBenutzerListe();
+                });
+
+                li.appendChild(loeschenButton);
+                benutzerListe.appendChild(li);
+            });
+        }
+
+
+    </script>
+</body>
+
+</html>
