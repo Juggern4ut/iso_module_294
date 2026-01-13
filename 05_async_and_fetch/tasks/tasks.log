@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.25)  13 JAN 2026 16:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.25)  13 JAN 2026 16:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -159,7 +159,10 @@ Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count298
 )
-No file tasks.aux.
+(./tasks.aux
+Package babel Info: 'ngerman' activates 'ngerman' shorthands.
+(babel)             Reported on input line 5.
+)
 \openout1 = `tasks.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
@@ -176,22 +179,20 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
-Package babel Info: 'ngerman' activates 'ngerman' shorthands.
-(babel)             Reported on input line 13.
-[1
+ [1
 
-{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2] [3] [4] (./tasks.aux)
+{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+ [4] (./tasks.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-11-06>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3076 strings out of 469010
- 50499 string characters out of 5455910
- 467656 words of memory out of 5000000
- 31782 multiletter control sequences out of 15000+600000
+ 3079 strings out of 469010
+ 50541 string characters out of 5455910
+ 468656 words of memory out of 5000000
+ 31783 multiletter control sequences out of 15000+600000
  630794 words of font info for 51 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
  57i,6n,65p,498b,193s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -200,7 +201,7 @@ k></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><
 /usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></u
 sr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on tasks.pdf (4 pages, 61550 bytes).
+Output written on tasks.pdf (4 pages, 62130 bytes).
 PDF statistics:
  42 PDF objects out of 1000 (max. 8388607)
  26 compressed objects within 1 object stream
