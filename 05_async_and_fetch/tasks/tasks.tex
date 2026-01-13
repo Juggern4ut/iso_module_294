@@ -8,7 +8,7 @@
 
 \title{Modul 294 - Aufgabenblatt 05}
 \author{von Lukas Meier}
-\date{Unterricht vom 23.12.2025}
+\date{Unterricht vom 13.01.2026}
 
 \begin{document}
 
@@ -22,7 +22,9 @@ Erstellen Sie einen neuen Ordner und speichern Sie die Datei \texttt{index.html}
 \section{Synchroner und asynchroner Code}
 
 Schreiben Sie zwei \texttt{console.log}-Ausgaben direkt untereinander.  
-Erstellen Sie anschliessend einen \texttt{setTimeout}, welcher nach 2 Sekunden eine weitere Meldung in der Konsole ausgibt. Ein Timeout kann in JavaScript mit der folgenden Syntax realisiert werden: \texttt{setTimeout(function, millisekunden)}. Damit wird die funktion im ersten Parameter nach der anzahl Millisekunden des zweiten Parameters ausgeführt.
+Erstellen Sie anschliessend einen \texttt{setTimeout}, welcher nach 2 Sekunden eine weitere Meldung in der Konsole ausgibt. 
+
+Ein Timeout kann in JavaScript mit der folgenden Syntax realisiert werden: \texttt{setTimeout(function, millisekunden)}. Damit wird die funktion im ersten Parameter nach der anzahl Millisekunden des zweiten Parameters ausgeführt.
 
 Beobachten und beschreiben Sie die Reihenfolge der Ausgaben.
 
@@ -65,6 +67,8 @@ Nutzen Sie die \texttt{fetch}-Methode, um Daten von folgendem Endpoint zu laden:
 
 Geben Sie die geladenen Daten vollständig in der Konsole aus.  
 Verwenden Sie hierfür \texttt{then}.
+
+(Denken Sie daran, dass Sie auf der Response von \texttt{fetch} noch die Methode \texttt{json} aufrufen müssen, welche wiederum ein Promise zurückgibt.)
 
 \section{Fetch mit async / await}
 
