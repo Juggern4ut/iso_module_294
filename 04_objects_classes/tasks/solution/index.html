@@ -21,16 +21,20 @@
 </head>
 
 <body>
-
+    
+    <!-- Aufgabe 10 -->
     <button id="greet_button">Greet</button>
     <p id="greet_output"></p>
 
     <hr />
+
+    <!-- Aufgabe 11 -->
     <h1>Benutzerliste</h1>
     <section id="userlist"></section>
 
     <hr />
-
+    
+    <!-- Aufgabe 12 -->
     <h1>Benutzerverwaltung</h1>
 
     <form id="benutzerForm">
@@ -40,16 +44,22 @@
         <input type="email" id="email" required>
         <button id="addUser" type="submit">Hinzufügen</button>
     </form>
-
+    
+    <!-- Aufgabe 13 -->
     <h2>Benutzerliste</h2>
     <ul id="benutzerListe"></ul>
 
     <script>
+
+        // Aufgabe 2
         const person = {
             name: 'Maxim',
             alter: 32,
             wohnort: 'Olten',
+            // Aufgabe 4
             beruf: 'Musiker',
+            
+            // Aufgabe 3
             greet: function() {
                 console.log(`Hallo, mein Name ist ${this.name}`);
             },
@@ -57,7 +67,8 @@
                 console.log(`Hallo, ich heisse ${this.name}, bin ${this.alter} Jahre alt und wohne in ${this.wohnort}`);
             }
         };
-
+        
+        // Aufgabe 5
         const person2 = {
             name: 'Nico',
             alter: 29,
@@ -67,19 +78,22 @@
                 console.log(`Hallo, mein Name ist ${this.name}`);
             },
         };
-
+        
+        // Aufgabe 6
         class Person {
             constructor(name, alter, wohnort){
                 this.name = name; 
                 this.alter = alter;
                 this.wohnort = wohnort;
             }
-
+            
+            // Aufgabe 7
             vorstellen(){
                 console.log(`Hallo, ich heisse ${this.name}, bin ${this.alter} Jahre alt und wohne in ${this.wohnort}`);
                 return `Hallo, ich heisse ${this.name}, bin ${this.alter} Jahre alt und wohne in ${this.wohnort}`;
             }
 
+            // Aufgabe 9
             hatGeburtstag(){
                 this.alter++;
             }
@@ -91,16 +105,19 @@
         person.greet();
 
         console.log(person);
-        
+       
+        // Aufgabe 8
         const p1 = new Person('Lukas', 32, 'Niedergösgen');
         const p2 = new Person('Joana', 29, 'Zürich');
         p1.vorstellen();
         p2.vorstellen();
 
+        // Aufgabe 9
         p1.hatGeburtstag();
 
         p1.vorstellen();
 
+        // Aufgabe 10
         const button = document.getElementById("greet_button");
         const output = document.getElementById("greet_output");
 
@@ -108,7 +125,7 @@
            greet_output.innerHTML = p1.vorstellen(); 
         });
 
-
+        // Aufgabe 11
         const people = [
             new Person('Markus', 42, 'Aarburg'),
             new Person('Fabienne', 28, 'Lostorf'),
