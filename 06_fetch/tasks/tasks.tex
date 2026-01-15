@@ -6,14 +6,64 @@
 
 \setlength{\parindent}{0pt}
 
-\title{Modul 294 - Aufgabenblatt 05}
+\title{Modul 294 - Aufgabenblatt 06}
 \author{von Lukas Meier}
-\date{Unterricht vom 13.01.2026}
+\date{Unterricht vom 06.01.2026}
 
 \begin{document}
 
 \maketitle
 
+\section{Vorbereitung}
 
+Erstellen Sie einen neuen Ordner und speichern Sie die Datei \texttt{index.html} darin.  
+Öffnen Sie die Datei im Browser sowie im Code-Editor Ihrer Wahl.
+
+Stellen Sie sicher, dass ein \texttt{script}-Tag im HTML vorhanden ist.
+
+\section{Wiederholung: Einfacher GET-Request}
+
+Nutzen Sie die \texttt{fetch}-Methode, um Daten vom folgenden Endpoint zu laden:
+
+\texttt{https://jsonplaceholder.typicode.com/posts}
+
+Geben Sie die geladenen Daten vollständig in der Konsole aus.  
+Verwenden Sie hierfür die \texttt{then}-Syntax.
+
+\section{GET mit async / await}
+
+Schreiben Sie die Fetch-Anfrage aus der vorherigen Aufgabe so um, dass sie mit \texttt{async / await} umgesetzt ist.
+
+Lagern Sie den Code in eine Funktion \texttt{loadPosts()} aus und rufen Sie diese auf.
+
+\section{Response und Statuscode}
+
+Geben Sie zusätzlich den HTTP-Statuscode der Response in der Konsole aus.
+
+Prüfen Sie mithilfe von \texttt{response.ok}, ob die Anfrage erfolgreich war.  
+Falls nicht, soll ein Fehler ausgelöst werden.
+
+\section{Fehlerbehandlung}
+
+Erweitern Sie die Funktion aus der vorherigen Aufgabe um eine Fehlerbehandlung mit \texttt{try / catch}.
+
+Geben Sie im Fehlerfall eine aussagekräftige Meldung in der Konsole aus.
+
+\section{Fetch mit Options-Objekt}
+
+Erstellen Sie einen Fetch-Request, bei welchem Sie explizit ein Options-Objekt übergeben.
+
+Setzen Sie dabei mindestens folgende Option:
+\begin{itemize}
+    \item \texttt{method}
+\end{itemize}
+
+Beobachten Sie, wie sich der Request verhält.
+
+\section{Header mitsenden}
+
+Erweitern Sie den Fetch-Request so, dass ein Header mitgesendet wird.
+
+Setzen Sie den Header \texttt{Conten
 
 \end{document}
