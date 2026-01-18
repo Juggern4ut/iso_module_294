@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>05 - Async Fetch - Lösungen</title>
+
+    <style>
+        * {
+            font-family: monospace;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .completed {
+            color: #0c0;
+        }
+
+        .not-completed {
+            color: #c00;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="done">Nur abgeschlossene Todos anzeigen</button><br />
+    <button id="not-done">Nur offene Todos anzeigen</button><br />
+    <button id="all">Alle Todos anzeigen</button>
+
+    <h2>Liste der Todos</h2>
+
+    <ul id="todos">
+    </ul>
+
+    <script>
+
+        // Aufgabe 2
+        console.log("Ausgabe 1");
+        console.log("Ausgabe 2");
+
+        setTimeout(() => {
+            console.log("Ausgabe 3");
+        }, 1000);
+
+        console.log("Ausgabe 4");
+
+
+        // Aufgabe 3 
+        const p3 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("Promise erfüllt");
+            }, 1000);
+        });
+
+        p3.then(res => {
+            console.log(res);
+        });
+
+
+        // Aufgabe 4
+        const p4 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("Promise erfüllt");
+            }, 1000);
+        });
+
+        p4.then(res => {
+            console.log(res);
+        }).catch(err => {
+            console.log(`Folgender Fehler ist aufgetreten: ${err}`);
+        });
+
+
+        // Aufgabe 5
+        async function ladeDaten() {
+            return "Daten geladen!";
+        }
+
+        const result5 = ladeDaten();
+        console.log(result5);
+
+
+        // Aufgabe 6 
+        async function return42() {
+            const p6 = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(42);
+                }, 2000);
+            });
+
+            const result6 = await p6;
+            console.log(result6);
+        }
+
+        return42();
+
+
+        // Aufgabe 7
+        async function return42_2() {
+            const p7 = new Promise((resolve, reject) => {
+                const shouldFail = true;
+                setTimeout(() => {
+                    if (shouldFail) {
+                        reject("Error 123 occured");
+                    } else {
+                        resolve(42);
+                    }
+                }, 2000);
+            });
+
+            try {
+                const result7 = await p7;
+                console.log(result7);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        return42_2();
+
+
+        // Aufgabe 8 
+        fetch("https://jsonplaceholder.typicode.com/todos/")
+            .then(res => {
+                return res.json();
+            })
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.error("Beim Laden der Daten ist ein Fehler aufgetreten");
+            });
+
+
+        // Aufgabe 9
+        async function loadTodos() {
+            try {
+                const res = await fetch("https://jsonplaceholder.typicode.com/todos/");
+                const data = await res.json();
+                console.log(data);
+            } catch (err) {
+                console.error("Beim Laden der Daten ist ein Fehler aufgetreten");
+            }
+        }
+
+        loadTodos();
+
+
+        // Aufgabe 10 
+        async function loadTodos2() {
+            try {
+                const res = await fetch("https://jsonplaceholder.typicode.com/todos/");
+                const data = await res.json();
+
+                const list = document.getElementById("todos");
+                data.forEach(todo => {
+                    const element = document.createElement("li");
+                    element.classList.add(todo.completed ? "completed" : "not-completed");
+                    element.innerHTML = `[${todo.completed ? 'X' : '&nbsp;'}] ${todo.title}`;
+                    list.append(element);
+                });
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        loadTodos2();
+
+        // Aufgabe 11
+        async function loadTodos3() {
+            try {
+                const res = await fetch("https://jsonplaceholder.typicode.com/todos/");
+                const data = await res.json();
+
+                const res2 = await fetch("https://jsonplaceholder.typicode.com/users/");
+                const users = await res2.json();
+
+                const list = document.getElementById("todos");
+                data.forEach(todo => {
+                    const element = document.createElement("li");
+                    element.classList.add(todo.completed ? "completed" : "not-completed");
+
+                    // Simpel - unschön
+                    element.innerHTML = `[${todo.completed ? 'X' : '&nbsp;'}] ${todo.title} - ${users[todo.userId - 1].name}`;
+
+                    // Kompliziert - sauber
+                    // const taskUser = users.find( u => u.id == todo.userId );
+                    // element.innerHTML = `[${todo.completed ? 'X' : '&nbsp;'}] ${todo.title} - ${taskUser.name}`;
+
+                    list.append(element);
+                });
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        //loadTodos3();
+
+        // Aufgabe 12 
+        const showDoneButton = document.getElementById("done");
+        const showNotDoneButton = document.getElementById("not-done");
+        const showAll = document.getElementById("all");
+
+        showDoneButton.addEventListener("click", () => {
+            showAllTasks();
+            const notDoneTasks = document.querySelectorAll(".not-completed");
+            notDoneTasks.forEach(t => t.style.display = "none");
+        });
+
+        showNotDoneButton.addEventListener("click", () => {
+            showAllTasks();
+            const doneTasks = document.querySelectorAll(".completed");
+            doneTasks.forEach(t => t.style.display = "none");
+        });
+
+        showAll.addEventListener("click", () => {
+            showAllTasks()
+        });
+
+        const showAllTasks = () => {
+            const allTasks = document.querySelectorAll("#todos li");
+            allTasks.forEach(t => t.style.display = "block");
+        };
+
+
+    </script>
+</body>
+
+</html>
