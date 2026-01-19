@@ -97,13 +97,13 @@ async function loadPosts() {
     <h2>Was ist eine Response?</h2>
     <ul>
         <li>Antwort des Servers</li>
-        <li>enthaelt Statuscode (z. B. 200, 404)</li>
-        <li>Daten muessen explizit gelesen werden</li>
+        <li>enthält Statuscode (z. B. 200, 404)</li>
+        <li>Daten müssen explizit gelesen werden</li>
     </ul>
 </section>
 
 <section>
-    <h2>Status pruefen</h2>
+    <h2>Status prüfen</h2>
     <pre><code class="js" data-trim>
 if (!response.ok) {
     throw new Error("Fehler: " + response.status);
@@ -144,11 +144,11 @@ async function loadData() {
         </tr>
         <tr>
             <td><b>PUT / PATCH</b></td>
-            <td>Daten aendern</td>
+            <td>Daten ändern</td>
         </tr>
         <tr>
             <td><b>DELETE</b></td>
-            <td>Daten loeschen</td>
+            <td>Daten löschen</td>
         </tr>
     </table>
 </section>
@@ -156,7 +156,7 @@ async function loadData() {
 <section>
     <h2>POST-Request – Grundidee</h2>
     <p>POST wird verwendet, um neue Daten an einen Server zu senden.</p>
-    <p>Dazu werden Options benoetigt.</p>
+    <p>Dazu werden Options benötigt.</p>
 </section>
 
 <section>
@@ -231,7 +231,7 @@ async function createTodo() {
 <section>
     <h2>Warum Header wichtig sind</h2>
     <ul>
-        <li>Server weiss, wie Daten gelesen werden muessen</li>
+        <li>Server weiss, wie Daten gelesen werden müssen</li>
         <li>Authentifizierung erfolgt oft über Header</li>
         <li>Falsche Header führen zu Fehlern</li>
     </ul>
@@ -252,10 +252,10 @@ fetch(url, {
     <h2>TL;DR</h2>
     <ul>
         <li><span class="inline-code">fetch</span> sendet HTTP-Anfragen</li>
-        <li>GET laedt Daten, POST sendet Daten</li>
+        <li>GET lädt Daten, POST sendet Daten</li>
         <li>Header beschreiben den Request</li>
-        <li>Body enthaelt die gesendeten Daten</li>
-        <li>Fehler muessen explizit behandelt werden</li>
+        <li>Body enthält die gesendeten Daten</li>
+        <li>Fehler müssen explizit behandelt werden</li>
     </ul>
 </section>
 
