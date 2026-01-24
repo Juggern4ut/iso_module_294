@@ -167,7 +167,7 @@
             }
         }
 
-        loadTodos2();
+        //loadTodos2();
 
         // Aufgabe 11
         async function loadTodos3() {
@@ -184,11 +184,11 @@
                     element.classList.add(todo.completed ? "completed" : "not-completed");
 
                     // Simpel - unschön
-                    element.innerHTML = `[${todo.completed ? 'X' : '&nbsp;'}] ${todo.title} - ${users[todo.userId - 1].name}`;
+                    //element.innerHTML = `[${todo.completed ? 'X' : '&nbsp;'}] ${todo.title} - ${users[todo.userId - 1].name}`;
 
                     // Kompliziert - sauber
-                    // const taskUser = users.find( u => u.id == todo.userId );
-                    // element.innerHTML = `[${todo.completed ? 'X' : '&nbsp;'}] ${todo.title} - ${taskUser.name}`;
+                    const taskUser = users.find( u => u.id == todo.userId );
+                    element.innerHTML = `[${todo.completed ? 'X' : '&nbsp;'}] ${todo.title} - ${taskUser.name}`;
 
                     list.append(element);
                 });
@@ -197,9 +197,9 @@
             }
         }
 
-        //loadTodos3();
+        loadTodos3();
 
-        // Aufgabe 12 
+        // Aufgabe 13 
         const showDoneButton = document.getElementById("done");
         const showNotDoneButton = document.getElementById("not-done");
         const showAll = document.getElementById("all");
