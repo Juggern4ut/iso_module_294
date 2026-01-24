@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Modul 294 – Lektion 06</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+
+    <style>
+        td {
+            font-size: 21px;
+        }
+
+        .inline-code {
+            font-family: Consolas, Monaco, monospace;
+            background-color: #2d2d2d;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-size: 75%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h2>06 – Einführung Projekt</h2>
+                <hr />
+                <h3>Eine Notiz-App mit allem was dazugehört</h3>
+                <img style="width: 200px" src="assets/img/js-logo.webp" alt="JS Logo" />
+            </section>
+
+            <section>
+                <h2>Lernziele dieser Lektion</h2>
+                <ul>
+                    <li>Erstellen der grundlegenden Codebase für dieses Projekt</li>
+                    <li>Grundverständnis für Git aufbauen</li>
+                    <li>Initialisieren eines Git-Repositories</li>
+                    <li>Den Umfang des Projektes verstehen</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Projekteinführung</h2>
+                <p>Eine simple Notizenapp mit folgenden Features um das gelernte praktisch anzuwenden.</p>
+                <ul>
+                    <li>Erfassen neuer Notizen via Web-Interface</li>
+                    <li>Verwalten von Notizen (löschen, bearbeiten)</li>
+                    <li>Versionsverwaltung mit Git</li>
+                    <li>(Opt.) Login, Authentifizierung</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Versionsverwaltung mit Git</h2>
+                <p>Kurzueberblick fuer unser Projekt</p>
+            </section>
+
+            <section>
+                <h2>Was ist Git?</h2>
+                <ul>
+                    <li>Git ist ein Versionsverwaltungssystem</li>
+                    <li>Es speichert Änderungen am Code</li>
+                    <li>Man kann jederzeit zu alten Versionen zurückkehren</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Warum nutzen wir Git?</h2>
+                <ul>
+                    <li>Übersicht über Änderungen</li>
+                    <li>Sicherheit bei Fehlern</li>
+                    <li>Zusammenarbeit im Team</li>
+                    <li>Standard in der Softwareentwicklung</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Wie arbeitet Git grundsätzlich?</h2>
+                <ul>
+                    <li>Dateien werden geändert</li>
+                    <li>Änderungen werden gespeichert (Commit)</li>
+                    <li>Commits bilden die Projekt-Historie</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Wichtige Git-Begriffe</h2>
+                <ul>
+                    <li><b>Repository</b> – das Projekt</li>
+                    <li><b>Commit</b> – gespeicherter Stand</li>
+                    <li><b>History</b> – alle bisherigen Versionen</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Die wichtigsten Git-Commands</h2>
+                <ul>
+                    <li><span class="inline-code">git init</span> – Repository erstellen</li>
+                    <li><span class="inline-code">git status</span> – Status anzeigen</li>
+                    <li><span class="inline-code">git add</span> – Dateien vormerken</li>
+                    <li><span class="inline-code">git commit</span> – Aenderungen speichern</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>git add</h2>
+                <pre><code class="bash" data-trim>
+                        git add .
+                    </code></pre>
+                <p>Fügt alle aktuellen Änderungen zum nächsten Commit hinzu.</p>
+            </section>
+
+            <section>
+                <h2>git commit</h2>
+                <pre><code class="bash" data-trim>
+                        git commit -m "Erste Version der App"
+                    </code></pre>
+                <p>Speichert einen festen Stand des Projekts.</p>
+            </section>
+
+            <section>
+                <h2>Remote Repositories</h2>
+                <ul>
+                    <li>Code kann online gespeichert werden</li>
+                    <li>z.B. auf GitHub oder GitLab</li>
+                    <li>Erlaubt Zusammenarbeit und Backup</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>git push</h2>
+                <pre><code class="bash" data-trim>
+                        git push
+                    </code></pre>
+                <p>Lädt die lokalen Commits ins Remote-Repository hoch.</p>
+            </section>
+
+            <section>
+                <h2>Wichtig für dieses Projekt</h2>
+                <ul>
+                    <li>Regelmässig committen</li>
+                    <li>Sinnvolle Commit-Nachrichten schreiben</li>
+                    <li>Git dient als Sicherheitsnetz</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Merksatz</h2>
+                <p>
+                    <span class="inline-code">add</span> →
+                    <span class="inline-code">commit</span> →
+                    <span class="inline-code">push</span>
+                </p>
+            </section>
+
+            <section>
+                <h2>Erstellen einer Codebase</h2>
+                <ol>
+                    <li>Erstellen Sie einen neuen Ordner <span class="inline-code">notes-app</span></li>
+                    <li>
+                        Erstellen Sie darin die folgenden Dateien/Ordner
+                        <ul>
+                            <li><span class="inline-code">index.html</span></li>
+                            <li><span class="inline-code">/css/styles.css</span></li>
+                            <li><span class="inline-code">/js/main.js</span></li>
+                        </ul>
+                    </li>
+                    <li>Erstellen Sie ein HTML5 Grundgerüst in der Datei <span class="inline-code">index.html</span> und
+                        binden Sie das CSS und JS ordnungsgemäss ein</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Git-Repository initialisieren</h2>
+                <p>Navigieren Sie in ihrem Terminal in ihren Projektordner und führen Sie <span class="inline-code">git init</span> aus</p> 
+            </section>
+
+            <section>
+                <h2>Github authentifizieren</h2>
+                <ol>
+                    <li>Neuen SSH-Key erstellen:<br /><span class="inline-code">ssh-keygen -t ed25519 -C "&lt;mail&gt;"</span></li>
+                    <li>Bestätigen aller Fragen mit Enter</li>
+                    <li>Inhalt der Datei <br /><span class="inline-code">C:/Users/&lt;username&gt;/.ssh/id_ed25519.pub</span> kopieren</li>
+                    <li>In GitHub unter <span class="inline-code">Profil</span> → <span class="inline-code">Settings</span> → <span class="inline-code">SSH and GPG keys</span> → <span class="inline-code">New SSH key</span> einfügen</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Remote erstellen</h2>
+                <ul>
+                    <li>Erstellen Sie in Ihrem GitHub-Account (oder ähnlich) ein neues Repository.</li>
+                    <li>
+                        <p>Fügen Sie das Remote-Repository in ihrem lokalen Repository hinzu.</p>
+                        <p><span class="inline-code">git remote add origin git@github.com:&lt;username&gt;/&lt;project-name&gt;.git</span></p>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Ersten Commit erstellen</h2>
+                <ol>
+                    <li>Im Ordner der Codebase, alle Änderungen zum Repository hinzufügen: <span class="inline-code">git add .</span></li>
+                    <li>Ersten lokalen Commit erstellen: <span class="inline-code">git commit -m 'initial commit'</span></li>
+                    <li>Lokalen Commit auf die GitHub-Remote pushen: <span class="inline-code">git push</span></li>
+                    <li>Auf GitHub.com sollte der Code nun in Ihrem Repository vorhanden sein</li>
+                </ol>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [RevealHighlight]
+        });
+    </script>
+
+</body>
+
+</html>

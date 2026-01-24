@@ -8,7 +8,7 @@
 
 \title{Modul 294 - Aufgabenblatt 06}
 \author{von Lukas Meier}
-\date{Unterricht vom 20.01.2026}
+\date{Unterricht vom 06.01.2026}
 
 \begin{document}
 
@@ -64,6 +64,71 @@ Beobachten Sie, wie sich der Request verhält.
 
 Erweitern Sie den Fetch-Request so, dass ein Header mitgesendet wird.
 
-Setzen Sie den Header \texttt{Conten
+Setzen Sie den Header \texttt{Content-Type} auf \texttt{application/json}.
+
+Geben Sie die vollständige Response in der Konsole aus.
+
+\section{POST-Request vorbereiten}
+
+Erstellen Sie ein JavaScript Objekt mit folgenden Properties:
+\begin{itemize}
+    \item title
+    \item body
+    \item userId
+\end{itemize}
+
+Dieses Objekt soll anschliessend an einen Server gesendet werden.
+
+\section{POST-Request mit fetch}
+
+Senden Sie das Objekt aus der vorherigen Aufgabe mithilfe eines POST-Requests an folgenden Endpoint:
+
+\texttt{https://jsonplaceholder.typicode.com/posts}
+
+Beachten Sie dabei:
+\begin{itemize}
+    \item Setzen Sie die Methode auf \texttt{POST}
+    \item Senden Sie den passenden Header
+    \item Wandeln Sie den Body korrekt in JSON um
+\end{itemize}
+
+Geben Sie die Antwort des Servers in der Konsole aus.
+
+\section{POST mit async / await}
+
+Schreiben Sie den POST-Request aus der vorherigen Aufgabe so um, dass er mit \texttt{async / await} umgesetzt ist.
+
+Lagern Sie den Code in eine Funktion \texttt{createPost()} aus.
+
+\section{Antwort auswerten}
+
+Geben Sie nach erfolgreichem POST-Request folgende Informationen aus:
+\begin{itemize}
+    \item ID des erstellten Eintrags
+    \item Titel des Eintrags
+\end{itemize}
+
+Beschreiben Sie kurz, was Ihnen an der Antwort auffällt.
+
+\section{Mini-Projekt: Fetch-Testseite}
+
+Erstellen Sie eine kleine Testseite mit folgenden Elementen:
+\begin{itemize}
+    \item Ein Button zum Laden von Daten (GET)
+    \item Ein Button zum Senden von Daten (POST)
+    \item Ein Ausgabebereich im DOM
+\end{itemize}
+
+Beim Klicken auf die Buttons sollen die entsprechenden Fetch-Anfragen ausgeführt und die Resultate im Browser angezeigt werden.
+
+Achten Sie auf saubere Struktur und verständliche Variablennamen.
+
+\section{Optional: Erweiterung}
+
+Erweitern Sie die Anwendung optional um folgende Punkte:
+\begin{itemize}
+    \item Anzeige von Ladezustand (z.\,B.\ \glqq Lade Daten...\grqq)
+    \item Anzeige von Fehlermeldungen im DOM statt in der Konsole
+\end{itemize}
 
 \end{document}
