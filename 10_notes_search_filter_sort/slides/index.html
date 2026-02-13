@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Modul 294 - Lektion 10</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+
+    <style>
+        td {
+            font-size: 21px;
+        }
+
+        .inline-code {
+            font-family: Consolas, Monaco, monospace;
+            background-color: #2d2d2d;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-size: 75%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h2>10 - Projekt: Suche, Filter, Sortierung</h2>
+                <hr />
+                <h3>Notizen schneller finden und strukturieren</h3>
+                <img style="width: 200px" src="assets/img/js-logo.webp" alt="JS Logo" />
+            </section>
+
+            <section>
+                <h2>Lernziele dieser Lektion</h2>
+                <ul>
+                    <li>Freitextsuche ueber Notizen umsetzen</li>
+                    <li>Filter nach Status oder Kategorie anwenden</li>
+                    <li>Sortierung (Datum oder Titel) steuern</li>
+                    <li>Mehrere Kriterien kombinieren</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Wo wir stehen</h2>
+                <ul>
+                    <li>CRUD ist funktional (Create, Read, Update, Delete)</li>
+                    <li>Jetzt verbessern wir die Nutzbarkeit</li>
+                    <li>Fokus heute: schnelle Navigation in grossen Listen</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>UI-Elemente fuer heute</h2>
+                <pre><code class="html" data-trim>
+<input id="search-input" placeholder="Suche nach Titel oder Inhalt" />
+
+<select id="status-filter">
+    <option value="all">Alle</option>
+    <option value="open">Offen</option>
+    <option value="done">Erledigt</option>
+</select>
+
+<select id="sort-select">
+    <option value="newest">Neueste zuerst</option>
+    <option value="oldest">Aelteste zuerst</option>
+    <option value="title-asc">Titel A-Z</option>
+</select>
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>State statt Direktmanipulation</h2>
+                <pre><code class="js" data-trim>
+let allNotes = [];
+
+const uiState = {
+    searchTerm: "",
+    status: "all",
+    sortBy: "newest"
+};
+                </code></pre>
+                <p>Immer aus <span class="inline-code">allNotes</span> + <span class="inline-code">uiState</span> rendern.</p>
+            </section>
+
+            <section>
+                <h2>Textsuche</h2>
+                <pre><code class="js" data-trim>
+function applySearch(notes, term) {
+    const normalized = term.trim().toLowerCase();
+    if (!normalized) return notes;
+
+    return notes.filter((note) => {
+        const title = note.title.toLowerCase();
+        const content = note.content.toLowerCase();
+        return title.includes(normalized) || content.includes(normalized);
+    });
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Statusfilter</h2>
+                <pre><code class="js" data-trim>
+function applyStatusFilter(notes, status) {
+    if (status === "all") return notes;
+    if (status === "done") return notes.filter((note) => note.done === true);
+    return notes.filter((note) => note.done === false);
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Sortierung</h2>
+                <pre><code class="js" data-trim>
+function applySort(notes, sortBy) {
+    const cloned = [...notes];
+
+    if (sortBy === "oldest") {
+        return cloned.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    }
+
+    if (sortBy === "title-asc") {
+        return cloned.sort((a, b) => a.title.localeCompare(b.title));
+    }
+
+    return cloned.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Pipeline kombinieren</h2>
+                <pre><code class="js" data-trim>
+function getVisibleNotes() {
+    let visible = allNotes;
+    visible = applySearch(visible, uiState.searchTerm);
+    visible = applyStatusFilter(visible, uiState.status);
+    visible = applySort(visible, uiState.sortBy);
+    return visible;
+}
+
+function refreshView() {
+    renderNotes(getVisibleNotes());
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Events binden</h2>
+                <pre><code class="js" data-trim>
+searchInput.addEventListener("input", (event) => {
+    uiState.searchTerm = event.target.value;
+    refreshView();
+});
+
+statusFilter.addEventListener("change", (event) => {
+    uiState.status = event.target.value;
+    refreshView();
+});
+
+sortSelect.addEventListener("change", (event) => {
+    uiState.sortBy = event.target.value;
+    refreshView();
+});
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Neu laden aus Backend</h2>
+                <pre><code class="js" data-trim>
+async function loadNotes() {
+    const response = await fetch(NOTES_ENDPOINT);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+    allNotes = await response.json();
+    refreshView();
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Option: serverseitige Suche</h2>
+                <p>Wenn Datenmenge stark waechst, kann Suche/Sortierung ins Backend verschoben werden.</p>
+                <pre><code class="js" data-trim>
+GET /notes?search=meeting&status=open&sort=-createdAt
+                </code></pre>
+                <p>Heute bleibt es bewusst clientseitig fuer das Architekturverstaendnis.</p>
+            </section>
+
+            <section>
+                <h2>Typische Fehlerquellen</h2>
+                <ul>
+                    <li>Array direkt sortieren und Originaldaten zerstoeren</li>
+                    <li>String-Vergleiche ohne Normalisierung</li>
+                    <li>Filterzustand nach CRUD-Aktionen verlieren</li>
+                    <li>Uneinheitliche Datumsformate</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Definition of Done</h2>
+                <ul>
+                    <li>Suche funktioniert in Echtzeit</li>
+                    <li>Statusfilter zeigt korrekte Teilmenge</li>
+                    <li>Sortierung greift sofort</li>
+                    <li>Kombination aus Suche + Filter + Sortierung ist stabil</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Arbeitsauftrag</h2>
+                <ol>
+                    <li>UI-Controls fuer Suche/Filter/Sort bauen</li>
+                    <li>State + Pipeline implementieren</li>
+                    <li>Mit bestehenden CRUD-Funktionen integrieren</li>
+                    <li>Code committen und pushen</li>
+                </ol>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [RevealHighlight]
+        });
+    </script>
+
+</body>
+
+</html>

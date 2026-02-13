@@ -1,0 +1,146 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\setlength{\parindent}{0pt}
+
+\title{Modul 294 - Aufgabenblatt 10}
+\author{von Lukas Meier}
+\date{Unterricht vom 27.02.2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Vorbereitung}
+
+Nutzen Sie den aktuellen Projektstand mit funktionierendem CRUD (GET, POST, PATCH/PUT, DELETE).
+
+Legen Sie eine zentrale Datenvariable an, z.\,B. \texttt{allNotes}, die alle vom Backend geladenen Notizen enthält.
+
+\section{UI-Elemente für Suche, Filter und Sortierung}
+
+Ergänzen Sie im HTML mindestens folgende Elemente:
+\begin{itemize}
+    \item Suchfeld (Textinput)
+    \item Filter (Select oder Buttons, z.\,B. alle / offen / erledigt)
+    \item Sortierung (Select, z.\,B. neueste / älteste / Titel A-Z)
+\end{itemize}
+
+\section{UI-State definieren}
+
+Erstellen Sie ein State-Objekt, das die aktuelle Auswahl speichert, z.\,B.:
+\begin{itemize}
+    \item \texttt{searchTerm}
+    \item \texttt{status}
+    \item \texttt{sortBy}
+\end{itemize}
+
+\section{Suche implementieren}
+
+Erstellen Sie eine Funktion \texttt{applySearch(notes, term)}.
+
+Anforderungen:
+\begin{itemize}
+    \item Suche über Titel und Inhalt
+    \item Gross-/Kleinschreibung ignorieren
+    \item Leerer Suchbegriff liefert alle Notizen zurück
+\end{itemize}
+
+\section{Filter implementieren}
+
+Erstellen Sie eine Funktion \texttt{applyFilter(notes, status)}.
+
+Nutzen Sie den Status Ihrer Datenstruktur (z.\,B. \texttt{done}, \texttt{completed} oder \texttt{archived}).
+
+Der Filter soll mindestens 3 Zustände unterstützen:
+\begin{itemize}
+    \item alle
+    \item offen
+    \item erledigt
+\end{itemize}
+
+\section{Sortierung implementieren}
+
+Erstellen Sie eine Funktion \texttt{applySort(notes, sortBy)}.
+
+Unterstützen Sie mindestens:
+\begin{itemize}
+    \item neueste zuerst (Datum absteigend)
+    \item älteste zuerst (Datum aufsteigend)
+    \item Titel alphabetisch
+\end{itemize}
+
+Wichtig: Verändern Sie nicht direkt das Original-Array, sondern arbeiten Sie mit einer Kopie.
+
+\section{Pipeline kombinieren}
+
+Erstellen Sie eine Funktion \texttt{getVisibleNotes()} mit folgendem Ablauf:
+\begin{itemize}
+    \item Suche anwenden
+    \item Filter anwenden
+    \item Sortierung anwenden
+\end{itemize}
+
+Das Ergebnis soll an \texttt{renderNotes(...)} übergeben werden.
+
+\section{Events anbinden}
+
+Binden Sie Events an alle UI-Controls:
+\begin{itemize}
+    \item \texttt{input} beim Suchfeld
+    \item \texttt{change} bei Filter und Sortierung
+\end{itemize}
+
+Bei jeder Änderung:
+\begin{itemize}
+    \item State aktualisieren
+    \item Ansicht neu rendern
+\end{itemize}
+
+\section{Integration mit bestehendem CRUD}
+
+Nach Create, Update und Delete muss die Liste weiterhin korrekt angezeigt werden.
+
+Vorgehen:
+\begin{itemize}
+    \item Daten neu laden oder lokal aktualisieren
+    \item danach \texttt{getVisibleNotes()} und \texttt{renderNotes()} ausführen
+\end{itemize}
+
+\section{Testfälle}
+
+Testen Sie mindestens folgende Fälle:
+\begin{itemize}
+    \item Suche nach Begriffen, die in mehreren Notizen vorkommen
+    \item Suche nach Begriff, der nicht existiert
+    \item Kombination aus Suche + Filter
+    \item Kombination aus Suche + Filter + Sortierung
+\end{itemize}
+
+Dokumentieren Sie kurz, welche Kombinationen Sie getestet haben.
+
+\section{Optional: Usability}
+
+Implementieren Sie eine oder mehrere Erweiterungen:
+\begin{itemize}
+    \item ``Keine Treffer''-Hinweis
+    \item ``Filter zurücksetzen''-Button
+    \item Debounce für die Suche (z.\,B. 200ms)
+\end{itemize}
+
+\section{Abschluss}
+
+Die Lektion ist abgeschlossen, wenn:
+\begin{itemize}
+    \item Suche, Filter und Sortierung einzeln funktionieren
+    \item alle drei Funktionen kombiniert stabil laufen
+    \item CRUD weiterhin korrekt funktioniert
+\end{itemize}
+
+Erstellen Sie danach einen Commit, z.\,B.
+\texttt{feat: add note search, filter and sorting controls}.
+
+\end{document}
