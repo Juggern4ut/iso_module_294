@@ -1,0 +1,150 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\setlength{\parindent}{0pt}
+
+\title{Modul 294 - Aufgabenblatt 11}
+\author{von Lukas Meier}
+\date{Unterricht vom 06.03.2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Vorbereitung}
+
+Nutzen Sie den aktuellen Stand Ihrer Notizen-App (CRUD funktioniert).
+
+Heute wird eine einfache Authentifizierung ergänzt:
+\begin{itemize}
+    \item Benutzername
+    \item Passwort
+    \item Bearer-Token
+\end{itemize}
+
+\section{Login-Formular erstellen}
+
+Erstellen Sie ein Formular mit folgenden Feldern:
+\begin{itemize}
+    \item \texttt{username}
+    \item \texttt{password} (Typ \texttt{password})
+    \item Login-Button
+\end{itemize}
+
+Fangen Sie den Submit per JavaScript ab und verhindern Sie das Standardverhalten.
+
+\section{Login-Request implementieren}
+
+Erstellen Sie eine Funktion \texttt{login(username, password)}.
+
+Anforderungen:
+\begin{itemize}
+    \item Endpoint: \texttt{POST /auth/login} (oder Ihr Backend-Pendant)
+    \item Header: \texttt{Content-Type: application/json}
+    \item Body enthält Benutzername und Passwort als JSON
+    \item Status via \texttt{response.ok} prüfen
+\end{itemize}
+
+\section{Token aus der Antwort verarbeiten}
+
+Extrahieren Sie das Token aus der Login-Antwort und speichern Sie es in \texttt{localStorage}.
+
+Implementieren Sie Hilfsfunktionen:
+\begin{itemize}
+    \item \texttt{saveToken(token)}
+    \item \texttt{getToken()}
+    \item \texttt{clearToken()}
+\end{itemize}
+
+\section{Auth-Request-Helper bauen}
+
+Erstellen Sie eine Funktion \texttt{fetchWithAuth(url, options)}.
+
+Diese Funktion soll:
+\begin{itemize}
+    \item das gespeicherte Token lesen
+    \item den Header \texttt{Authorization: Bearer <token>} setzen
+    \item den Request mit \texttt{fetch} senden
+\end{itemize}
+
+\section{Bestehende Notiz-Requests umstellen}
+
+Stellen Sie Ihre bestehenden Requests auf den Auth-Helper um:
+\begin{itemize}
+    \item \texttt{GET /notes}
+    \item \texttt{POST /notes}
+    \item \texttt{PATCH/PUT /notes/:id}
+    \item \texttt{DELETE /notes/:id}
+\end{itemize}
+
+Alle geschuetzten Endpoints sollen nur noch mit Bearer-Token angesprochen werden.
+
+\section{401-Handling implementieren}
+
+Behandeln Sie den Fall \texttt{response.status === 401} zentral:
+\begin{itemize}
+    \item Token loeschen
+    \item Notiz-Bereich ausblenden
+    \item Login-Bereich wieder einblenden
+    \item Meldung anzeigen (z.\,B. ``Bitte erneut einloggen'')
+\end{itemize}
+
+\section{Logout-Funktion}
+
+Erstellen Sie einen Logout-Button.
+
+Beim Klick:
+\begin{itemize}
+    \item Token loeschen
+    \item App-Ansicht sperren/zuruecksetzen
+    \item Login-Form erneut zeigen
+\end{itemize}
+
+\section{Testszenarien}
+
+Testen Sie mindestens:
+\begin{itemize}
+    \item Login mit korrekten Daten
+    \item Login mit falschem Passwort
+    \item Zugriff auf \texttt{/notes} ohne Token
+    \item Zugriff auf \texttt{/notes} mit Token
+    \item Verhalten nach Logout
+\end{itemize}
+
+Notieren Sie kurz pro Testfall das Ergebnis.
+
+\section{Fehlerbehandlung}
+
+Verwenden Sie \texttt{try/catch} bei Login und geschuetzten Requests.
+
+Geben Sie Fehler gleichzeitig aus:
+\begin{itemize}
+    \item in der Konsole (Debug)
+    \item im UI (verstaendliche Rueckmeldung)
+\end{itemize}
+
+\section{Abschluss}
+
+Die Lektion ist abgeschlossen, wenn:
+\begin{itemize}
+    \item Login und Logout funktionieren
+    \item Token korrekt gesetzt und verwendet wird
+    \item geschuetzte Requests mit und ohne Token erwartetes Verhalten zeigen
+\end{itemize}
+
+Erstellen Sie anschliessend einen Commit, z.\,B.
+\texttt{feat: add basic bearer token authentication flow}.
+
+\section{Optional}
+
+Falls Zeit bleibt:
+\begin{itemize}
+    \item Token-Ablauf simulieren und erneuten Login erzwingen
+    \item Kleine Session-Anzeige im UI (``Eingeloggt als ...'')
+    \item Login bei Seitenstart automatisch pruefen (wenn Token vorhanden)
+\end{itemize}
+
+\end{document}

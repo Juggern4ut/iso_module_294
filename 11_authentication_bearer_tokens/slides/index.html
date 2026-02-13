@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Modul 294 - Lektion 11</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+
+    <style>
+        td {
+            font-size: 21px;
+        }
+
+        .inline-code {
+            font-family: Consolas, Monaco, monospace;
+            background-color: #2d2d2d;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-size: 75%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h2>11 - Projekt: Authentifizierung</h2>
+                <hr />
+                <h3>Login mit Benutzername, Passwort und Bearer-Token</h3>
+                <img style="width: 200px" src="assets/img/js-logo.webp" alt="JS Logo" />
+            </section>
+
+            <section>
+                <h2>Lernziele dieser Lektion</h2>
+                <ul>
+                    <li>Login-Request mit Benutzername und Passwort senden</li>
+                    <li>Bearer-Token aus der Antwort speichern</li>
+                    <li>Token bei geschuetzten Requests mitschicken</li>
+                    <li>Bei 401 sauber reagieren (Logout)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Ausgangslage</h2>
+                <ul>
+                    <li>Notizen-App mit CRUD ist vorhanden</li>
+                    <li>Jetzt sollen Notizen nur fuer eingeloggte Nutzer sichtbar sein</li>
+                    <li>Wir implementieren bewusst eine einfache Auth-Version</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Einfacher API-Flow</h2>
+                <p>
+                    Login-Formular
+                    <span class="inline-code">-&gt;</span>
+                    <span class="inline-code">POST /auth/login</span>
+                    <span class="inline-code">-&gt;</span>
+                    Token
+                    <span class="inline-code">-&gt;</span>
+                    <span class="inline-code">Authorization: Bearer ...</span>
+                </p>
+            </section>
+
+            <section>
+                <h2>Beispiel-Endpoints</h2>
+                <ul>
+                    <li><span class="inline-code">POST /auth/login</span> (username + password)</li>
+                    <li><span class="inline-code">GET /notes</span> nur mit gueltigem Token</li>
+                    <li><span class="inline-code">POST /notes</span> nur mit gueltigem Token</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Login-Formular (HTML)</h2>
+                <pre><code class="html" data-trim>
+<form id="login-form">
+    <input id="username" placeholder="Benutzername" required />
+    <input id="password" type="password" placeholder="Passwort" required />
+    <button type="submit">Login</button>
+</form>
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Login-Request</h2>
+                <pre><code class="js" data-trim>
+async function login(username, password) {
+    const response = await fetch(`${BASE_URL}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+    });
+
+    if (!response.ok) {
+        throw new Error(`Login fehlgeschlagen: ${response.status}`);
+    }
+
+    return response.json();
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Token speichern</h2>
+                <pre><code class="js" data-trim>
+function saveToken(token) {
+    localStorage.setItem("authToken", token);
+}
+
+function getToken() {
+    return localStorage.getItem("authToken");
+}
+
+function clearToken() {
+    localStorage.removeItem("authToken");
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Authorization Header</h2>
+                <pre><code class="js" data-trim>
+async function fetchWithAuth(url, options = {}) {
+    const token = getToken();
+
+    const headers = {
+        ...(options.headers || {}),
+        Authorization: `Bearer ${token}`
+    };
+
+    return fetch(url, { ...options, headers });
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Geschuetzte Daten laden</h2>
+                <pre><code class="js" data-trim>
+async function loadNotes() {
+    const response = await fetchWithAuth(`${BASE_URL}/notes`);
+
+    if (response.status === 401) {
+        clearToken();
+        showLogin();
+        throw new Error("Nicht autorisiert");
+    }
+
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+    const notes = await response.json();
+    renderNotes(notes);
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Login-Submit</h2>
+                <pre><code class="js" data-trim>
+loginForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    const data = await login(username, password);
+    saveToken(data.token);
+
+    loginForm.reset();
+    showApp();
+    await loadNotes();
+});
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Logout</h2>
+                <pre><code class="js" data-trim>
+logoutButton.addEventListener("click", () => {
+    clearToken();
+    showLogin();
+    clearNotesView();
+});
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Sicherheits-Hinweise (einfach)</h2>
+                <ul>
+                    <li>Passwoerter niemals im Frontend hardcoden</li>
+                    <li>Token nicht in Logs ausgeben</li>
+                    <li>In Produktion nur ueber HTTPS arbeiten</li>
+                    <li>Token-Ablauf und Refresh kommen spaeter</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Definition of Done</h2>
+                <ul>
+                    <li>Login mit gueltigen Daten funktioniert</li>
+                    <li>Token wird gespeichert und verwendet</li>
+                    <li>Ohne Token schlagen geschuetzte Requests fehl</li>
+                    <li>Logout entfernt Token und sperrt Zugriff</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Arbeitsauftrag</h2>
+                <ol>
+                    <li>Login-Form + Login-Request implementieren</li>
+                    <li>Token-Handling einbauen</li>
+                    <li>Bestehende Notiz-Requests auf Bearer-Auth umstellen</li>
+                    <li>Logout und Fehlerfall 401 testen</li>
+                </ol>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [RevealHighlight]
+        });
+    </script>
+
+</body>
+
+</html>
