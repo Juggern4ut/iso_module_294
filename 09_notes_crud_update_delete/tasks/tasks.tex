@@ -1,0 +1,136 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\setlength{\parindent}{0pt}
+
+\title{Modul 294 - Aufgabenblatt 09}
+\author{von Lukas Meier}
+\date{Unterricht vom 20.02.2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Vorbereitung}
+
+Nutzen Sie den Stand aus Lektion 08 (GET + POST funktionieren bereits).
+
+Stellen Sie sicher, dass jede Notiz eine eindeutige \texttt{id} besitzt und im Frontend verfügbar ist.
+
+\section{Notizen mit ID rendern}
+
+Erweitern Sie Ihre \texttt{renderNotes(notes)}-Funktion so, dass pro Notiz die ID im HTML verfügbar ist.
+
+Beispiel:
+\begin{itemize}
+    \item als \texttt{data-id} am Container
+    \item oder als \texttt{data-delete-id} / \texttt{data-edit-id} an Buttons
+\end{itemize}
+
+\section{Delete-Button ergänzen}
+
+Fügen Sie bei jeder dargestellten Notiz einen \texttt{Loeschen}-Button hinzu.
+
+Beim Klick soll die korrekte Notiz-ID bestimmt werden.
+
+\section{DELETE-Request implementieren}
+
+Erstellen Sie eine Funktion \texttt{deleteNote(id)}.
+
+Anforderungen:
+\begin{itemize}
+    \item Endpoint: \texttt{/notes/:id}
+    \item Methode: \texttt{DELETE}
+    \item Status mit \texttt{response.ok} prüfen
+\end{itemize}
+
+\section{Delete-Flow abschliessen}
+
+Verbinden Sie den Delete-Button mit \texttt{deleteNote(id)}.
+
+Nach erfolgreichem Loeschen:
+\begin{itemize}
+    \item Liste neu laden und rendern
+    \item oder geloeschtes Element direkt aus dem DOM entfernen
+\end{itemize}
+
+\section{Edit-Button ergänzen}
+
+Fügen Sie zusätzlich einen \texttt{Bearbeiten}-Button pro Notiz ein.
+
+Beim Klick sollen Titel und Inhalt in ein Edit-Formular übernommen werden.
+
+Speichern Sie die aktuell bearbeitete ID in einer Variable (z.\,B. \texttt{currentEditId}).
+
+\section{Update-Request implementieren}
+
+Erstellen Sie eine Funktion \texttt{updateNote(id, noteData)}.
+
+Anforderungen:
+\begin{itemize}
+    \item Endpoint: \texttt{/notes/:id}
+    \item Methode: \texttt{PATCH} (oder \texttt{PUT}, falls Ihr Backend das so erwartet)
+    \item Header: \texttt{Content-Type: application/json}
+    \item Body: \texttt{JSON.stringify(noteData)}
+    \item Status prüfen
+\end{itemize}
+
+\section{Edit-Formular absenden}
+
+Beim Submit des Edit-Formulars:
+\begin{itemize}
+    \item Standardverhalten verhindern
+    \item neue Werte auslesen
+    \item \texttt{updateNote(currentEditId, noteData)} aufrufen
+    \item Formular zurücksetzen
+    \item Liste aktualisieren
+\end{itemize}
+
+\section{Validierung ergänzen}
+
+Verhindern Sie bei Create und Update leere Eingaben.
+
+Wenn ein Feld leer ist:
+\begin{itemize}
+    \item Request nicht absenden
+    \item kurze Fehlermeldung im UI anzeigen
+\end{itemize}
+
+\section{Fehlerbehandlung und Debugging}
+
+Bauen Sie in \texttt{deleteNote()} und \texttt{updateNote()} eine \texttt{try/catch}-Behandlung ein.
+
+Testen Sie zwei Fehlerfälle:
+\begin{itemize}
+    \item falscher Endpoint
+    \item Update auf nicht existierende ID
+\end{itemize}
+
+Dokumentieren Sie kurz, welche Meldungen im Browser erscheinen.
+
+\section{Abschluss-Check}
+
+Die App ist fertig, wenn Folgendes funktioniert:
+\begin{itemize}
+    \item Notizen laden
+    \item Notizen erstellen
+    \item Notizen bearbeiten
+    \item Notizen loeschen
+\end{itemize}
+
+Erstellen Sie anschliessend einen Commit, z.\,B.
+\texttt{feat: add note update and delete flows}.
+
+\section{Optional}
+
+Erweitern Sie den Bearbeitungsflow um eines der folgenden Features:
+\begin{itemize}
+    \item Inline-Editing direkt im Listeneintrag
+    \item Bestaetigungsdialog vor dem Loeschen
+    \item Undo-Funktion (nur im Frontend, zeitlich begrenzt)
+\end{itemize}
+
+\end{document}

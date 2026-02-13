@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Modul 294 - Lektion 09</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+
+    <style>
+        td {
+            font-size: 21px;
+        }
+
+        .inline-code {
+            font-family: Consolas, Monaco, monospace;
+            background-color: #2d2d2d;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-size: 75%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h2>09 - Projekt: Notizen bearbeiten und loeschen</h2>
+                <hr />
+                <h3>PATCH/PUT und DELETE in der Notizen-App</h3>
+                <img style="width: 200px" src="assets/img/js-logo.webp" alt="JS Logo" />
+            </section>
+
+            <section>
+                <h2>Lernziele dieser Lektion</h2>
+                <ul>
+                    <li>Eintraege gezielt loeschen</li>
+                    <li>Bestehende Notizen bearbeiten</li>
+                    <li>UI und Backend synchron halten</li>
+                    <li>CRUD fuer die App vervollstaendigen</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Rueckblick auf Lektion 08</h2>
+                <ul>
+                    <li><span class="inline-code">GET /notes</span> fuer Laden</li>
+                    <li><span class="inline-code">POST /notes</span> fuer Erstellen</li>
+                    <li>Heute fehlen noch Update + Delete</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>CRUD-Status</h2>
+                <table>
+                    <tr><td><b>Create</b></td><td>POST /notes</td><td>fertig</td></tr>
+                    <tr><td><b>Read</b></td><td>GET /notes</td><td>fertig</td></tr>
+                    <tr><td><b>Update</b></td><td>PATCH oder PUT /notes/:id</td><td>heute</td></tr>
+                    <tr><td><b>Delete</b></td><td>DELETE /notes/:id</td><td>heute</td></tr>
+                </table>
+            </section>
+
+            <section>
+                <h2>Endpoint-Muster</h2>
+                <ul>
+                    <li><span class="inline-code">GET /notes</span></li>
+                    <li><span class="inline-code">POST /notes</span></li>
+                    <li><span class="inline-code">PATCH /notes/:id</span> oder <span class="inline-code">PUT /notes/:id</span></li>
+                    <li><span class="inline-code">DELETE /notes/:id</span></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Delete-Button pro Notiz</h2>
+                <pre><code class="js" data-trim>
+function renderNote(note) {
+    const li = document.createElement("li");
+    li.innerHTML = `
+        <strong>${note.title}</strong><br>
+        <span>${note.content}</span>
+        <button data-delete-id="${note.id}">Loeschen</button>
+    `;
+    return li;
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>DELETE Request</h2>
+                <pre><code class="js" data-trim>
+async function deleteNote(id) {
+    const response = await fetch(`${NOTES_ENDPOINT}/${id}`, {
+        method: "DELETE"
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+    }
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Loeschen im Event-Handler</h2>
+                <pre><code class="js" data-trim>
+notesList.addEventListener("click", async (event) => {
+    const id = event.target.dataset.deleteId;
+    if (!id) return;
+
+    await deleteNote(id);
+    await loadNotes();
+});
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Edit-UI pro Notiz</h2>
+                <p>Variante im Unterricht:</p>
+                <ul>
+                    <li>"Bearbeiten"-Button pro Eintrag</li>
+                    <li>Werte in separates Edit-Formular laden</li>
+                    <li>ID der aktuell bearbeiteten Notiz merken</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>PATCH/PUT Request</h2>
+                <pre><code class="js" data-trim>
+async function updateNote(id, noteData) {
+    const response = await fetch(`${NOTES_ENDPOINT}/${id}`, {
+        method: "PATCH", // oder "PUT"
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(noteData)
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+    }
+
+    return response.json();
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>PATCH vs PUT</h2>
+                <table>
+                    <tr><td><b>PATCH</b></td><td>Teil-Update (nur geaenderte Felder)</td></tr>
+                    <tr><td><b>PUT</b></td><td>Kompletter Datensatz wird ersetzt</td></tr>
+                </table>
+                <p>Wenn unklar: Backend-Doku pruefen und konsistent bleiben.</p>
+            </section>
+
+            <section>
+                <h2>Edit-Submit</h2>
+                <pre><code class="js" data-trim>
+let currentEditId = null;
+
+editForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!currentEditId) return;
+
+    const noteData = {
+        title: editTitle.value.trim(),
+        content: editContent.value.trim()
+    };
+
+    await updateNote(currentEditId, noteData);
+    currentEditId = null;
+    editForm.reset();
+    await loadNotes();
+});
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Robuste Fehlerbehandlung</h2>
+                <ul>
+                    <li>Alle Requests in <span class="inline-code">try/catch</span></li>
+                    <li>Fehler sichtbar im UI anzeigen</li>
+                    <li>Konsole fuer Debugging weiter nutzen</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Heute fertigstellen</h2>
+                <ol>
+                    <li>Delete-Flow implementieren</li>
+                    <li>Edit-Flow mit PATCH oder PUT implementieren</li>
+                    <li>Nach jeder Aenderung Liste neu laden</li>
+                    <li>Code committen und pushen</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Definition of Done</h2>
+                <ul>
+                    <li>Notiz kann erstellt werden</li>
+                    <li>Notiz kann bearbeitet werden</li>
+                    <li>Notiz kann geloescht werden</li>
+                    <li>Liste bleibt nach Aktionen konsistent</li>
+                </ul>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [RevealHighlight]
+        });
+    </script>
+
+</body>
+
+</html>
