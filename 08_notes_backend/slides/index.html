@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Modul 294 - Lektion 08</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+
+    <style>
+        td {
+            font-size: 21px;
+        }
+
+        .inline-code {
+            font-family: Consolas, Monaco, monospace;
+            background-color: #2d2d2d;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-size: 75%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h2>08 - Projekt: Backend anbinden</h2>
+                <hr />
+                <h3>Notizen mit GET laden und mit POST erstellen</h3>
+                <img style="width: 200px" src="assets/img/js-logo.webp" alt="JS Logo" />
+            </section>
+
+            <section>
+                <h2>Lernziele dieser Lektion</h2>
+                <ul>
+                    <li>Notizen vom bereitgestellten Backend laden</li>
+                    <li>Neue Notizen per Formular erstellen</li>
+                    <li>Backend-Antworten im UI anzeigen</li>
+                    <li>Fehlerfälle sauber behandeln</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Stand des Projekts</h2>
+                <ul>
+                    <li>Frontend-Struktur der Notiz-App steht</li>
+                    <li>Heute: echte Daten statt statischer Testdaten</li>
+                    <li>Ziel: Lesen + Erstellen von Notizen</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Allgemeiner Datenfluss</h2>
+                <p>
+                    Browser UI
+                    <span class="inline-code">-&gt;</span><br />
+                    Fetch Request
+                    <span class="inline-code">-&gt;</span><br />
+                    Backend API
+                    <span class="inline-code">-&gt;</span><br />
+                    JSON Response
+                    <span class="inline-code">-&gt;</span><br />
+                    DOM Update
+                </p>
+            </section>
+
+            <section>
+                <h2>Bereitgestellte Endpoints</h2>
+                <p>Sie finden ein Pocketbase Backend unter der URL <span class="inline-code">notes.iso.lmeier.ch</span></p>
+                <ul>
+                    <li><span class="inline-code">GET</span> auf <span class="inline-code">/api/collections/notes/records</span> - alle Notizen laden</li>
+                    <li><span class="inline-code">POST</span> auf <span class="inline-code">/api/collections/notes/records</span> - neue Notiz erstellen</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>HTML-Basis</h2>
+                <pre><code class="html" data-trim>
+&lt;form id="note-form"&gt;
+    &lt;input id="title" placeholder="Titel" required /&gt;
+    &lt;textarea id="content" placeholder="Notizinhalt" required&gt;&lt;/textarea&gt;
+    &lt;button type="submit"&gt;Speichern&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;ul id="notes-list"&gt;&lt;/ul&gt;
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Konfiguration im JS</h2>
+                <pre><code class="js" data-trim>
+const BASE_URL = "http://notes.iso.lmeier.ch";
+const NOTES_ENDPOINT = `${BASE_URL}/api/collections/notes/records`;
+
+const form = document.querySelector("#note-form");
+const notesList = document.querySelector("#notes-list");
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Notizen laden (GET)</h2>
+                <pre><code class="js" data-trim>
+async function loadNotes() {
+    const response = await fetch(NOTES_ENDPOINT);
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+    }
+    const notes = await response.json();
+    renderNotes(notes);
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Notizen darstellen</h2>
+                <pre><code class="js" data-trim>
+function renderNotes(notes) {
+    notesList.innerHTML = "";
+
+    for (const note of notes) {
+        const li = document.createElement("li");
+        li.textContent = `${note.title}: ${note.content}`;
+        notesList.append(li);
+    }
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Notiz erstellen (POST)</h2>
+                <pre><code class="js" data-trim>
+async function createNote(noteData) {
+    const response = await fetch(NOTES_ENDPOINT, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(noteData)
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+    }
+
+    return response.json();
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Formular absenden</h2>
+                <pre><code class="js" data-trim>
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const noteData = {
+        title: document.querySelector("#title").value,
+        content: document.querySelector("#content").value
+    };
+
+    await createNote(noteData);
+    form.reset();
+    await loadNotes();
+});
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Fehlerbehandlung im UI</h2>
+                <pre><code class="js" data-trim>
+async function init() {
+    try {
+        await loadNotes();
+    } catch (error) {
+        console.error(error);
+        notesList.innerHTML = "&lt;li&gt;Fehler beim Laden der Notizen&lt;/li&gt;";
+    }
+}
+
+init();
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Typische Fehlerquellen</h2>
+                <ul>
+                    <li>Falscher Endpoint oder Port</li>
+                    <li>Backend nicht gestartet</li>
+                    <li>Fehlender Header <span class="inline-code">Content-Type</span></li>
+                    <li>CORS blockiert Request</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Mini-Checkliste</h2>
+                <ul>
+                    <li>Kann ich Notizen laden?</li>
+                    <li>Kann ich eine Notiz erstellen?</li>
+                    <li>Sehe ich neue Notizen direkt in der Liste?</li>
+                    <li>Sind Fehler im Browser nachvollziehbar?</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Arbeitsauftrag heute</h2>
+                <ol>
+                    <li>GET-Integration fertigstellen</li>
+                    <li>POST-Integration via Formular umsetzen</li>
+                    <li>Nach POST erneut laden und rendern</li>
+                    <li>Code committen und pushen</li>
+                </ol>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [RevealHighlight]
+        });
+    </script>
+
+</body>
+
+</html>

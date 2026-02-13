@@ -1,0 +1,137 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\setlength{\parindent}{0pt}
+
+\title{Modul 294 - Aufgabenblatt 08}
+\author{von Lukas Meier}
+\date{Unterricht vom 13.02.2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Vorbereitung}
+
+Legen Sie in Ihrer JavaScript-Datei zwei Konstanten an:
+\begin{itemize}
+    \item \texttt{BASE\_URL=http://notes.iso.lmeier.ch}
+    \item \texttt{NOTES\_ENDPOINT=/api/collections/notes/records}
+\end{itemize}
+
+Diese beinhalten die URL des Backendes sowie den Endpoint auf welchem Notizen geladen und erstellt werden. 
+
+\section{GET-Request: Notizen laden}
+
+Erstellen Sie eine Funktion \texttt{loadNotes()}, die alle Notizen vom Backend lädt.
+
+Anforderungen:
+\begin{itemize}
+    \item \texttt{fetch} mit Methode GET verwenden
+    \item \texttt{response.ok} prüfen
+    \item Die JSON-Daten als Array zurückgeben
+\end{itemize}
+
+\section{Notizen im DOM anzeigen}
+
+Erstellen Sie eine Funktion \texttt{renderNotes(notes)}.
+
+Diese Funktion soll:
+\begin{itemize}
+    \item ein vorhandenes \texttt{ul}- oder \texttt{div}-Element leeren
+    \item jede Notiz im DOM darstellen
+    \item mindestens Titel und Inhalt anzeigen
+\end{itemize}
+
+\section{App-Start}
+
+Rufen Sie beim Laden der Seite zuerst \texttt{loadNotes()} auf und übergeben Sie das Resultat an \texttt{renderNotes()}.
+
+Prüfen Sie, ob alle vorhandenen Notizen korrekt angezeigt werden.
+
+\section{Formular vorbereiten}
+
+Erstellen oder ergänzen Sie ein Formular mit:
+\begin{itemize}
+    \item Eingabefeld für den Titel
+    \item Textfeld für den Inhalt
+    \item Submit-Button
+\end{itemize}
+
+Fangen Sie den Submit mit einem Event-Listener ab und verhindern Sie das Standardverhalten.
+
+\section{POST-Request: Notiz erstellen}
+
+Erstellen Sie eine Funktion \texttt{createNote(noteData)}.
+
+Anforderungen:
+\begin{itemize}
+    \item \texttt{fetch} mit Methode \texttt{POST}
+    \item Header \texttt{Content-Type: application/json}
+    \item Body mit \texttt{JSON.stringify(noteData)}
+    \item \texttt{response.ok} prüfen
+\end{itemize}
+
+\section{Formular mit Backend verbinden}
+
+Beim Absenden des Formulars:
+\begin{itemize}
+    \item Daten aus den Inputs auslesen
+    \item an \texttt{createNote()} senden
+    \item Formular zurücksetzen
+\end{itemize}
+
+\section{Liste aktualisieren}
+
+Nach erfolgreichem POST-Request soll die Anzeige aktualisiert werden.
+
+Wählen Sie eine Variante:
+\begin{itemize}
+    \item \textbf{Variante A:} Nach dem Erstellen erneut \texttt{loadNotes()} aufrufen und neu rendern
+    \item \textbf{Variante B:} Die neue Notiz direkt lokal zur Liste hinzufügen und nur ein Element nachrendern
+\end{itemize}
+
+\section{Fehlerbehandlung}
+
+Erweitern Sie \texttt{loadNotes()} und \texttt{createNote()} um \texttt{try / catch}.
+
+Im Fehlerfall:
+\begin{itemize}
+    \item Fehlermeldung in der Konsole ausgeben
+    \item sichtbare Meldung im UI anzeigen (z.\,B. ``Backend nicht erreichbar'')
+\end{itemize}
+
+\section{Debugging-Aufgabe}
+
+Erzeugen Sie absichtlich einen Fehler, indem Sie den Endpoint falsch schreiben.
+
+Dokumentieren Sie kurz:
+\begin{itemize}
+    \item Welche Meldung in der Konsole erscheint
+    \item Wie Sie den Fehler erkannt und behoben haben
+\end{itemize}
+
+\section{Abschluss}
+
+Wenn alles funktioniert:
+\begin{itemize}
+    \item Notizen werden beim Start geladen
+    \item Neue Notizen werden gespeichert
+    \item Liste aktualisiert sich sichtbar
+\end{itemize}
+
+Erstellen Sie anschliessend einen Commit mit einer klaren Nachricht, z.\,B.
+\texttt{feat: connect notes app to backend with GET and POST}.
+
+\section{Optional}
+
+Erweitern Sie die App um:
+\begin{itemize}
+    \item Validierung (leere Eingaben verhindern)
+    \item Ladezustand (``Lade...'')
+\end{itemize}
+
+\end{document}
