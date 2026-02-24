@@ -32,7 +32,7 @@ Beispiel:
 
 \section{Delete-Button ergänzen}
 
-Fügen Sie bei jeder dargestellten Notiz einen \texttt{Loeschen}-Button hinzu.
+Fügen Sie bei jeder dargestellten Notiz einen \texttt{Löschen}-Button hinzu.
 
 Beim Klick soll die korrekte Notiz-ID bestimmt werden.
 
@@ -42,7 +42,7 @@ Erstellen Sie eine Funktion \texttt{deleteNote(id)}.
 
 Anforderungen:
 \begin{itemize}
-    \item Endpoint: \texttt{/notes/:id}
+    \item Endpoint: \texttt{/api/collections/notes/records/:id}
     \item Methode: \texttt{DELETE}
     \item Status mit \texttt{response.ok} prüfen
 \end{itemize}
@@ -51,10 +51,10 @@ Anforderungen:
 
 Verbinden Sie den Delete-Button mit \texttt{deleteNote(id)}.
 
-Nach erfolgreichem Loeschen:
+Nach erfolgreichem Löschen:
 \begin{itemize}
     \item Liste neu laden und rendern
-    \item oder geloeschtes Element direkt aus dem DOM entfernen
+    \item oder gelöschtes Element direkt aus dem DOM entfernen
 \end{itemize}
 
 \section{Edit-Button ergänzen}
@@ -71,8 +71,8 @@ Erstellen Sie eine Funktion \texttt{updateNote(id, noteData)}.
 
 Anforderungen:
 \begin{itemize}
-    \item Endpoint: \texttt{/notes/:id}
-    \item Methode: \texttt{PATCH} (oder \texttt{PUT}, falls Ihr Backend das so erwartet)
+    \item Endpoint: \texttt{/api/collections/notes/records/:id}
+    \item Methode: \texttt{PATCH}
     \item Header: \texttt{Content-Type: application/json}
     \item Body: \texttt{JSON.stringify(noteData)}
     \item Status prüfen
@@ -118,7 +118,7 @@ Die App ist fertig, wenn Folgendes funktioniert:
     \item Notizen laden
     \item Notizen erstellen
     \item Notizen bearbeiten
-    \item Notizen loeschen
+    \item Notizen löschen
 \end{itemize}
 
 Erstellen Sie anschliessend einen Commit, z.\,B.
@@ -129,7 +129,7 @@ Erstellen Sie anschliessend einen Commit, z.\,B.
 Erweitern Sie den Bearbeitungsflow um eines der folgenden Features:
 \begin{itemize}
     \item Inline-Editing direkt im Listeneintrag
-    \item Bestaetigungsdialog vor dem Loeschen
+    \item Bestätigungsdialog vor dem Löschen
     \item Undo-Funktion (nur im Frontend, zeitlich begrenzt)
 \end{itemize}
 

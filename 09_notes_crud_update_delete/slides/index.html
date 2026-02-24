@@ -32,7 +32,7 @@
         <div class="slides">
 
             <section>
-                <h2>09 - Projekt: Notizen bearbeiten und loeschen</h2>
+                <h2>09 - Projekt: Notizen bearbeiten und löschen</h2>
                 <hr />
                 <h3>PATCH/PUT und DELETE in der Notizen-App</h3>
                 <img style="width: 200px" src="assets/img/js-logo.webp" alt="JS Logo" />
@@ -41,18 +41,18 @@
             <section>
                 <h2>Lernziele dieser Lektion</h2>
                 <ul>
-                    <li>Eintraege gezielt loeschen</li>
+                    <li>Einträge gezielt löschen</li>
                     <li>Bestehende Notizen bearbeiten</li>
                     <li>UI und Backend synchron halten</li>
-                    <li>CRUD fuer die App vervollstaendigen</li>
+                    <li>CRUD für die App vervollständigen</li>
                 </ul>
             </section>
 
             <section>
-                <h2>Rueckblick auf Lektion 08</h2>
+                <h2>Rückblick auf Lektion 08</h2>
                 <ul>
-                    <li><span class="inline-code">GET /notes</span> fuer Laden</li>
-                    <li><span class="inline-code">POST /notes</span> fuer Erstellen</li>
+                    <li><span class="inline-code">GET /notes</span> für Laden</li>
+                    <li><span class="inline-code">POST /notes</span> für Erstellen</li>
                     <li>Heute fehlen noch Update + Delete</li>
                 </ul>
             </section>
@@ -85,7 +85,7 @@ function renderNote(note) {
     li.innerHTML = `
         <strong>${note.title}</strong><br>
         <span>${note.content}</span>
-        <button data-delete-id="${note.id}">Loeschen</button>
+        <button data-delete-id="${note.id}">Löschen</button>
     `;
     return li;
 }
@@ -108,7 +108,7 @@ async function deleteNote(id) {
             </section>
 
             <section>
-                <h2>Loeschen im Event-Handler</h2>
+                <h2>Löschen im Event-Handler</h2>
                 <pre><code class="js" data-trim>
 notesList.addEventListener("click", async (event) => {
     const id = event.target.dataset.deleteId;
@@ -154,10 +154,10 @@ async function updateNote(id, noteData) {
             <section>
                 <h2>PATCH vs PUT</h2>
                 <table>
-                    <tr><td><b>PATCH</b></td><td>Teil-Update (nur geaenderte Felder)</td></tr>
+                    <tr><td><b>PATCH</b></td><td>Teil-Update (nur geänderte Felder)</td></tr>
                     <tr><td><b>PUT</b></td><td>Kompletter Datensatz wird ersetzt</td></tr>
                 </table>
-                <p>Wenn unklar: Backend-Doku pruefen und konsistent bleiben.</p>
+                <p>Wenn unklar: Backend-Doku prüfen und konsistent bleiben.</p>
             </section>
 
             <section>
@@ -187,7 +187,7 @@ editForm.addEventListener("submit", async (event) => {
                 <ul>
                     <li>Alle Requests in <span class="inline-code">try/catch</span></li>
                     <li>Fehler sichtbar im UI anzeigen</li>
-                    <li>Konsole fuer Debugging weiter nutzen</li>
+                    <li>Konsole für Debugging weiter nutzen</li>
                 </ul>
             </section>
 
@@ -196,7 +196,7 @@ editForm.addEventListener("submit", async (event) => {
                 <ol>
                     <li>Delete-Flow implementieren</li>
                     <li>Edit-Flow mit PATCH oder PUT implementieren</li>
-                    <li>Nach jeder Aenderung Liste neu laden</li>
+                    <li>Nach jeder Änderung Liste neu laden</li>
                     <li>Code committen und pushen</li>
                 </ol>
             </section>
@@ -206,7 +206,7 @@ editForm.addEventListener("submit", async (event) => {
                 <ul>
                     <li>Notiz kann erstellt werden</li>
                     <li>Notiz kann bearbeitet werden</li>
-                    <li>Notiz kann geloescht werden</li>
+                    <li>Notiz kann gelöscht werden</li>
                     <li>Liste bleibt nach Aktionen konsistent</li>
                 </ul>
             </section>
