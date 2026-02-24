@@ -34,7 +34,7 @@
             <section>
                 <h2>09 - Projekt: Notizen bearbeiten und löschen</h2>
                 <hr />
-                <h3>PATCH/PUT und DELETE in der Notizen-App</h3>
+                <h3>PATCH und DELETE in der Notizen-App</h3>
                 <img style="width: 200px" src="assets/img/js-logo.webp" alt="JS Logo" />
             </section>
 
@@ -51,8 +51,8 @@
             <section>
                 <h2>Rückblick auf Lektion 08</h2>
                 <ul>
-                    <li><span class="inline-code">GET /notes</span> für Laden</li>
-                    <li><span class="inline-code">POST /notes</span> für Erstellen</li>
+                    <li><span class="inline-code">GET /api/collections/notes/records</span> für Laden</li>
+                    <li><span class="inline-code">POST /api/collections/notes/records</span> für Erstellen</li>
                     <li>Heute fehlen noch Update + Delete</li>
                 </ul>
             </section>
@@ -60,20 +60,20 @@
             <section>
                 <h2>CRUD-Status</h2>
                 <table>
-                    <tr><td><b>Create</b></td><td>POST /notes</td><td>fertig</td></tr>
-                    <tr><td><b>Read</b></td><td>GET /notes</td><td>fertig</td></tr>
-                    <tr><td><b>Update</b></td><td>PATCH oder PUT /notes/:id</td><td>heute</td></tr>
-                    <tr><td><b>Delete</b></td><td>DELETE /notes/:id</td><td>heute</td></tr>
+                    <tr><td><b>Create</b></td><td>POST </td><td>fertig</td></tr>
+                    <tr><td><b>Read</b></td><td>GET </td><td>fertig</td></tr>
+                    <tr><td><b>Update</b></td><td>PATCH</td><td>heute</td></tr>
+                    <tr><td><b>Delete</b></td><td>DELETE</td><td>heute</td></tr>
                 </table>
             </section>
 
             <section>
                 <h2>Endpoint-Muster</h2>
                 <ul>
-                    <li><span class="inline-code">GET /notes</span></li>
-                    <li><span class="inline-code">POST /notes</span></li>
-                    <li><span class="inline-code">PATCH /notes/:id</span> oder <span class="inline-code">PUT /notes/:id</span></li>
-                    <li><span class="inline-code">DELETE /notes/:id</span></li>
+                    <li><span class="inline-code">GET /api/collections/notes/records</span></li>
+                    <li><span class="inline-code">POST /api/collections/notes/records</span></li>
+                    <li><span class="inline-code">PATCH /api/collections/notes/records/:id</span></li>
+                    <li><span class="inline-code">DELETE /api/collections/notes/records/:id</span></li>
                 </ul>
             </section>
 
@@ -135,7 +135,7 @@ notesList.addEventListener("click", async (event) => {
                 <pre><code class="js" data-trim>
 async function updateNote(id, noteData) {
     const response = await fetch(`${NOTES_ENDPOINT}/${id}`, {
-        method: "PATCH", // oder "PUT"
+        method: "PATCH", 
         headers: {
             "Content-Type": "application/json"
         },
@@ -170,8 +170,8 @@ editForm.addEventListener("submit", async (event) => {
     if (!currentEditId) return;
 
     const noteData = {
-        title: editTitle.value.trim(),
-        content: editContent.value.trim()
+        title: editTitle.value,
+        content: editContent.value
     };
 
     await updateNote(currentEditId, noteData);
