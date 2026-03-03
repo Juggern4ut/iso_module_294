@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Modul 294 - Lektion 10</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+
+    <style>
+        td {
+            font-size: 21px;
+        }
+
+        .inline-code {
+            font-family: Consolas, Monaco, monospace;
+            background-color: #2d2d2d;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-size: 75%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h2>10 - Repetition</h2>
+                <hr />
+                <h3>Zusammenfassung zur Prüfungsvorbereitung</h3>
+                <img style="width: 200px" src="assets/img/js-logo.webp" alt="JS Logo" />
+            </section>
+
+            <section>
+                <h2>Ziele heute</h2>
+                <ul>
+                    <li>Die bisherigen Themen strukturiert wiederholen</li>
+                    <li>Zentrale Konzepte verknüpfen</li>
+                    <li>Typische Prüfungsaufgaben vorbereiten</li>
+                    <li>Unsicherheiten vor der Prüfung klären</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Themenblock 1: Grundlagen</h2>
+                <ul>
+                    <li>Variablen, Datentypen, Arrays, Objekte</li>
+                    <li>Bedingungen mit <span class="inline-code">if</span> und Schleifen</li>
+                    <li>Funktionen sauber strukturieren</li>
+                    <li>Code lesen und erklären können</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Themenblock 2: DOM und Events</h2>
+                <ul>
+                    <li>Elemente mit <span class="inline-code">querySelector(All)</span> referenzieren</li>
+                    <li>Mit <span class="inline-code">addEventListener</span> auf Benutzeraktionen reagieren</li>
+                    <li>Formulardaten auslesen und validieren</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Themenblock 3: Objekte und Klassen</h2>
+                <ul>
+                    <li>Daten als Objekte modellieren</li>
+                    <li>Methoden sinnvoll kapseln</li>
+                    <li>Klassen für wiederverwendbare Strukturen einsetzen</li>
+                    <li>Verantwortlichkeiten im Code trennen</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Themenblock 4: Async und Fetch</h2>
+                <pre><code class="js" data-trim>
+async function loadData() {
+    const response = await fetch(API_URL);
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+    }
+
+    return response.json();
+}
+                </code></pre>
+                <p>Wichtig: Response prüfen, Fehler behandeln, Resultat weiterverarbeiten.</p>
+            </section>
+
+            <section>
+                <h2>Themenblock 5: Projektstruktur</h2>
+                <ul>
+                    <li>Frontend und Backend klar trennen</li>
+                    <li>Daten laden, rendern, verändern</li>
+                    <li>CRUD-Ablauf verstehen: Create, Read, Update, Delete</li>
+                    <li>Nach jeder Mutation den UI-Zustand synchron halten</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Typische Prüfungsmuster</h2>
+                <ul>
+                    <li>Fehlenden Event-Handler ergänzen</li>
+                    <li>Eine Funktion debuggen oder erweitern</li>
+                    <li>Einen Fetch-Request korrekt aufbauen oder debuggen</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Prüfungs-Checkliste</h2>
+                <ul>
+                    <li>Kann ich Code erklären, nicht nur abschreiben?</li>
+                    <li>Kann ich Fehler in der Konsole lesen und einordnen?</li>
+                    <li>Weiss ich, wann ich <span class="inline-code">await</span> nutzen soll?</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Mini-Wiederholung: DOM + Fetch</h2>
+                <pre><code class="js" data-trim>
+submitButton.addEventListener("click", async () => {
+    const title = titleInput.value.trim();
+    if (!title) return;
+
+    await createNote({ title: title });
+    await loadNotes();
+});
+                </code></pre>
+                <p>Hier treffen Eventhandling, Validierung und asynchrones Arbeiten zusammen.</p>
+            </section>
+
+            <section>
+                <h2>Häufige Fehler</h2>
+                <ul>
+                    <li>Selektoren stimmen nicht mit dem HTML überein</li>
+                    <li><span class="inline-code">await</span> fehlt bei asynchronen Aufrufen</li>
+                    <li>Response wird nicht mit <span class="inline-code">response.ok</span> geprüft</li>
+                    <li>Nach Änderungen wird die Ansicht nicht neu gerendert</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Arbeitsauftrag</h2>
+                <ol>
+                    <li>Alle Themenblöke kurz durchgehen und offene Fragen markieren</li>
+                    <li>Die Aufgaben auf dem Blatt als Prüfungssimulation lösen</li>
+                    <li>Unsichere Stellen im eigenen Projekt gezielt wiederholen</li>
+                    <li>Eine persönliche Checkliste für die Prüfung erstellen</li>
+                </ol>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [RevealHighlight]
+        });
+    </script>
+
+</body>
+
+</html>

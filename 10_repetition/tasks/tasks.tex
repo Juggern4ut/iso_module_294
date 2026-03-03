@@ -1,0 +1,133 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\setlength{\parindent}{0pt}
+
+\title{Modul 294 - Aufgabenblatt 10}
+\author{von Lukas Meier}
+\date{Unterricht vom 03.03.2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Ziel}
+
+Diese Lektion dient als Repetition der bisherigen Inhalte zur Vorbereitung auf die Prüfung in der folgenden Woche.
+
+Nutzen Sie Ihre bisherigen Unterlagen, die vorhandenen Beispielprojekte und Ihren aktuellen Wissensstand aus den Lektionen 1 bis 9.
+
+\section{Teil 1: Theorie kurz zusammenfassen}
+
+Erstellen Sie eine eigene Zusammenfassung zu folgenden Themen:
+\begin{itemize}
+    \item Variablen, Datentypen, Arrays, Objekte
+    \item Bedingungen, Schleifen, Funktionen
+    \item DOM-Zugriff und Event-Handling
+    \item Klassen, Module und saubere Struktur
+    \item \texttt{fetch}, \texttt{async}/\texttt{await}, Fehlerbehandlung
+    \item CRUD-Ablauf im Projekt
+\end{itemize}
+
+\section{Teil 2: Begriffe sicher beherrschen}
+
+Erklären Sie zu jedem Begriff in 1 bis 2 Sätzen, wozu er dient:
+\begin{itemize}
+    \item \texttt{addEventListener}
+    \item \texttt{querySelector}
+    \item \texttt{await}
+    \item \texttt{response.ok}
+    \item JSON
+    \item CRUD
+\end{itemize}
+
+\section{Teil 3: Code lesen}
+
+Betrachten Sie den folgenden Code und beantworten Sie:
+
+\begin{verbatim}
+function renderNotes(notes) {
+    notesList.innerHTML = "";
+
+    for (const note of notes) {
+        const li = document.createElement("li");
+        li.textContent = `${note.title}: ${note.content}`;
+        notesList.append(li);
+    }
+}
+\end{verbatim}
+
+\begin{itemize}
+    \item Welche Daten kommen rein?
+    \item Was macht die Funktion Schritt für Schritt?
+    \item Welche DOM-Elemente werden verändert/erstellt?
+    \item Wo könnte ein typischer Fehler entstehen?
+\end{itemize}
+
+\section{Teil 4: Mini-Aufgabe DOM}
+
+Erstellen Sie ein kleines Formular mit einem Eingabefeld und einem Button.
+
+Beim Klick auf den Button soll:
+\begin{itemize}
+    \item der Wert aus dem Input gelesen werden
+    \item geprüft werden, ob er nicht leer ist
+    \item ein neuer Listeneintrag im DOM erzeugt werden
+\end{itemize}
+
+\section{Teil 5: Mini-Aufgabe Async}
+
+Skizzieren oder implementieren Sie eine Funktion \texttt{loadData()}, die:
+\begin{itemize}
+    \item Daten mit \texttt{fetch(...)} lädt
+    \item den HTTP-Status prüft
+    \item das Resultat als JSON verarbeitet
+    \item Fehler sauber behandelt
+\end{itemize}
+
+\section{Teil 6: Mini-Aufgabe CRUD}
+
+Beschreiben Sie für Ihre Notizen-App den Ablauf für:
+\begin{itemize}
+    \item Create
+    \item Read
+    \item Update
+    \item Delete
+\end{itemize}
+
+Notieren Sie jeweils:
+\begin{itemize}
+    \item welcher Request ausgeführt wird
+    \item welche Daten gesendet werden
+    \item wie das UI danach aktualisiert wird
+\end{itemize}
+
+\section{Teil 7: Prüfungssimulation}
+
+Bearbeiten Sie ohne Hilfe eine kurze Übung:
+\begin{itemize}
+    \item Event auf ein Formular binden
+    \item Eingaben validieren
+    \item eine asynchrone Funktion aufrufen
+    \item Ergebnis im DOM anzeigen
+\end{itemize}
+
+Arbeiten Sie dabei bewusst in kleinen, nachvollziehbaren Schritten.
+
+\section{Teil 8: Persönliche Checkliste}
+
+Notieren Sie drei Themen, die Sie bereits sicher beherrschen, und drei Themen, die Sie vor der Prüfung nochmals anschauen wollen.
+
+\section{Abschluss}
+
+Die Lektion ist abgeschlossen, wenn:
+\begin{itemize}
+    \item Sie alle Themenfelder einmal wiederholt haben
+    \item Sie mindestens eine kleine DOM- und eine kleine Async-Aufgabe gelöst haben
+    \item Sie eine persönliche Prüfungs-Checkliste erstellt haben
+\end{itemize}
+
+\end{document}
