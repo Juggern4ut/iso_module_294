@@ -41,7 +41,7 @@
             <section>
                 <h2>Lernziele dieser Lektion</h2>
                 <ul>
-                    <li>Freitextsuche ueber Notizen umsetzen</li>
+                    <li>Freitextsuche über Notizen umsetzen</li>
                     <li>Filter nach Status oder Kategorie anwenden</li>
                     <li>Sortierung (Datum oder Titel) steuern</li>
                     <li>Mehrere Kriterien kombinieren</li>
@@ -58,7 +58,7 @@
             </section>
 
             <section>
-                <h2>UI-Elemente fuer heute</h2>
+                <h2>UI-Elemente für heute</h2>
                 <pre><code class="html" data-trim>
 <input id="search-input" placeholder="Suche nach Titel oder Inhalt" />
 
@@ -70,7 +70,7 @@
 
 <select id="sort-select">
     <option value="newest">Neueste zuerst</option>
-    <option value="oldest">Aelteste zuerst</option>
+    <option value="oldest">Älteste zuerst</option>
     <option value="title-asc">Titel A-Z</option>
 </select>
                 </code></pre>
@@ -188,17 +188,17 @@ async function loadNotes() {
 
             <section>
                 <h2>Option: serverseitige Suche</h2>
-                <p>Wenn Datenmenge stark waechst, kann Suche/Sortierung ins Backend verschoben werden.</p>
+                <p>Wenn Datenmenge stark wächst, kann Suche/Sortierung ins Backend verschoben werden.</p>
                 <pre><code class="js" data-trim>
 GET  /api/collections/notes/records?filter=title~'ll'
 </code></pre>
-                <p>Heute bleibt es bewusst clientseitig fuer das Architekturverstaendnis.</p>
+                <p>Heute bleibt es bewusst clientseitig für das Architekturverständnis.</p>
             </section>
 
             <section>
                 <h2>Typische Fehlerquellen</h2>
                 <ul>
-                    <li>Array direkt sortieren und Originaldaten zerstoeren</li>
+                    <li>Array direkt sortieren und Originaldaten zerstören</li>
                     <li>String-Vergleiche ohne Normalisierung</li>
                     <li>Filterzustand nach CRUD-Aktionen verlieren</li>
                     <li>Uneinheitliche Datumsformate</li>
