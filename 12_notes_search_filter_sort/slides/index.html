@@ -190,8 +190,8 @@ async function loadNotes() {
                 <h2>Option: serverseitige Suche</h2>
                 <p>Wenn Datenmenge stark waechst, kann Suche/Sortierung ins Backend verschoben werden.</p>
                 <pre><code class="js" data-trim>
-GET /notes?search=meeting&status=open&sort=-createdAt
-                </code></pre>
+GET  /api/collections/notes/records?filter=title~'ll'
+</code></pre>
                 <p>Heute bleibt es bewusst clientseitig fuer das Architekturverstaendnis.</p>
             </section>
 
@@ -213,16 +213,6 @@ GET /notes?search=meeting&status=open&sort=-createdAt
                     <li>Sortierung greift sofort</li>
                     <li>Kombination aus Suche + Filter + Sortierung ist stabil</li>
                 </ul>
-            </section>
-
-            <section>
-                <h2>Arbeitsauftrag</h2>
-                <ol>
-                    <li>UI-Controls fuer Suche/Filter/Sort bauen</li>
-                    <li>State + Pipeline implementieren</li>
-                    <li>Mit bestehenden CRUD-Funktionen integrieren</li>
-                    <li>Code committen und pushen</li>
-                </ol>
             </section>
 
         </div>
