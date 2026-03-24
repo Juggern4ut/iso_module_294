@@ -43,8 +43,8 @@
                 <ul>
                     <li>Login-Request mit Benutzername und Passwort senden</li>
                     <li>Bearer-Token aus der Antwort speichern</li>
-                    <li>Token bei geschuetzten Requests mitschicken</li>
-                    <li>Bei 401 sauber reagieren (Logout)</li>
+                    <li>Token bei geschützten Requests mitschicken</li>
+                    <li>Bei 401/400/403 sauber reagieren (Logout)</li>
                 </ul>
             </section>
 
@@ -52,7 +52,7 @@
                 <h2>Ausgangslage</h2>
                 <ul>
                     <li>Notizen-App mit CRUD ist vorhanden</li>
-                    <li>Jetzt sollen Notizen nur fuer eingeloggte Nutzer sichtbar sein</li>
+                    <li>Jetzt sollen Notizen nur für eingeloggte Nutzer sichtbar sein</li>
                     <li>Wir implementieren bewusst eine einfache Auth-Version</li>
                 </ul>
             </section>
@@ -71,143 +71,145 @@
             </section>
 
             <section>
-                <h2>Beispiel-Endpoints</h2>
+                <h2>Auth-Endpoint</h2>
                 <ul>
-                    <li><span class="inline-code">POST /auth/login</span> (username + password)</li>
-                    <li><span class="inline-code">GET /notes</span> nur mit gueltigem Token</li>
-                    <li><span class="inline-code">POST /notes</span> nur mit gueltigem Token</li>
+                    <pre style="width: 100%">
+                        <code class="js" data-trim>
+                            `/api/collections/users/auth-with-password`
+                        </code>
+                    </pre>
                 </ul>
             </section>
 
             <section>
                 <h2>Login-Formular (HTML)</h2>
                 <pre><code class="html" data-trim>
-<form id="login-form">
-    <input id="username" placeholder="Benutzername" required />
-    <input id="password" type="password" placeholder="Passwort" required />
-    <button type="submit">Login</button>
-</form>
-                </code></pre>
+                        <form id="login-form">
+                            <input id="username" placeholder="Benutzername" required />
+                            <input id="password" type="password" placeholder="Passwort" required />
+                            <button type="submit">Login</button>
+                        </form>
+                    </code></pre>
             </section>
 
             <section>
                 <h2>Login-Request</h2>
                 <pre><code class="js" data-trim>
-async function login(username, password) {
-    const response = await fetch(`${BASE_URL}/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
-    });
+                        async function login(username, password) {
+                            const response = await fetch(`${AUTH_URL}`, {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ identity: username, password })
+                            });
 
-    if (!response.ok) {
-        throw new Error(`Login fehlgeschlagen: ${response.status}`);
-    }
+                            if (!response.ok) {
+                                throw new Error(`Login fehlgeschlagen`);
+                            }
 
-    return response.json();
-}
-                </code></pre>
+                            return response.json();
+                        }
+                    </code></pre>
             </section>
 
             <section>
                 <h2>Token speichern</h2>
                 <pre><code class="js" data-trim>
-function saveToken(token) {
-    localStorage.setItem("authToken", token);
-}
+                        function saveToken(token) {
+                            localStorage.setItem("authToken", token);
+                        }
 
-function getToken() {
-    return localStorage.getItem("authToken");
-}
+                        function getToken() {
+                            return localStorage.getItem("authToken");
+                        }
 
-function clearToken() {
-    localStorage.removeItem("authToken");
-}
-                </code></pre>
+                        function clearToken() {
+                            localStorage.removeItem("authToken");
+                        }
+                    </code></pre>
             </section>
 
             <section>
                 <h2>Authorization Header</h2>
                 <pre><code class="js" data-trim>
-async function fetchWithAuth(url, options = {}) {
-    const token = getToken();
+                        async function fetchWithAuth(url, options = {}) {
+                            const token = getToken();
 
-    const headers = {
-        ...(options.headers || {}),
-        Authorization: `Bearer ${token}`
-    };
+                            const headers = {
+                                // Bereits vorhandene Header
+                                Authorization: `Bearer ${token}`
+                            };
 
-    return fetch(url, { ...options, headers });
-}
-                </code></pre>
+                            return fetch(url, { ...options, headers });
+                        }
+                    </code></pre>
             </section>
 
             <section>
-                <h2>Geschuetzte Daten laden</h2>
+                <h2>Geschützte Daten laden</h2>
                 <pre><code class="js" data-trim>
-async function loadNotes() {
-    const response = await fetchWithAuth(`${BASE_URL}/notes`);
+                        async function loadNotes() {
+                            const response = await fetchWithAuth(`${BASE_URL}/notes`);
 
-    if (response.status === 401) {
-        clearToken();
-        showLogin();
-        throw new Error("Nicht autorisiert");
-    }
+                            if (response.status === 401) {
+                                clearToken();
+                                showLogin();
+                                throw new Error("Nicht autorisiert");
+                            }
 
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                            if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-    const notes = await response.json();
-    renderNotes(notes);
-}
-                </code></pre>
+                            const notes = await response.json();
+                            renderNotes(notes);
+                        }
+                    </code></pre>
             </section>
 
             <section>
                 <h2>Login-Submit</h2>
                 <pre><code class="js" data-trim>
-loginForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
+                        loginForm.addEventListener("submit", async (event) => {
+                            event.preventDefault();
 
-    const username = usernameInput.value.trim();
-    const password = passwordInput.value.trim();
+                            const username = usernameInput.value.trim();
+                            const password = passwordInput.value.trim();
 
-    const data = await login(username, password);
-    saveToken(data.token);
+                            const data = await login(username, password);
+                            saveToken(data.token);
 
-    loginForm.reset();
-    showApp();
-    await loadNotes();
-});
-                </code></pre>
+                            loginForm.reset();
+                            showApp();
+                            await loadNotes();
+                        });
+                    </code></pre>
             </section>
 
             <section>
                 <h2>Logout</h2>
                 <pre><code class="js" data-trim>
-logoutButton.addEventListener("click", () => {
-    clearToken();
-    showLogin();
-    clearNotesView();
-});
-                </code></pre>
+                        logoutButton.addEventListener("click", () => {
+                            clearToken();
+                            showLogin();
+                            clearNotesView();
+                        });
+                    </code></pre>
             </section>
 
             <section>
                 <h2>Sicherheits-Hinweise (einfach)</h2>
                 <ul>
-                    <li>Passwoerter niemals im Frontend hardcoden</li>
+                    <li>Passwörter niemals im Frontend hardcoden</li>
                     <li>Token nicht in Logs ausgeben</li>
-                    <li>In Produktion nur ueber HTTPS arbeiten</li>
-                    <li>Token-Ablauf und Refresh kommen spaeter</li>
+                    <li>In Produktion nur über HTTPS arbeiten</li>
+                    <li>Token-Ablauf und Refresh kommen später</li>
                 </ul>
             </section>
 
             <section>
                 <h2>Definition of Done</h2>
                 <ul>
-                    <li>Login mit gueltigen Daten funktioniert</li>
+                    <li>Login mit gültigen Daten funktioniert</li>
                     <li>Token wird gespeichert und verwendet</li>
-                    <li>Ohne Token schlagen geschuetzte Requests fehl</li>
+                    <li>Ohne Token schlagen geschützte Requests fehl</li>
                     <li>Logout entfernt Token und sperrt Zugriff</li>
                 </ul>
             </section>
@@ -218,7 +220,7 @@ logoutButton.addEventListener("click", () => {
                     <li>Login-Form + Login-Request implementieren</li>
                     <li>Token-Handling einbauen</li>
                     <li>Bestehende Notiz-Requests auf Bearer-Auth umstellen</li>
-                    <li>Logout und Fehlerfall 401 testen</li>
+                    <li>Logout und Fehlerfall 400 testen</li>
                 </ol>
             </section>
 
