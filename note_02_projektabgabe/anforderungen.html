@@ -10,17 +10,29 @@
         main {
             max-width: 720px;
             margin: 0 auto;
-            font-family: sans-serif;
+            font-family: Open Sans,Arial;
+            color: #454545;
+            font-size: 16px;
+            line-height: 1.4;
+            hyphens: auto;
+        }
+        
+        span{
+            font-family: 'mono';
+            background-color: #dedeff;
+            display: inline-block;
+            padding: 3px 5px;
+            border-radius: 3px;
+            margin: 2px;
         }
     </style>
 </head>
 
 <body>
     <main>
-        <h1 id="aufgabenblatt-notizen-verwaltungsapplikation-javascript-">Aufgabenblatt: Notizen-Verwaltungsapplikation
-            (JavaScript)</h1>
+        <h1 id="aufgabenblatt-notizen-verwaltungsapplikation-javascript-">Bewertungskriterien:<br/>Notizen-Verwaltungsapplikation</h1>
         <h2 id="allgemeine-beschreibung">Allgemeine Beschreibung</h2>
-        <p>Im Rahmen dieses Moduls sollen Sie eine Notizen-Verwaltungsapplikation (Notes App) entwickeln. Ziel ist es,
+        <p>Im Rahmen des Moduls 294 sollen Sie eine Notizen-Verwaltungsapplikation (Notes App) entwickeln. Ziel ist es,
             grundlegende Konzepte moderner JavaScript-Entwicklung praktisch anzuwenden, insbesondere Modularisierung,
             Zustandsverwaltung sowie Interaktion mit einer API.</p>
         <p>Die Applikation wird bewertet und ist als Einzelarbeit einzureichen.</p>
@@ -28,12 +40,12 @@
         <h2 id="technische-informationen">Technische Informationen</h2>
         <ul>
             <li>Das Backend welches die Notizen verwaltet befindet sich auf der folgenden URL:
-                http://notes.iso.lmeier.ch</li>
+                <span>http://notes.iso.lmeier.ch</span></li>
             <li>Die Notizen befinden sich unter den folgenden Endpoints<ul>
-                    <li>GET /api/collections/notes/records zum Laden der Notizen</li>
-                    <li>POST /api/collections/notes/records zum Erstellen einer Notiz</li>
-                    <li>DELETE /api/collections/notes/records/:id zum Löschen der Notiz mit der Id :id </li>
-                    <li>PATCH /api/collections/notes/records/:id zum Bearbeiten der Notiz mit der Id :id</li>
+                    <li>GET <span>/api/collections/notes/records</span> zum Laden der Notizen</li>
+                    <li>POST <span>/api/collections/notes/records</span> zum Erstellen einer Notiz</li>
+                    <li>DELETE <span>/api/collections/notes/records/:id</span> zum Löschen der Notiz mit der Id :id </li>
+                    <li>PATCH <span>/api/collections/notes/records/:id</span> zum Bearbeiten der Notiz mit der Id :id</li>
                 </ul>
             </li>
             <li>Die Notizen erlauben die folgenden Felder<ul>
@@ -45,8 +57,8 @@
                 </ul>
             </li>
             <li>Die Benutzer befinden sich unter den folgenden Endpoints <ul>
-                    <li>GET /api/collections/users/records zum Laden aller User </li>
-                    <li>PATCH /api/collections/users/records/:id zum Updaten des Users mit der Id :id (Authentifizierung
+                    <li>GET <span>/api/collections/users/records</span> zum Laden aller User </li>
+                    <li>PATCH <span>/api/collections/users/records/:id</span> zum Updaten des Users mit der Id :id (Authentifizierung
                         benötigt) </li>
                 </ul>
             </li>
@@ -113,7 +125,7 @@
             </li>
             <li>Passwort ändern:<ul>
                     <li>Implementierung eines Formulars zum Ändern des Benutzerpassworts</li>
-                    <li>Verwendung eines PATCH-Requests an folgende URL: /api/collections/users/records/:id
+                    <li>Verwendung eines PATCH-Requests an folgende URL: <span>/api/collections/users/records/:id</span>
                         
                         <li>Zu übermittelnde Felder:<ul>
                                     <li>oldPassword (das aktuelle Passwort des eingeloggten Users)</li>
