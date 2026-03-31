@@ -16,7 +16,7 @@
 
 \section{Vorbereitung}
 
-Erstellen Sie einen neuen Projektordner fuer diese Lektion.
+Erstellen Sie einen neuen Projektordner für diese Lektion.
 
 Legen Sie mindestens folgende Struktur an:
 \begin{verbatim}
@@ -25,7 +25,7 @@ js/
   main.js
 \end{verbatim}
 
-Verknuepfen Sie \texttt{main.js} im HTML mit:
+Verknüpfen Sie \texttt{main.js} im HTML mit:
 
 \begin{verbatim}
 <script type="module" src="./js/main.js"></script>
@@ -54,9 +54,9 @@ Importieren Sie diese Funktionen in \texttt{main.js} und geben Sie mehrere Teste
 
 \section{Named Exports verwenden}
 
-Stellen Sie sicher, dass Sie fuer die Funktionen aus \texttt{math.js} Named Exports verwenden.
+Stellen Sie sicher, dass Sie für die Funktionen aus \texttt{math.js} Named Exports verwenden.
 
-Testen Sie zusaetzlich einen Import mit Alias, zum Beispiel:
+Testen Sie zusätzlich einen Import mit Alias, zum Beispiel:
 \begin{itemize}
     \item \texttt{add as plus}
 \end{itemize}
@@ -75,72 +75,30 @@ Die Funktion soll Zahlen in folgendes Format umwandeln:
 
 Importieren Sie die Funktion in \texttt{main.js} und testen Sie sie.
 
-\section{Code in Partials aufteilen}
+\section{Arbeiten am Notes-Projekt}
 
-Erstellen Sie fuer eine kleine Produktliste zusaetzliche Dateien:
-\begin{itemize}
-    \item \texttt{js/data/products.js}
-    \item \texttt{js/ui/renderProducts.js}
-    \item \texttt{js/utils/calculateTotal.js}
-\end{itemize}
-
-Inhalt der Module:
-\begin{itemize}
-    \item \texttt{products.js}: exportiert ein Array mit mindestens drei Produkten
-    \item \texttt{renderProducts.js}: enthaelt eine Funktion zum Rendern der Produkte ins HTML
-    \item \texttt{calculateTotal.js}: berechnet die Summe aller Produktpreise
-\end{itemize}
-
-\section{HTML vorbereiten}
-
-Erweitern Sie \texttt{index.html} um folgende Elemente:
-\begin{itemize}
-    \item eine Ueberschrift
-    \item ein leeres \texttt{<ul>} oder \texttt{<div>} fuer die Produktliste
-    \item ein Element fuer die Gesamtsumme
-\end{itemize}
-
-Vergeben Sie sinnvolle IDs, damit die Elemente per JavaScript angesprochen werden koennen.
-
-\section{Module zusammenfuehren}
-
-Nutzen Sie \texttt{main.js} als Einstiegspunkt.
-
-Importieren Sie dort:
-\begin{itemize}
-    \item die Produktdaten
-    \item die Render-Funktion
-    \item die Funktion fuer die Gesamtsumme
-    \item den Default Export aus \texttt{formatPrice.js}
-\end{itemize}
-
-Beim Laden der Seite soll:
-\begin{itemize}
-    \item die Produktliste angezeigt werden
-    \item die Gesamtsumme berechnet werden
-    \item die Gesamtsumme formatiert ins HTML geschrieben werden
-\end{itemize}
+Setzen Sie das gelernte an ihrem Notizen-Projekt um. Teilen Sie den gesamten JavaScript code in dedizierte Blöcke/Dateien auf und strukturieren Sie so Ihren Projektcode.
 
 \section{Reflexion zur Struktur}
 
-Begruenden Sie kurz Ihre Dateiaufteilung:
+Begründen Sie kurz Ihre Dateiaufteilung:
 \begin{itemize}
-    \item Welche Datei enthaelt Daten?
-    \item Welche Datei enthaelt Logik?
-    \item Welche Datei ist fuer die Darstellung zustaendig?
+    \item Welche Datei enthält Daten?
+    \item Welche Datei enthält Logik?
+    \item Welche Datei ist für die Darstellung zuständig?
 \end{itemize}
 
 \section{Fehlersuche}
 
-Pruefen Sie Ihr Projekt gezielt auf folgende Punkte:
+Prüfen Sie Ihr Projekt gezielt auf folgende Punkte:
 \begin{itemize}
     \item Ist im HTML wirklich \texttt{type="module"} gesetzt?
     \item Stimmen alle relativen Pfade?
     \item Haben alle Imports die Dateiendung \texttt{.js}?
-    \item Stimmen Named Export und Named Import exakt ueberein?
+    \item Stimmen Named Export und Named Import exakt überein?
 \end{itemize}
 
-Notieren Sie mindestens einen Fehler, den Sie waehrend der Arbeit gemacht und behoben haben.
+Notieren Sie mindestens einen Fehler, den Sie währen der Arbeit gemacht und behoben haben.
 
 \section{Abschluss}
 
@@ -157,7 +115,7 @@ Die Lektion ist abgeschlossen, wenn:
 Falls Zeit bleibt:
 \begin{itemize}
     \item Erstellen Sie ein weiteres Modul \texttt{filterProducts.js}
-    \item Filtern Sie alle Produkte ueber einem bestimmten Preis
+    \item Filtern Sie alle Produkte über einem bestimmten Preis
     \item Teilen Sie DOM-Selektoren ebenfalls in ein eigenes Modul aus
 \end{itemize}
 
