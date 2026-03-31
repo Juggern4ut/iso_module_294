@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Modul 294 - Lektion 14</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+
+    <style>
+        td {
+            font-size: 21px;
+        }
+
+        .inline-code {
+            font-family: Consolas, Monaco, monospace;
+            background-color: #2d2d2d;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-size: 75%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h2>14 - JavaScript modularisieren</h2>
+                <hr />
+                <h3>Code aufteilen mit <span class="inline-code">export</span> und <span class="inline-code">import</span></h3>
+                <img style="width: 200px" src="assets/img/js-logo.webp" alt="JS Logo" />
+            </section>
+
+            <section>
+                <h2>Lernziele dieser Lektion</h2>
+                <ul>
+                    <li>Verstehen, warum grosse JS-Dateien problematisch werden</li>
+                    <li>Einfache ES-Module erstellen und verwenden</li>
+                    <li>Named Exports und Default Exports unterscheiden</li>
+                    <li>Code in sinnvolle Teilbereiche aufteilen</li>
+                    <li>Eine kleine App-Struktur mit mehreren Dateien bauen</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Das Problem mit einer grossen Datei</h2>
+                <ul>
+                    <li>schwer lesbar</li>
+                    <li>schwer testbar</li>
+                    <li>schwer wiederverwendbar</li>
+                    <li>mehr Konflikte bei Teamarbeit</li>
+                </ul>
+                <p>Je mehr Funktionen in <span class="inline-code">main.js</span> landen, desto unübersichtlicher wird das Projekt.</p>
+            </section>
+
+            <section>
+                <h2>Was ist ein Modul?</h2>
+                <p>Ein Modul ist eine eigene JavaScript-Datei mit klarer Verantwortung.</p>
+                <ul>
+                    <li>stellt Funktionen oder Werte bereit</li>
+                    <li>kapselt Logik</li>
+                    <li>kann in anderen Dateien importiert werden</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Typische Aufteilung</h2>
+                <pre><code class="txt" data-trim>
+js/
+  main.js
+  math.js
+  dom.js
+  api.js
+  utils/
+    format.js
+                </code></pre>
+                <p>Jede Datei übernimmt eine klar abgegrenzte Aufgabe.</p>
+            </section>
+
+            <section>
+                <h2>Modul im HTML aktivieren</h2>
+                <pre><code class="html" data-trim>
+<script type="module" src="./js/main.js"></script>
+                </code></pre>
+                <ul>
+                    <li>ohne <span class="inline-code">type="module"</span> funktionieren <span class="inline-code">import</span> und <span class="inline-code">export</span> nicht</li>
+                    <li>Browser behandelt die Datei dann als ES-Modul</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Named Export</h2>
+                <pre><code class="js" data-trim>
+function add(a, b) {
+    return a + b;
+}
+
+function subtract(a, b) {
+    return a - b;
+}
+
+export { add, subtract };
+                </code></pre>
+                <p>Mehrere Funktionen können aus derselben Datei exportiert werden.</p>
+            </section>
+
+            <section>
+                <h2>Named Import</h2>
+                <pre><code class="js" data-trim>
+import { add, subtract } from "./math.js";
+
+console.log(add(4, 2));
+console.log(subtract(4, 2));
+                </code></pre>
+                <p>Die Namen müssen mit dem Export übereinstimmen.</p>
+            </section>
+
+            <section>
+                <h2>Import mit Alias</h2>
+                <pre><code class="js" data-trim>
+import { add as plus } from "./math.js";
+
+console.log(plus(5, 3));
+                </code></pre>
+                <p>Mit <span class="inline-code">as</span> kann ein importierter Name lokal umbenannt werden.</p>
+            </section>
+
+            <section>
+                <h2>Default Export</h2>
+                <pre><code class="js" data-trim>
+export default function formatPrice(value) {
+    return `CHF ${value.toFixed(2)}`;
+}
+                </code></pre>
+                <pre><code class="js" data-trim>
+import formatPrice from "./formatPrice.js";
+                </code></pre>
+                <p>Pro Datei gibt es höchstens einen Default Export.</p>
+            </section>
+
+            <section>
+                <h2>Named vs. Default</h2>
+                <table>
+                    <tr>
+                        <td><b>Named Export</b></td>
+                        <td>mehrere Exporte pro Datei möglich</td>
+                    </tr>
+                    <tr>
+                        <td><b>Default Export</b></td>
+                        <td>genau ein Hauptexport pro Datei</td>
+                    </tr>
+                    <tr>
+                        <td><b>Praxis</b></td>
+                        <td>oft Named Exports für Hilfsfunktionen</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section>
+                <h2>Dateipfade beim Import</h2>
+                <pre><code class="js" data-trim>
+import { renderUser } from "./ui/renderUser.js";
+import { API_URL } from "../config.js";
+                </code></pre>
+                <ul>
+                    <li><span class="inline-code">./</span> = aktueller Ordner</li>
+                    <li><span class="inline-code">../</span> = ein Ordner höher</li>
+                    <li>Dateiendung <span class="inline-code">.js</span> im Browser angeben</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Beispiel: Kleine Aufteilung</h2>
+                <pre><code class="txt" data-trim>
+js/
+  main.js
+  students.js
+  dom.js
+                </code></pre>
+                <pre><code class="js" data-trim>
+// students.js
+export const students = ["Mia", "Noah", "Lea"];
+
+// dom.js
+export function renderList(items) { /* ... */ }
+
+// main.js
+import { students } from "./students.js";
+import { renderList } from "./dom.js";
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Worauf soll man achten?</h2>
+                <ul>
+                    <li>Dateien klein und thematisch klar halten</li>
+                    <li>keine wilden Mischungen aus DOM, Logik und Daten</li>
+                    <li>sprechende Dateinamen verwenden</li>
+                    <li>Imports möglichst oben in der Datei sammeln</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Ein sinnvoller Startpunkt</h2>
+                <p><span class="inline-code">main.js</span> ist oft die Datei, welche alles zusammenführt.</p>
+                <ul>
+                    <li>andere Module importieren</li>
+                    <li>Event Listener registrieren</li>
+                    <li>Initialisierung starten</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Häufige Fehler</h2>
+                <ul>
+                    <li><span class="inline-code">type="module"</span> im HTML vergessen</li>
+                    <li>falscher relativer Pfad</li>
+                    <li><span class="inline-code">.js</span> im Import vergessen</li>
+                    <li>Named Export als Default importieren oder umgekehrt</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Definition of Done</h2>
+                <ul>
+                    <li>Die App besteht aus mehreren JS-Dateien</li>
+                    <li>Funktionen werden sauber exportiert und importiert</li>
+                    <li>Das HTML lädt den Einstieg per Modul-Script</li>
+                    <li>Jede Datei hat eine klare Aufgabe</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Arbeitsauftrag</h2>
+                <ol>
+                    <li>Projekt mit <span class="inline-code">type="module"</span> aufsetzen</li>
+                    <li>Hilfsfunktionen in eigene Dateien verschieben</li>
+                    <li>Imports und Exports korrekt verbinden</li>
+                    <li>Code testen und Struktur kurz reflektieren</li>
+                </ol>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [RevealHighlight]
+        });
+    </script>
+
+</body>
+
+</html>
