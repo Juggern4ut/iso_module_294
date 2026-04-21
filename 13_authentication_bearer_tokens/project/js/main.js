@@ -132,7 +132,6 @@ form.addEventListener("submit", e => {
     createNote(body);
 });
 
-
 searchInput.addEventListener("input", () => {
     let filteredNotes = [...notes].filter(n => {
 
@@ -143,7 +142,6 @@ searchInput.addEventListener("input", () => {
     });
     renderNotes(filteredNotes);
 });
-
 
 sortInput.addEventListener("change", () => {
     let sortedNotes = [...notes].sort((a, b) => {

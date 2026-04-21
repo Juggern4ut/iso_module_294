@@ -88,7 +88,6 @@ form.addEventListener("submit", e => {
     createNote(body);
 });
 
-
 const searchInput = document.querySelector("#search");
 searchInput.addEventListener("input", () => {
     let filteredNotes = [...notes].filter(n => {
@@ -100,7 +99,6 @@ searchInput.addEventListener("input", () => {
     });
     renderNotes(filteredNotes);
 });
-
 
 const sortInput = document.querySelector("#sort");
 sortInput.addEventListener("change", () => {
