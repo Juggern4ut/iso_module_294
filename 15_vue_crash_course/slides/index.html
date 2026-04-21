@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Modul 294 - Lektion 15</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+
+    <style>
+        td {
+            font-size: 21px;
+        }
+
+        .inline-code {
+            font-family: Consolas, Monaco, monospace;
+            background-color: #2d2d2d;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-size: 75%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h2>15 - Vue.js Crash-Course</h2>
+                <hr />
+                <h3>Ein kurzer Ausblick auf moderne Frontend-Frameworks</h3>
+                <img style="width: 200px" src="assets/img/js-logo.webp" alt="JS Logo" />
+            </section>
+
+            <section>
+                <h2>Lernziele dieser Lektion</h2>
+                <ul>
+                    <li>Verstehen, was Vue.js ist und warum es eingesetzt wird</li>
+                    <li>Eine kleine Vue-App über CDN lesen und starten</li>
+                    <li>Zentrale Konzepte wie Reaktivität und Direktiven erkennen</li>
+                    <li>Den Unterschied zwischen Vanilla JS und Vue grob einordnen</li>
+                    <li>Einen Ausblick auf Komponenten, Router und Tooling erhalten</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Warum jetzt noch Vue?</h2>
+                <ul>
+                    <li>Ihr kennt jetzt HTML, CSS und JavaScript-Grundlagen</li>
+                    <li>Damit könnt ihr besser verstehen, was ein Framework abnimmt</li>
+                    <li>Vue ist kein Ersatz für JavaScript, sondern baut darauf auf</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Was ist Vue?</h2>
+                <p>Vue ist ein JavaScript-Framework für interaktive Benutzeroberflächen.</p>
+                <ul>
+                    <li>verbindet Daten mit HTML</li>
+                    <li>aktualisiert die Oberfläche automatisch</li>
+                    <li>hilft beim Strukturieren grösserer Frontends</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Wann hilft ein Framework?</h2>
+                <ul>
+                    <li>wenn viele UI-Zustände gleichzeitig gepflegt werden</li>
+                    <li>wenn dieselben Daten an mehreren Stellen erscheinen</li>
+                    <li>wenn Komponenten wiederverwendbar sein sollen</li>
+                    <li>wenn die App mit der Zeit wächst</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Vue direkt im Browser laden</h2>
+                <pre><code class="html" data-trim>
+<div id="app"></div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="./main.js"></script>
+                </code></pre>
+                <p>Für einen ersten Einstieg reicht die CDN-Version ohne Build-Tool.</p>
+            </section>
+
+            <section>
+                <h2>Die kleinste Vue-App</h2>
+                <pre><code class="js" data-trim>
+const { createApp } = Vue;
+
+createApp({
+    data() {
+        return {
+            title: "Hallo Vue"
+        };
+    }
+}).mount("#app");
+                </code></pre>
+                <p><span class="inline-code">mount("#app")</span> verbindet Vue mit einem HTML-Element.</p>
+            </section>
+
+            <section>
+                <h2>Daten im Template anzeigen</h2>
+                <pre><code class="html" data-trim>
+<div id="app">
+    <h1>{{ title }}</h1>
+    <p>{{ message }}</p>
+</div>
+                </code></pre>
+                <pre><code class="js" data-trim>
+data() {
+    return {
+        title: "Hallo Vue",
+        message: "Die Daten kommen aus JavaScript."
+    };
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Reaktivität</h2>
+                <p>Ändert sich ein Wert in <span class="inline-code">data()</span>, aktualisiert Vue die Oberfläche automatisch.</p>
+                <pre><code class="js" data-trim>
+data() {
+    return {
+        count: 0
+    };
+},
+methods: {
+    increment() {
+        this.count++;
+    }
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Events mit <span class="inline-code">v-on</span></h2>
+                <pre><code class="html" data-trim>
+<button v-on:click="increment">+1</button>
+<button @click="increment">+1</button>
+
+<p>Zähler: {{ count }}</p>
+                </code></pre>
+                <p><span class="inline-code">@click</span> ist die Kurzschreibweise für <span class="inline-code">v-on:click</span>.</p>
+            </section>
+
+            <section>
+                <h2>Eingaben mit <span class="inline-code">v-model</span></h2>
+                <pre><code class="html" data-trim>
+<input v-model="name" placeholder="Dein Name" />
+<p>Hallo {{ name }}</p>
+                </code></pre>
+                <pre><code class="js" data-trim>
+data() {
+    return {
+        name: ""
+    };
+}
+                </code></pre>
+                <p>Vue hält Formularfeld und Daten automatisch synchron.</p>
+            </section>
+
+            <section>
+                <h2>Listen mit <span class="inline-code">v-for</span></h2>
+                <pre><code class="html" data-trim>
+<li v-for="student in students" :key="student">
+    {{ student }}
+</li>
+                </code></pre>
+                <pre><code class="js" data-trim>
+data() {
+    return {
+        students: ["Mia", "Noah", "Lea"]
+    };
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Bedingungen mit <span class="inline-code">v-if</span></h2>
+                <pre><code class="html" data-trim>
+<p v-if="notes.length === 0">Noch keine Notizen vorhanden</p>
+<ul v-else>
+    <li v-for="note in notes" :key="note.id">{{ note.title }}</li>
+</ul>
+                </code></pre>
+                <p>Statt viel DOM-Manipulation beschreibt man direkt den gewünschten Zustand.</p>
+            </section>
+
+            <section>
+                <h2>Vue gegenüber Vanilla JS</h2>
+                <table>
+                    <tr>
+                        <td><b>Vanilla JS</b></td>
+                        <td>DOM oft direkt mit <span class="inline-code">querySelector</span> und <span class="inline-code">innerHTML</span> verändern</td>
+                    </tr>
+                    <tr>
+                        <td><b>Vue</b></td>
+                        <td>UI aus Daten und Zustand beschreiben</td>
+                    </tr>
+                    <tr>
+                        <td><b>Vorteil</b></td>
+                        <td>weniger manuelle Synchronisation</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section>
+                <h2>Kleine Demo-Idee</h2>
+                <pre><code class="html" data-trim>
+<div id="app">
+    <input v-model="newNote" placeholder="Neue Notiz" />
+    <button @click="addNote">Hinzufügen</button>
+
+    <ul>
+        <li v-for="note in notes" :key="note">{{ note }}</li>
+    </ul>
+</div>
+                </code></pre>
+                <p>Genau solche Oberflächen werden mit Vue schnell angenehm baubar.</p>
+            </section>
+
+            <section>
+                <h2>Was kommt in echten Vue-Projekten dazu?</h2>
+                <ul>
+                    <li>Komponenten statt einer grossen Datei</li>
+                    <li><span class="inline-code">props</span> für Datenübergabe</li>
+                    <li><span class="inline-code">computed</span> für abgeleitete Werte</li>
+                    <li>Lifecycle-Hooks für Laden und Initialisieren</li>
+                    <li>Single File Components mit <span class="inline-code">.vue</span>-Dateien</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Ausblick: Vue-Ökosystem</h2>
+                <ul>
+                    <li>Vite für Entwicklung und Build-Prozess</li>
+                    <li>Vue Router für mehrere Seitenansichten</li>
+                    <li>Pinia für globalen State</li>
+                    <li>Komponentenbibliotheken für grössere UIs</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Wichtige Einordnung</h2>
+                <ul>
+                    <li>Frameworks lösen nicht automatisch schlechte Logik</li>
+                    <li>Saubere JavaScript-Grundlagen bleiben entscheidend</li>
+                    <li>Wer JS versteht, lernt Vue deutlich schneller</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Definition of Done</h2>
+                <ul>
+                    <li>Sie können grob erklären, was Vue.js ist</li>
+                    <li>Sie erkennen <span class="inline-code">data</span>, <span class="inline-code">methods</span> und <span class="inline-code">mount</span> in einer einfachen Vue-App</li>
+                    <li>Sie kennen <span class="inline-code">v-model</span>, <span class="inline-code">v-for</span> und <span class="inline-code">v-if</span> auf Einsteigerniveau</li>
+                    <li>Sie wissen, dass Vue ein möglicher nächster Schritt nach Vanilla JS ist</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Arbeitsauftrag</h2>
+                <ol>
+                    <li>Eine kleine Vue-App über CDN lesen oder aufsetzen</li>
+                    <li>Bindings, Events und Listen im Code markieren</li>
+                    <li>Den Unterschied zu Vanilla JS kurz beschreiben</li>
+                    <li>Zwei weiterführende Vue-Themen benennen</li>
+                </ol>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [RevealHighlight]
+        });
+    </script>
+
+</body>
+
+</html>

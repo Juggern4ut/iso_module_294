@@ -1,0 +1,137 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\setlength{\parindent}{0pt}
+
+\title{Modul 294 - Aufgabenblatt 15}
+\author{von Lukas Meier}
+\date{Unterricht vom 20.04.2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Ziel dieser Abschlusslektion}
+
+Diese Lektion ist bewusst als kurzer Ausblick gedacht. Sie sollen die absoluten Grundlagen von Vue.js sehen, ohne bereits ein komplettes Framework-Projekt aufzubauen.
+
+\section{Was ist Vue?}
+
+Beantworten Sie kurz in eigenen Worten:
+\begin{itemize}
+    \item Was ist Vue.js?
+    \item Welches Problem versucht ein Frontend-Framework zu lösen?
+    \item Warum ist es sinnvoll, zuerst Vanilla JavaScript zu lernen?
+\end{itemize}
+
+\section{Vue per CDN einbinden}
+
+Erstellen Sie ein kleines Testprojekt mit mindestens diesen Dateien:
+\begin{verbatim}
+index.html
+main.js
+\end{verbatim}
+
+Binden Sie Vue im HTML über CDN ein:
+
+\begin{verbatim}
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="./main.js"></script>
+\end{verbatim}
+
+Legen Sie im HTML ein Root-Element an:
+
+\begin{verbatim}
+<div id="app"></div>
+\end{verbatim}
+
+\section{Die erste Mini-App}
+
+Erstellen Sie in \texttt{main.js} eine kleine Vue-App mit:
+\begin{itemize}
+    \item einem Titel
+    \item einem Textfeld für einen Namen
+    \item einer persönlichen Begrüssung
+\end{itemize}
+
+Beispielidee:
+\begin{itemize}
+    \item \texttt{title = "Vue Crash-Course"}
+    \item \texttt{name = ""}
+\end{itemize}
+
+\section{Direktiven erkennen}
+
+Verwenden Sie in Ihrer Mini-App mindestens:
+\begin{itemize}
+    \item \texttt{\{\{ \}\}} für Textausgabe
+    \item \texttt{v-model} für ein Eingabefeld
+    \item \texttt{@click} oder \texttt{v-on:click} für einen Button
+\end{itemize}
+
+Beschriften Sie im Code kurz, welche Zeile welche Aufgabe übernimmt.
+
+\section{Liste anzeigen}
+
+Erweitern Sie Ihre App um ein kleines Array, zum Beispiel:
+\begin{itemize}
+    \item Lieblingssprachen
+    \item Tools
+    \item Module aus dem Unterricht
+\end{itemize}
+
+Zeigen Sie diese Liste mit \texttt{v-for} im Browser an.
+
+\section{Bedingte Anzeige}
+
+Nutzen Sie zusätzlich \texttt{v-if} oder \texttt{v-else}.
+
+Beispiel:
+\begin{itemize}
+    \item Wenn die Liste leer ist, soll ein Hinweis erscheinen
+    \item Sonst wird die Liste angezeigt
+\end{itemize}
+
+\section{Vergleich mit Vanilla JS}
+
+Beantworten Sie kurz:
+\begin{itemize}
+    \item Was wäre an derselben Aufgabe mit reinem JavaScript aufwendiger?
+    \item Was wirkt an Vue einfacher oder angenehmer?
+\end{itemize}
+
+\section{Ausblick}
+
+Recherchieren oder notieren Sie zu jedem Punkt einen kurzen Satz:
+\begin{itemize}
+    \item Komponenten
+    \item Vue Router
+    \item Pinia
+    \item Vite
+\end{itemize}
+
+Sie müssen diese Werkzeuge heute nicht praktisch einsetzen. Es geht nur darum, die Begriffe schon einmal gesehen zu haben.
+
+\section{Abschluss}
+
+Die Lektion ist abgeschlossen, wenn:
+\begin{itemize}
+    \item eine kleine Vue-App im Browser läuft
+    \item \texttt{v-model}, \texttt{v-for} und \texttt{v-if} sichtbar verwendet werden
+    \item Sie den Unterschied zu Vanilla JS grob erklären können
+    \item Sie mindestens zwei weiterführende Vue-Themen benennen können
+\end{itemize}
+
+\section{Optional}
+
+Falls Zeit bleibt:
+\begin{itemize}
+    \item Fügen Sie einen Button hinzu, der neue Listeneinträge ergänzt
+    \item Erstellen Sie einen einfachen Counter
+    \item Überlegen Sie, wie Ihre Notizen-App als Vue-Projekt aussehen könnte
+\end{itemize}
+
+\end{document}
