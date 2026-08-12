@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+
+    <!-- Hier werden die Metadaten der Seite definiert -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Der Titel definiert, was im Browser-Tab dargestellt wird -->
+    <title>Modul 294 - 01 Introduction - Solution</title>
+
+    <!-- Einfache CSS-Stile für die Seite -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+    </style>
+
+    <script>
+        /*
+         * Aufgabe: Eine einfache Ausgabe
+         *
+         * Beim Laden der Seite wuerde eine Alert-Box mit der Meldung
+         * erscheinen. Da diese Box jedes Mal weggeklickt werden muss,
+         * ist sie fuer regelmaessige Debug-Ausgaben unpraktisch.
+         */
+        // alert("Hello World");
+
+        /*
+         * Aufgabe: Arbeiten mit Variablen
+         *
+         * Der Wert der Variable myName wird ausgegeben.
+         * Den Namen koennen Sie frei anpassen.
+         */
+        const myName = "Lukas";
+        // alert(myName);
+
+        /*
+         * Aufgabe: console.log
+         *
+         * Diese Ausgaben sieht man in den Entwicklertools des Browsers
+         * im Tab "Konsole".
+         */
+        console.log("Hello World");
+        console.log(myName);
+        console.warn("Das ist eine Warnung.");
+        console.error("Das ist eine Fehlermeldung.");
+
+        /*
+         * Aufgabe: Unterschiedliche Variablentypen
+         */
+        let number1 = 10;
+        let number2 = 5;
+
+        console.log("number1 + number2:", number1 + number2); // 15
+
+        number2 = "Ich bin nun ein String!";
+        console.log("number1 + number2:", number1 + number2);
+        // Ergebnis: "10Ich bin nun ein String!"
+        // Sobald ein Operand ein String ist, fuehrt + eine Verkettung aus.
+
+        const isTrue = true;
+        const isFalse = false;
+
+        console.log("true + false:", isTrue + isFalse); // 1
+        console.log("true - false:", isTrue - isFalse); // 1
+        console.log("false - true:", isFalse - isTrue); // -1
+        // Bei mathematischen Operatoren werden true und false zu Zahlen:
+        // true wird 1, false wird 0.
+
+        console.log("'b' + 'a' + +'a' + 'a':", 'b' + 'a' + +'a' + 'a');
+        // Ergebnis: "baNaNa"
+        // +'a' versucht den String "a" in eine Zahl umzuwandeln.
+        // Das ist nicht moeglich, deshalb entsteht NaN.
+
+        /*
+         * Aufgabe: typeof
+         *
+         * typeof liefert den Datentyp eines Ausdrucks als String zurueck.
+         */
+        console.log("typeof myName:", typeof myName);       // "string"
+        console.log("typeof number1:", typeof number1);     // "number"
+        console.log("typeof number2:", typeof number2);     // "string"
+        console.log("typeof isTrue:", typeof isTrue);       // "boolean"
+        console.log("typeof NaN:", typeof NaN);             // "number"
+        console.log("typeof undefined:", typeof undefined); // "undefined"
+    </script>
+
+</head>
+<body>
+    <h1>Willkommen bei Modul 294</h1>
+    <p>Das ist eine Testseite, in welcher ihr das erste Mal mit JavaScript in Berührung kommt.</p>
+</body>
+</html>
