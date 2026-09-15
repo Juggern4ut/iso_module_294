@@ -34,7 +34,7 @@
 <section>
     <h2>05 – Asynchrone Funktionen</h2>
     <hr />
-    <h3>Promises, async / await & fetch</h3>
+    <h3>Promises & async / await</h3>
     <img style="width: 200px" src="assets/img/js-logo.webp" alt="JS Logo" />
 </section>
 
@@ -44,7 +44,6 @@
         <li>Verstehen, was asynchroner Code ist</li>
         <li>Promises lesen und erstellen können</li>
         <li>Asynchrone Funktionen mit <span class="inline-code">async / await</span> schreiben</li>
-        <li>Daten mit der <span class="inline-code">fetch</span>-Methode laden</li>
         <li>Fehler bei asynchronem Code behandeln</li>
     </ul>
 </section>
@@ -193,66 +192,11 @@ async function example() {
 </section>
 
 <section>
-    <h2>Fetch – Daten aus dem Internet</h2>
-    <p><span class="inline-code">fetch</span> wird verwendet, um HTTP-Anfragen zu senden.</p>
-    <ul>
-        <li>Arbeitet asynchron</li>
-        <li>Liefert ein Promise zurück</li>
-        <li>Wird oft mit APIs verwendet</li>
-    </ul>
-</section>
-
-<section>
-    <h2>Einfacher Fetch</h2>
-    <pre><code class="js" data-trim data-line-numbers>
-fetch("https://api.example.com/data")
-    .then(response => response.json())
-    .then(data => console.log(data));
-    </code></pre>
-</section>
-
-<section>
-    <h2>Fetch mit async / await</h2>
-    <pre><code class="js" data-trim data-line-numbers>
-async function loadData() {
-    const response = await fetch("https://api.example.com/data");
-    const data = await response.json();
-    console.log(data);
-}
-    </code></pre>
-</section>
-
-<section>
-    <h2>Typische Fehler bei fetch</h2>
-    <ul>
-        <li>Netzwerkfehler</li>
-        <li>Ungültige URL</li>
-        <li>Antwort ist kein JSON</li>
-    </ul>
-</section>
-
-<section>
-    <h2>Fetch mit Fehlerbehandlung</h2>
-    <pre><code class="js" data-trim data-line-numbers>
-async function loadData() {
-    try {
-        const response = await fetch("https://api.example.com/data");
-        const data = await response.json();
-        console.log(data);
-    } catch (error) {
-        console.error("Fehler beim Laden", error);
-    }
-}
-    </code></pre>
-</section>
-
-<section>
     <h2>TL;DR</h2>
     <ul>
         <li>Asynchroner Code blockiert das Programm nicht</li>
         <li>Promises repräsentieren zukünftige Werte</li>
         <li><span class="inline-code">async / await</span> vereinfacht Promises</li>
-        <li><span class="inline-code">fetch</span> lädt Daten aus APIs</li>
         <li>Fehler müssen explizit behandelt werden</li>
     </ul>
 </section>
