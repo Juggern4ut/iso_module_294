@@ -13,17 +13,206 @@
     <link rel="stylesheet" href="plugin/highlight/monokai.css" />
 
     <style>
-        td {
-            font-size: 21px;
-        }
+      :root {
+        --accent: #80ed99;
+        --accent-2: #ffd166;
+        --panel: rgba(255, 255, 255, 0.07);
+        --border: rgba(255, 255, 255, 0.22);
+        --danger: #ff6b6b;
+        --ok: #7bd88f;
+      }
 
-        .inline-code {
-            font-family: Consolas, Monaco, monospace;
-            background-color: #2d2d2d;
-            padding: 2px 4px;
-            border-radius: 2px;
-            font-size: 75%;
-        }
+      td {
+        font-size: 21px;
+      }
+
+      .inline-code {
+        font-family:
+          "Consolas", "Monaco", "Andale Mono", "Ubuntu Mono", monospace;
+        display: inline-block;
+        background-color: #2d2d2d;
+        padding: 2px 4px;
+        border-radius: 2px;
+        font-size: 75%;
+      }
+
+      thead td {
+        font-weight: bold;
+        font-size: 24px;
+      }
+
+      .reveal p {
+        line-height: 1.35;
+      }
+
+      .lead {
+        font-size: 0.85em;
+      }
+
+      .small {
+        font-size: 0.7em;
+      }
+
+      .muted {
+        color: #bbbbbb;
+      }
+
+      .accent {
+        color: var(--accent);
+      }
+
+      .ok {
+        color: var(--ok);
+      }
+
+      .danger {
+        color: var(--danger);
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      /* verhindert, dass breite Code-Blöcke ein Grid sprengen */
+      .grid-2 > *,
+      .grid-3 > * {
+        min-width: 0;
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px;
+        background: var(--panel);
+        text-align: left;
+        font-size: 70%;
+      }
+
+      .panel h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: var(--accent);
+        font-size: 1.3em;
+      }
+
+      .panel ul {
+        margin: 0 0 0 1em;
+      }
+
+      .panel p {
+        margin: 0;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.55em;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        border: 1px solid var(--border);
+        margin-bottom: 10px;
+      }
+
+      .badge--quiz {
+        color: var(--accent-2);
+        border-color: var(--accent-2);
+      }
+
+      .badge--danger {
+        color: var(--danger);
+        border-color: var(--danger);
+      }
+
+      .flow {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1fr;
+        gap: 10px;
+        align-items: center;
+        margin-top: 24px;
+        font-size: 0.62em;
+      }
+
+      .flow .box {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 18px 12px;
+        background: var(--panel);
+      }
+
+      .flow .arrow {
+        font-size: 1.15em;
+        color: var(--accent-2);
+      }
+
+      .reveal table.compare {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .reveal table.compare td,
+      .reveal table.compare th {
+        border: 1px solid var(--border);
+        padding: 8px 10px;
+        font-size: 24px;
+        text-align: left;
+      }
+
+      .reveal table.compare th {
+        color: var(--accent);
+        font-size: 26px;
+      }
+
+      .callout {
+        margin-top: 24px;
+        padding: 14px 20px;
+        border-left: 4px solid var(--accent);
+        background: rgba(128, 237, 153, 0.12);
+        text-align: left;
+        font-size: 0.66em;
+      }
+
+      .callout--danger {
+        border-left-color: var(--danger);
+        background: rgba(237, 128, 128, 0.12);
+      }
+
+      .callout--warn {
+        border-left-color: var(--accent-2);
+        background: rgba(255, 209, 102, 0.12);
+      }
+
+      .callout > * {
+        margin: 0 !important;
+      }
+
+      .answer {
+        font-size: 0.7em;
+        color: var(--accent-2);
+      }
+
+      /* kompakter Code, z.B. in grid-2-Spalten */
+      .reveal pre.code-sm {
+        width: 100%;
+      }
+
+      .reveal pre.code-sm td {
+        font-size: 18px;
+      }
+
+      .tldr li {
+        font-size: 0.85em;
+      }
     </style>
 </head>
 
@@ -50,27 +239,53 @@
             </section>
 
             <section>
+                <span class="badge">Motivation</span>
                 <h2>Das Problem mit einer grossen Datei</h2>
-                <ul>
-                    <li>schwer lesbar</li>
-                    <li>schwer testbar</li>
-                    <li>schwer wiederverwendbar</li>
-                    <li>mehr Konflikte bei Teamarbeit</li>
-                </ul>
-                <p>Je mehr Funktionen in <span class="inline-code">main.js</span> landen, desto unübersichtlicher wird das Projekt.</p>
+                <div class="grid-2">
+                    <div class="panel">
+                        <h3>Code</h3>
+                        <ul>
+                            <li>schwer lesbar</li>
+                            <li>schwer testbar</li>
+                            <li>schwer wiederverwendbar</li>
+                        </ul>
+                    </div>
+                    <div class="panel">
+                        <h3>Team</h3>
+                        <ul>
+                            <li>mehr Konflikte bei Teamarbeit</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="callout callout--warn">
+                    <p>Je mehr Funktionen in <span class="inline-code">main.js</span> landen, desto unübersichtlicher wird das Projekt.</p>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Grundlagen</span>
                 <h2>Was ist ein Modul?</h2>
-                <p>Ein Modul ist eine eigene JavaScript-Datei mit klarer Verantwortung.</p>
-                <ul>
-                    <li>stellt Funktionen oder Werte bereit</li>
-                    <li>kapselt Logik</li>
-                    <li>kann in anderen Dateien importiert werden</li>
-                </ul>
+                <div class="callout">
+                    <p>Ein Modul ist eine eigene JavaScript-Datei mit klarer Verantwortung.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="panel">
+                        <h3>Bereitstellen</h3>
+                        <p>stellt Funktionen oder Werte bereit</p>
+                    </div>
+                    <div class="panel">
+                        <h3>Kapseln</h3>
+                        <p>kapselt Logik</p>
+                    </div>
+                    <div class="panel">
+                        <h3>Importieren</h3>
+                        <p>kann in anderen Dateien importiert werden</p>
+                    </div>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Grundlagen</span>
                 <h2>Typische Aufteilung</h2>
                 <pre><code class="txt" data-trim>
 js/
@@ -81,21 +296,27 @@ js/
   utils/
     format.js
                 </code></pre>
-                <p>Jede Datei übernimmt eine klar abgegrenzte Aufgabe.</p>
+                <div class="callout">
+                    <p>Jede Datei übernimmt eine klar abgegrenzte Aufgabe.</p>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Grundlagen</span>
                 <h2>Modul im HTML aktivieren</h2>
                 <pre><code class="html" data-trim>
 <script type="module" src="./js/main.js"></script>
                 </code></pre>
-                <ul>
-                    <li>ohne <span class="inline-code">type="module"</span> funktionieren <span class="inline-code">import</span> und <span class="inline-code">export</span> nicht</li>
-                    <li>Browser behandelt die Datei dann als ES-Modul</li>
-                </ul>
+                <div class="callout callout--danger">
+                    <p>ohne <span class="inline-code">type="module"</span> funktionieren <span class="inline-code">import</span> und <span class="inline-code">export</span> nicht</p>
+                </div>
+                <div class="callout">
+                    <p>Browser behandelt die Datei dann als ES-Modul</p>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Export</span>
                 <h2>Named Export</h2>
                 <pre><code class="js" data-trim>
 function add(a, b) {
@@ -108,10 +329,13 @@ function subtract(a, b) {
 
 export { add, subtract };
                 </code></pre>
-                <p>Mehrere Funktionen können aus derselben Datei exportiert werden.</p>
+                <div class="callout">
+                    <p>Mehrere Funktionen können aus derselben Datei exportiert werden.</p>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Import</span>
                 <h2>Named Import</h2>
                 <pre><code class="js" data-trim>
 import { add, subtract } from "./math.js";
@@ -119,20 +343,45 @@ import { add, subtract } from "./math.js";
 console.log(add(4, 2));
 console.log(subtract(4, 2));
                 </code></pre>
-                <p>Die Namen müssen mit dem Export übereinstimmen.</p>
+                <div class="callout callout--warn">
+                    <p>Die Namen müssen mit dem Export übereinstimmen.</p>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Import</span>
                 <h2>Import mit Alias</h2>
                 <pre><code class="js" data-trim>
 import { add as plus } from "./math.js";
 
 console.log(plus(5, 3));
                 </code></pre>
-                <p>Mit <span class="inline-code">as</span> kann ein importierter Name lokal umbenannt werden.</p>
+                <p class="lead">Mit <span class="inline-code">as</span> kann ein importierter Name lokal umbenannt werden.</p>
             </section>
 
             <section>
+                <span class="badge badge--quiz">Quiz</span>
+                <h2>Was gibt <span class="inline-code">main.js</span> aus?</h2>
+                <pre><code class="js" data-trim data-line-numbers>
+// math.js
+export function add(a, b) {
+    return a + b;
+}
+
+// main.js
+import { add as plus } from "./math.js";
+
+console.log(plus(2, 3));
+console.log(add(2, 3));
+                </code></pre>
+                <p class="fragment answer">
+                    5, danach ReferenceError: add is not defined - nach dem
+                    Umbenennen gibt es nur noch <span class="inline-code">plus</span>
+                </p>
+            </section>
+
+            <section>
+                <span class="badge">Export</span>
                 <h2>Default Export</h2>
                 <pre><code class="js" data-trim>
 export default function formatPrice(value) {
@@ -142,12 +391,15 @@ export default function formatPrice(value) {
                 <pre><code class="js" data-trim>
 import formatPrice from "./formatPrice.js";
                 </code></pre>
-                <p>Pro Datei gibt es höchstens einen Default Export.</p>
+                <div class="callout callout--warn">
+                    <p>Pro Datei gibt es höchstens einen Default Export.</p>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Vergleich</span>
                 <h2>Named vs. Default</h2>
-                <table>
+                <table class="compare">
                     <tr>
                         <td><b>Named Export</b></td>
                         <td>mehrere Exporte pro Datei möglich</td>
@@ -164,27 +416,57 @@ import formatPrice from "./formatPrice.js";
             </section>
 
             <section>
+                <span class="badge badge--quiz">Quiz</span>
+                <h2>Was passiert hier?</h2>
+                <pre><code class="js" data-trim data-line-numbers>
+// format.js
+export default function formatPrice(value) {
+    return `CHF ${value.toFixed(2)}`;
+}
+
+// main.js
+import { formatPrice } from "./format.js";
+
+console.log(formatPrice(5));
+                </code></pre>
+                <p class="fragment answer">
+                    Fehler: format.js hat keinen Named Export
+                    <span class="inline-code">formatPrice</span> - ein Default
+                    Export wird ohne <span class="inline-code">{ }</span>
+                    importiert
+                </p>
+            </section>
+
+            <section>
+                <span class="badge">Import</span>
                 <h2>Dateipfade beim Import</h2>
                 <pre><code class="js" data-trim>
 import { renderUser } from "./ui/renderUser.js";
 import { API_URL } from "../config.js";
                 </code></pre>
-                <ul>
-                    <li><span class="inline-code">./</span> = aktueller Ordner</li>
-                    <li><span class="inline-code">../</span> = ein Ordner höher</li>
-                    <li>Dateiendung <span class="inline-code">.js</span> im Browser angeben</li>
-                </ul>
+                <div class="grid-2">
+                    <div class="panel">
+                        <p><span class="inline-code">./</span> = aktueller Ordner</p>
+                    </div>
+                    <div class="panel">
+                        <p><span class="inline-code">../</span> = ein Ordner höher</p>
+                    </div>
+                </div>
+                <div class="callout callout--warn">
+                    <p>Dateiendung <span class="inline-code">.js</span> im Browser angeben</p>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Praxis</span>
                 <h2>Beispiel: Kleine Aufteilung</h2>
-                <pre><code class="txt" data-trim>
+                <pre class="code-sm"><code class="txt" data-trim>
 js/
   main.js
   students.js
   dom.js
                 </code></pre>
-                <pre><code class="js" data-trim>
+                <pre class="code-sm"><code class="js" data-trim>
 // students.js
 export const students = ["Mia", "Noah", "Lea"];
 
@@ -198,6 +480,7 @@ import { renderList } from "./dom.js";
             </section>
 
             <section>
+                <span class="badge">Best Practice</span>
                 <h2>Worauf soll man achten?</h2>
                 <ul>
                     <li>Dateien klein und thematisch klar halten</li>
@@ -208,26 +491,39 @@ import { renderList } from "./dom.js";
             </section>
 
             <section>
+                <span class="badge">Best Practice</span>
                 <h2>Ein sinnvoller Startpunkt</h2>
-                <p><span class="inline-code">main.js</span> ist oft die Datei, welche alles zusammenführt.</p>
-                <ul>
-                    <li>andere Module importieren</li>
-                    <li>Event Listener registrieren</li>
-                    <li>Initialisierung starten</li>
-                </ul>
+                <p class="lead"><span class="inline-code">main.js</span> ist oft die Datei, welche alles zusammenführt.</p>
+                <div class="flow">
+                    <div class="box">andere Module importieren</div>
+                    <div class="arrow">→</div>
+                    <div class="box">Event Listener registrieren</div>
+                    <div class="arrow">→</div>
+                    <div class="box">Initialisierung starten</div>
+                </div>
             </section>
 
             <section>
+                <span class="badge badge--danger">Fehlerquellen</span>
                 <h2>Häufige Fehler</h2>
-                <ul>
-                    <li><span class="inline-code">type="module"</span> im HTML vergessen</li>
-                    <li>falscher relativer Pfad</li>
-                    <li><span class="inline-code">.js</span> im Import vergessen</li>
-                    <li>Named Export als Default importieren oder umgekehrt</li>
-                </ul>
+                <div class="grid-2">
+                    <div class="panel">
+                        <p><span class="inline-code">type="module"</span> im HTML vergessen</p>
+                    </div>
+                    <div class="panel">
+                        <p>falscher relativer Pfad</p>
+                    </div>
+                    <div class="panel">
+                        <p><span class="inline-code">.js</span> im Import vergessen</p>
+                    </div>
+                    <div class="panel">
+                        <p>Named Export als Default importieren oder umgekehrt</p>
+                    </div>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Projekt</span>
                 <h2>Definition of Done</h2>
                 <ul>
                     <li>Die App besteht aus mehreren JS-Dateien</li>
@@ -238,6 +534,7 @@ import { renderList } from "./dom.js";
             </section>
 
             <section>
+                <span class="badge">Projekt</span>
                 <h2>Arbeitsauftrag</h2>
                 <ol>
                     <li>Projekt mit <span class="inline-code">type="module"</span> aufsetzen</li>

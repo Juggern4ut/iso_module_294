@@ -13,17 +13,213 @@
     <link rel="stylesheet" href="plugin/highlight/monokai.css" />
 
     <style>
-        td {
-            font-size: 21px;
-        }
 
-        .inline-code {
-            font-family: Consolas, Monaco, monospace;
-            background-color: #2d2d2d;
-            padding: 2px 4px;
-            border-radius: 2px;
-            font-size: 75%;
-        }
+      :root {
+        --accent: #80ed99;
+        --accent-2: #ffd166;
+        --panel: rgba(255, 255, 255, 0.07);
+        --border: rgba(255, 255, 255, 0.22);
+        --danger: #ff6b6b;
+        --ok: #7bd88f;
+      }
+
+      td {
+        font-size: 21px;
+      }
+
+      .inline-code {
+        font-family:
+          "Consolas", "Monaco", "Andale Mono", "Ubuntu Mono", monospace;
+        display: inline-block;
+        background-color: #2d2d2d;
+        padding: 2px 4px;
+        border-radius: 2px;
+        font-size: 75%;
+      }
+
+      thead td {
+        font-weight: bold;
+        font-size: 24px;
+      }
+
+      .reveal p {
+        line-height: 1.35;
+      }
+
+      .lead {
+        font-size: 0.85em;
+      }
+
+      .small {
+        font-size: 0.7em;
+      }
+
+      .muted {
+        color: #bbbbbb;
+      }
+
+      .accent {
+        color: var(--accent);
+      }
+
+      .ok {
+        color: var(--ok);
+      }
+
+      .danger {
+        color: var(--danger);
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      /* verhindert, dass breite Code-Blöcke ein Grid sprengen */
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .grid-2 > *,
+      .grid-3 > * {
+        min-width: 0;
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px;
+        background: var(--panel);
+        text-align: left;
+        font-size: 70%;
+      }
+
+      .panel h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: var(--accent);
+        font-size: 1.3em;
+      }
+
+      .panel ul {
+        margin: 0 0 0 1em;
+      }
+
+      .panel p {
+        margin: 0;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.55em;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        border: 1px solid var(--border);
+        margin-bottom: 10px;
+      }
+
+      .badge--quiz {
+        color: var(--accent-2);
+        border-color: var(--accent-2);
+      }
+
+      .badge--danger {
+        color: var(--danger);
+        border-color: var(--danger);
+      }
+
+      .flow {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1fr;
+        gap: 10px;
+        align-items: center;
+        margin-top: 24px;
+        font-size: 0.62em;
+      }
+
+      .flow .box {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 18px 12px;
+        background: var(--panel);
+      }
+
+      .flow .arrow {
+        font-size: 1.15em;
+        color: var(--accent-2);
+      }
+
+      .callout {
+        margin-top: 24px;
+        padding: 14px 20px;
+        border-left: 4px solid var(--accent);
+        background: rgba(128, 237, 153, 0.12);
+        text-align: left;
+        font-size: 0.66em;
+      }
+
+      .callout--danger {
+        border-left-color: var(--danger);
+        background: rgba(237, 128, 128, 0.12);
+      }
+
+      .callout--warn {
+        border-left-color: var(--accent-2);
+        background: rgba(255, 209, 102, 0.12);
+      }
+
+      .callout > * {
+        margin: 0 !important;
+      }
+
+      .answer {
+        font-size: 0.7em;
+        color: var(--accent-2);
+      }
+
+      .reveal table.compare {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .reveal table.compare td,
+      .reveal table.compare th {
+        border: 1px solid var(--border);
+        padding: 8px 10px;
+        font-size: 24px;
+        text-align: left;
+      }
+
+      .reveal table.compare th {
+        color: var(--accent);
+        font-size: 26px;
+      }
+
+      /* reveal.js entfernt sonst den unteren Rand der letzten Zeile */
+      .reveal table.compare tr:last-child td,
+      .reveal table.compare tr:last-child th {
+        border-bottom: 1px solid var(--border);
+      }
+
+      /* kompakter Code, z.B. in grid-2-Spalten */
+      .reveal pre.code-sm {
+        width: 100%;
+      }
+
+      .reveal pre.code-sm td {
+        font-size: 18px;
+      }
+
+      .tldr li {
+        font-size: 0.85em;
+      }
     </style>
 </head>
 
@@ -50,27 +246,48 @@
             </section>
 
             <section>
+                <span class="badge">Einstieg</span>
                 <h2>Warum jetzt noch Vue?</h2>
-                <ul>
-                    <li>HTML, CSS und JavaScript-Grundlagen sind bekannt</li>
-                    <li>Besseres Verständnis, was ein Framework abnimmt</li>
-                    <li>Vue ist kein Ersatz für JavaScript, sondern baut darauf auf</li>
-                </ul>
+                <div class="grid-2">
+                    <div class="panel">
+                        <h3>Ausgangslage</h3>
+                        <p>HTML, CSS und JavaScript-Grundlagen sind bekannt</p>
+                    </div>
+                    <div class="panel">
+                        <h3>Gewinn</h3>
+                        <p>Besseres Verständnis, was ein Framework abnimmt</p>
+                    </div>
+                </div>
+                <div class="callout">
+                    <p>Vue ist kein Ersatz für JavaScript, sondern baut darauf auf</p>
+                </div>
             </section>
 
+
             <section>
+                <span class="badge">Grundlagen</span>
                 <h2>Was ist Vue?</h2>
-                <p>Vue ist ein JavaScript-Framework für interaktive Benutzeroberflächen.</p>
-                <ul>
-                    <li>verbindet Daten mit HTML</li>
-                    <li>aktualisiert die Oberfläche automatisch</li>
-                    <li>hilft beim Strukturieren grösserer Frontends</li>
-                </ul>
+                <p class="lead">Vue ist ein JavaScript-Framework für interaktive Benutzeroberflächen.</p>
+                <div class="grid-3">
+                    <div class="panel">
+                        <h3>Bindung</h3>
+                        <p>verbindet Daten mit HTML</p>
+                    </div>
+                    <div class="panel">
+                        <h3>Reaktivität</h3>
+                        <p>aktualisiert die Oberfläche automatisch</p>
+                    </div>
+                    <div class="panel">
+                        <h3>Struktur</h3>
+                        <p>hilft beim Strukturieren grösserer Frontends</p>
+                    </div>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Grundlagen</span>
                 <h2>Wann hilft ein Framework?</h2>
-                <ul>
+                <ul class="lead">
                     <li>wenn viele UI-Zustände gleichzeitig gepflegt werden</li>
                     <li>wenn dieselben Daten an mehreren Stellen erscheinen</li>
                     <li>wenn Komponenten wiederverwendbar sein sollen</li>
@@ -79,17 +296,23 @@
             </section>
 
             <section>
+                <span class="badge">Praxis</span>
                 <h2>Vue direkt im Browser laden</h2>
                 <pre><code class="html" data-trim>
-<div id="app"></div>
+&lt;div id="app"&gt;&lt;/div&gt;
 
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<script src="./main.js"></script>
+&lt;script
+    src="https://unpkg.com/vue@3/dist/vue.global.js"&gt;
+&lt;/script&gt;
+&lt;script src="./main.js"&gt;&lt;/script&gt;
                 </code></pre>
-                <p>Für einen ersten Einstieg reicht die CDN-Version ohne Build-Tool.</p>
+                <div class="callout">
+                    <p>Für einen ersten Einstieg reicht die CDN-Version ohne Build-Tool.</p>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Praxis</span>
                 <h2>Die kleinste Vue-App</h2>
                 <pre><code class="js" data-trim>
 const { createApp } = Vue;
@@ -102,16 +325,19 @@ createApp({
     }
 }).mount("#app");
                 </code></pre>
-                <p><span class="inline-code">mount("#app")</span> verbindet Vue mit einem HTML-Element.</p>
+                <div class="callout">
+                    <p><span class="inline-code">mount("#app")</span> verbindet Vue mit einem HTML-Element.</p>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Grundlagen</span>
                 <h2>Daten im Template anzeigen</h2>
                 <pre><code class="html" data-trim>
-<div id="app">
-    <h1>{{ title }}</h1>
-    <p>{{ message }}</p>
-</div>
+&lt;div id="app"&gt;
+    &lt;h1&gt;{{ title }}&lt;/h1&gt;
+    &lt;p&gt;{{ message }}&lt;/p&gt;
+&lt;/div&gt;
                 </code></pre>
                 <pre><code class="js" data-trim>
 data() {
@@ -124,8 +350,11 @@ data() {
             </section>
 
             <section>
+                <span class="badge">Grundlagen</span>
                 <h2>Reaktivität</h2>
-                <p>Ändert sich ein Wert in <span class="inline-code">data()</span>, aktualisiert Vue die Oberfläche automatisch.</p>
+                <div class="callout">
+                    <p>Ändert sich ein Wert in <span class="inline-code">data()</span>, aktualisiert Vue die Oberfläche automatisch.</p>
+                </div>
                 <pre><code class="js" data-trim>
 data() {
     return {
@@ -141,21 +370,55 @@ methods: {
             </section>
 
             <section>
+                <span class="badge">Grundlagen</span>
                 <h2>Events mit <span class="inline-code">v-on</span></h2>
                 <pre><code class="html" data-trim>
-<button v-on:click="increment">+1</button>
-<button @click="increment">+1</button>
+&lt;button v-on:click="increment"&gt;+1&lt;/button&gt;
+&lt;button @click="increment"&gt;+1&lt;/button&gt;
 
-<p>Zähler: {{ count }}</p>
+&lt;p&gt;Zähler: {{ count }}&lt;/p&gt;
                 </code></pre>
-                <p><span class="inline-code">@click</span> ist die Kurzschreibweise für <span class="inline-code">v-on:click</span>.</p>
+                <div class="callout callout--warn">
+                    <p><span class="inline-code">@click</span> ist die Kurzschreibweise für <span class="inline-code">v-on:click</span>.</p>
+                </div>
             </section>
 
+            <!-- Quiz: Reaktivität und Events -->
             <section>
+                <span class="badge badge--quiz">Quiz</span>
+                <h2>Was steht nach 3 Klicks da?</h2>
+                <div class="grid-2">
+                    <div>
+                    <pre class="code-sm"><code class="html" data-trim data-line-numbers>
+&lt;button @click="increment"&gt;+2&lt;/button&gt;
+&lt;p&gt;Zähler: {{ count }}&lt;/p&gt;
+                    </code></pre>
+                    </div>
+                    <div>
+                    <pre class="code-sm"><code class="js" data-trim data-line-numbers>
+data() {
+  return { count: 5 };
+},
+methods: {
+  increment() {
+    this.count += 2;
+  }
+}
+                    </code></pre>
+                    </div>
+                </div>
+                <p class="fragment answer">
+                    <b>Zähler: 11</b> - jeder Klick erhöht <span class="inline-code">count</span> um 2
+                    (5 → 7 → 9 → 11), Vue aktualisiert den Text automatisch
+                </p>
+      </section>
+
+            <section>
+                <span class="badge">Grundlagen</span>
                 <h2>Eingaben mit <span class="inline-code">v-model</span></h2>
                 <pre><code class="html" data-trim>
-<input v-model="name" placeholder="Dein Name" />
-<p>Hallo {{ name }}</p>
+&lt;input v-model="name" placeholder="Dein Name" /&gt;
+&lt;p&gt;Hallo {{ name }}&lt;/p&gt;
                 </code></pre>
                 <pre><code class="js" data-trim>
 data() {
@@ -164,15 +427,18 @@ data() {
     };
 }
                 </code></pre>
-                <p>Vue hält Formularfeld und Daten automatisch synchron.</p>
+                <div class="callout">
+                    <p>Vue hält Formularfeld und Daten automatisch synchron.</p>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Grundlagen</span>
                 <h2>Listen mit <span class="inline-code">v-for</span></h2>
                 <pre><code class="html" data-trim>
-<li v-for="student in students" :key="student">
+&lt;li v-for="student in students" :key="student"&gt;
     {{ student }}
-</li>
+&lt;/li&gt;
                 </code></pre>
                 <pre><code class="js" data-trim>
 data() {
@@ -184,52 +450,102 @@ data() {
             </section>
 
             <section>
+                <span class="badge">Grundlagen</span>
                 <h2>Bedingungen mit <span class="inline-code">v-if</span></h2>
                 <pre><code class="html" data-trim>
-<p v-if="notes.length === 0">Noch keine Notizen vorhanden</p>
-<ul v-else>
-    <li v-for="note in notes" :key="note.id">{{ note.title }}</li>
-</ul>
+&lt;p v-if="notes.length === 0"&gt;
+    Noch keine Notizen vorhanden
+&lt;/p&gt;
+&lt;ul v-else&gt;
+    &lt;li v-for="note in notes" :key="note.id"&gt;
+        {{ note.title }}
+    &lt;/li&gt;
+&lt;/ul&gt;
                 </code></pre>
-                <p>Statt viel DOM-Manipulation beschreibt man direkt den gewünschten Zustand.</p>
+                <div class="callout">
+                    <p>Statt viel DOM-Manipulation beschreibt man direkt den gewünschten Zustand.</p>
+                </div>
             </section>
 
+            <!-- Quiz: v-if / v-else / v-for -->
             <section>
+                <span class="badge badge--quiz">Quiz</span>
+                <h2>Was wird angezeigt?</h2>
+                <div class="grid-2">
+                    <div>
+                    <pre class="code-sm"><code class="html" data-trim data-line-numbers>
+&lt;p v-if="notes.length === 0"&gt;
+  Noch keine Notizen vorhanden
+&lt;/p&gt;
+&lt;ul v-else&gt;
+  &lt;li v-for="note in notes"
+    :key="note.id"&gt;
+    {{ note.title }}
+  &lt;/li&gt;
+&lt;/ul&gt;
+                    </code></pre>
+                    </div>
+                    <div>
+                    <pre class="code-sm"><code class="js" data-trim data-line-numbers>
+data() {
+  return {
+    notes: [
+      { id: 1, title: "Einkaufen" },
+      { id: 2, title: "Lernen" }
+    ]
+  };
+}
+                    </code></pre>
+                    </div>
+                </div>
+                <p class="fragment answer">
+                    Eine Liste mit «Einkaufen» und «Lernen» - der
+                    <span class="inline-code">&lt;p&gt;</span> erscheint nicht, weil
+                    <span class="inline-code">notes.length</span> 2 ist (<span class="inline-code">v-else</span> greift)
+                </p>
+      </section>
+
+            <section>
+                <span class="badge">Vergleich</span>
                 <h2>Vue gegenüber Vanilla JS</h2>
-                <table>
+                <table class="compare">
                     <tr>
-                        <td><b>Vanilla JS</b></td>
+                        <th>Vanilla JS</th>
                         <td>DOM oft direkt mit <span class="inline-code">querySelector</span> und <span class="inline-code">innerHTML</span> verändern</td>
                     </tr>
                     <tr>
-                        <td><b>Vue</b></td>
+                        <th>Vue</th>
                         <td>UI aus Daten und Zustand beschreiben</td>
                     </tr>
                     <tr>
-                        <td><b>Vorteil</b></td>
+                        <th>Vorteil</th>
                         <td>weniger manuelle Synchronisation</td>
                     </tr>
                 </table>
             </section>
 
             <section>
+                <span class="badge">Praxis</span>
                 <h2>Kleine Demo-Idee</h2>
                 <pre><code class="html" data-trim>
-<div id="app">
-    <input v-model="newNote" placeholder="Neue Notiz" />
-    <button @click="addNote">Hinzufügen</button>
+&lt;div id="app"&gt;
+    &lt;input v-model="newNote" placeholder="Neue Notiz" /&gt;
+    &lt;button @click="addNote"&gt;Hinzufügen&lt;/button&gt;
 
-    <ul>
-        <li v-for="note in notes" :key="note">{{ note }}</li>
-    </ul>
-</div>
+    &lt;ul&gt;
+        &lt;li v-for="note in notes" :key="note"&gt;{{ note }}&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
                 </code></pre>
-                <p>Genau solche Oberflächen werden mit Vue schnell angenehm baubar.</p>
+                <div class="callout">
+                    <p>Genau solche Oberflächen werden mit Vue schnell angenehm baubar.</p>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Ausblick</span>
                 <h2>Was kommt in echten Vue-Projekten dazu?</h2>
-                <ul>
+                <ul class="lead">
                     <li>Komponenten statt einer grossen Datei</li>
                     <li><span class="inline-code">props</span> für Datenübergabe</li>
                     <li><span class="inline-code">computed</span> für abgeleitete Werte</li>
@@ -239,22 +555,40 @@ data() {
             </section>
 
             <section>
+                <span class="badge">Ausblick</span>
                 <h2>Ausblick: Vue-Ökosystem</h2>
-                <ul>
-                    <li>Vite für Entwicklung und Build-Prozess</li>
-                    <li>Vue Router für mehrere Seitenansichten</li>
-                    <li>Pinia für globalen State</li>
-                    <li>Komponentenbibliotheken für grössere UIs</li>
-                </ul>
+                <div class="grid-2">
+                    <div class="panel">
+                        <h3>Vite</h3>
+                        <p>Vite für Entwicklung und Build-Prozess</p>
+                    </div>
+                    <div class="panel">
+                        <h3>Vue Router</h3>
+                        <p>Vue Router für mehrere Seitenansichten</p>
+                    </div>
+                    <div class="panel">
+                        <h3>Pinia</h3>
+                        <p>Pinia für globalen State</p>
+                    </div>
+                    <div class="panel">
+                        <h3>UI-Bibliotheken</h3>
+                        <p>Komponentenbibliotheken für grössere UIs</p>
+                    </div>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Einordnung</span>
                 <h2>Wichtige Einordnung</h2>
-                <ul>
-                    <li>Frameworks lösen nicht automatisch schlechte Logik</li>
-                    <li>Saubere JavaScript-Grundlagen bleiben entscheidend</li>
-                    <li>Wer JS versteht, lernt Vue deutlich schneller</li>
-                </ul>
+                <div class="callout callout--danger">
+                    <p>Frameworks lösen nicht automatisch schlechte Logik</p>
+                </div>
+                <div class="callout">
+                    <p>Saubere JavaScript-Grundlagen bleiben entscheidend</p>
+                </div>
+                <div class="callout">
+                    <p>Wer JS versteht, lernt Vue deutlich schneller</p>
+                </div>
             </section>
 
             <section>
@@ -268,13 +602,17 @@ data() {
             </section>
 
             <section>
+                <span class="badge">Auftrag</span>
                 <h2>Arbeitsauftrag</h2>
-                <ol>
-                    <li>Eine kleine Vue-App über CDN lesen oder aufsetzen</li>
-                    <li>Bindings, Events und Listen im Code markieren</li>
-                    <li>Den Unterschied zu Vanilla JS kurz beschreiben</li>
-                    <li>Zwei weiterführende Vue-Themen benennen</li>
-                </ol>
+                <div class="flow" style="grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; align-items: stretch;">
+                    <div class="box">Eine kleine Vue-App über CDN lesen oder aufsetzen</div>
+                    <div class="arrow" style="align-self: center;">→</div>
+                    <div class="box">Bindings, Events und Listen im Code markieren</div>
+                    <div class="arrow" style="align-self: center;">→</div>
+                    <div class="box">Den Unterschied zu Vanilla JS kurz beschreiben</div>
+                    <div class="arrow" style="align-self: center;">→</div>
+                    <div class="box">Zwei weiterführende Vue-Themen benennen</div>
+                </div>
             </section>
 
         </div>

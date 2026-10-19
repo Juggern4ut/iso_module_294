@@ -13,17 +13,210 @@
     <link rel="stylesheet" href="plugin/highlight/monokai.css" />
 
     <style>
-        td {
-            font-size: 21px;
-        }
+      :root {
+        --accent: #80ed99;
+        --accent-2: #ffd166;
+        --panel: rgba(255, 255, 255, 0.07);
+        --border: rgba(255, 255, 255, 0.22);
+        --danger: #ff6b6b;
+        --ok: #7bd88f;
+      }
 
-        .inline-code {
-            font-family: Consolas, Monaco, monospace;
-            background-color: #2d2d2d;
-            padding: 2px 4px;
-            border-radius: 2px;
-            font-size: 75%;
-        }
+      td {
+        font-size: 21px;
+      }
+
+      .inline-code {
+        font-family:
+          "Consolas", "Monaco", "Andale Mono", "Ubuntu Mono", monospace;
+        display: inline-block;
+        background-color: #2d2d2d;
+        padding: 2px 4px;
+        border-radius: 2px;
+        font-size: 75%;
+      }
+
+      thead td {
+        font-weight: bold;
+        font-size: 24px;
+      }
+
+      .reveal p {
+        line-height: 1.35;
+      }
+
+      .lead {
+        font-size: 0.85em;
+      }
+
+      .small {
+        font-size: 0.7em;
+      }
+
+      .muted {
+        color: #bbbbbb;
+      }
+
+      .accent {
+        color: var(--accent);
+      }
+
+      .ok {
+        color: var(--ok);
+      }
+
+      .danger {
+        color: var(--danger);
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      /* verhindert, dass breite Code-Blöcke ein Grid sprengen */
+      .grid-2 > *,
+      .grid-3 > * {
+        min-width: 0;
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px;
+        background: var(--panel);
+        text-align: left;
+        font-size: 70%;
+      }
+
+      .panel h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: var(--accent);
+        font-size: 1.3em;
+      }
+
+      .panel ul {
+        margin: 0 0 0 1em;
+      }
+
+      .panel p {
+        margin: 0;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.55em;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        border: 1px solid var(--border);
+        margin-bottom: 10px;
+      }
+
+      .badge--quiz {
+        color: var(--accent-2);
+        border-color: var(--accent-2);
+      }
+
+      .badge--danger {
+        color: var(--danger);
+        border-color: var(--danger);
+      }
+
+      .flow {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1fr;
+        gap: 10px;
+        align-items: center;
+        margin-top: 24px;
+        font-size: 0.62em;
+      }
+
+      .flow .box {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 18px 12px;
+        background: var(--panel);
+      }
+
+      .flow .arrow {
+        font-size: 1.15em;
+        color: var(--accent-2);
+      }
+
+      .reveal table.compare {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .reveal table.compare td,
+      .reveal table.compare th {
+        border: 1px solid var(--border);
+        padding: 8px 10px;
+        font-size: 24px;
+        text-align: left;
+      }
+
+      .reveal table.compare th {
+        color: var(--accent);
+        font-size: 26px;
+      }
+
+      .callout {
+        margin-top: 24px;
+        padding: 14px 20px;
+        border-left: 4px solid var(--accent);
+        background: rgba(128, 237, 153, 0.12);
+        text-align: left;
+        font-size: 0.66em;
+      }
+
+      .callout--danger {
+        border-left-color: var(--danger);
+        background: rgba(237, 128, 128, 0.12);
+      }
+
+      .callout--warn {
+        border-left-color: var(--accent-2);
+        background: rgba(255, 209, 102, 0.12);
+      }
+
+      .callout > * {
+        margin: 0 !important;
+      }
+
+      .answer {
+        font-size: 0.7em;
+        color: var(--accent-2);
+      }
+
+      .reveal pre.code-sm {
+        width: 100%;
+      }
+
+      .reveal pre.code-sm td {
+        font-size: 18px;
+      }
+
+      .tldr li {
+        font-size: 0.85em;
+      }
+
+      /* Ablauf mit vier Schritten */
+      .flow.flow--4 {
+        grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+      }
     </style>
 </head>
 
@@ -49,52 +242,66 @@
             </section>
 
             <section>
+                <span class="badge">Projekt</span>
                 <h2>Ausgangslage</h2>
-                <ul>
-                    <li>Notizen-App mit CRUD ist vorhanden</li>
-                    <li>Jetzt sollen Notizen nur für eingeloggte Nutzer sichtbar sein</li>
-                    <li>Wir implementieren bewusst eine einfache Auth-Version</li>
-                </ul>
+                <div class="grid-3">
+                    <div class="panel">
+                        <h3>Bisher</h3>
+                        <p>Notizen-App mit CRUD ist vorhanden</p>
+                    </div>
+                    <div class="panel">
+                        <h3>Neu</h3>
+                        <p>Jetzt sollen Notizen nur für eingeloggte Nutzer sichtbar sein</p>
+                    </div>
+                    <div class="panel">
+                        <h3>Umfang</h3>
+                        <p>Wir implementieren bewusst eine einfache Auth-Version</p>
+                    </div>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Grundlagen</span>
                 <h2>Einfacher API-Flow</h2>
-                <p>
-                    Login-Formular
-                    <span class="inline-code">-&gt;</span>
-                    <span class="inline-code">POST /auth/login</span>
-                    <span class="inline-code">-&gt;</span>
-                    Token
-                    <span class="inline-code">-&gt;</span>
-                    <span class="inline-code">Authorization: Bearer ...</span>
-                </p>
+                <div class="flow flow--4">
+                    <div class="box">Login-Formular</div>
+                    <div class="arrow">→</div>
+                    <div class="box"><span class="inline-code">POST /auth/login</span></div>
+                    <div class="arrow">→</div>
+                    <div class="box">Token</div>
+                    <div class="arrow">→</div>
+                    <div class="box"><span class="inline-code">Authorization: Bearer ...</span></div>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Grundlagen</span>
                 <h2>Auth-Endpoint</h2>
-                <ul>
-                    <pre style="width: 100%">
-                        <code class="js" data-trim>
-                            `/api/collections/users/auth-with-password`
-                        </code>
-                    </pre>
-                </ul>
+                <pre style="width: 100%">
+                    <code class="js" data-trim>
+                        `/api/collections/users/auth-with-password`
+                    </code>
+                </pre>
             </section>
 
             <section>
+                <span class="badge">Login</span>
                 <h2>Login-Formular (HTML)</h2>
                 <pre><code class="html" data-trim>
-                        <form id="login-form">
-                            <input id="username" placeholder="Benutzername" required />
-                            <input id="password" type="password" placeholder="Passwort" required />
-                            <button type="submit">Login</button>
-                        </form>
+                        &lt;form id="login-form"&gt;
+                            &lt;input id="username" placeholder="Benutzername"
+                                   required /&gt;
+                            &lt;input id="password" type="password"
+                                   placeholder="Passwort" required /&gt;
+                            &lt;button type="submit"&gt;Login&lt;/button&gt;
+                        &lt;/form&gt;
                     </code></pre>
             </section>
 
             <section>
+                <span class="badge">Login</span>
                 <h2>Login-Request</h2>
-                <pre><code class="js" data-trim>
+                <pre class="code-sm"><code class="js" data-trim>
                         async function login(username, password) {
                             const response = await fetch(`${AUTH_URL}`, {
                                 method: "POST",
@@ -112,6 +319,7 @@
             </section>
 
             <section>
+                <span class="badge">Token</span>
                 <h2>Token speichern</h2>
                 <pre><code class="js" data-trim>
                         function saveToken(token) {
@@ -129,35 +337,61 @@
             </section>
 
             <section>
+                <span class="badge">Token</span>
                 <h2>Authorization Header</h2>
                 <pre><code class="js" data-trim>
-                        async function fetchWithAuth(url, options = {}) {
-                            const token = getToken();
+                        const token = getToken();
 
-                            const headers = {
-                                // Bereits vorhandene Header
+                        const response = await fetch(`${BASE_URL}/notes`, {
+                            headers: {
                                 Authorization: `Bearer ${token}`
-                            };
-
-                            return fetch(url, { ...options, headers });
-                        }
+                            }
+                        });
                     </code></pre>
+                <div class="callout">
+                    Jeder Request an einen geschützten Endpoint muss den Header
+                    <span class="inline-code">Authorization: Bearer &lt;Token&gt;</span> mitgeben –
+                    auch <span class="inline-code">POST</span>, <span class="inline-code">PUT</span> und
+                    <span class="inline-code">DELETE</span>.
+                </div>
             </section>
 
             <section>
-                <h2>Geschützte Daten laden</h2>
+                <span class="badge badge--quiz">Quiz</span>
+                <h2>Was gibt dieser Code aus?</h2>
                 <pre><code class="js" data-trim>
-                        async function loadNotes() {
-                            const response = await fetchWithAuth(`${BASE_URL}/notes`);
+                        const token = "abc123";
 
+                        const options = {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            headers: { Authorization: `Bearer ${token}` }
+                        };
+
+                        console.log(options.method, options.headers);
+                    </code></pre>
+                <p class="fragment answer">
+                    <span class="inline-code">POST { Authorization: 'Bearer abc123' }</span> –
+                    der zweite <span class="inline-code">headers</span>-Schlüssel überschreibt den ersten,
+                    <span class="inline-code">Content-Type</span> geht verloren. Alle Header gehören
+                    in <b>dasselbe</b> <span class="inline-code">headers</span>-Objekt.
+                </p>
+            </section>
+
+            <section>
+                <span class="badge">Token</span>
+                <h2>Geschützte Daten laden</h2>
+                <pre class="code-sm"><code class="js" data-trim>
+                        async function loadNotes() {
+                            const response = await fetch(`${BASE_URL}/notes`, {
+                                headers: { Authorization: `Bearer ${getToken()}` }
+                            });
                             if (response.status === 401) {
                                 clearToken();
                                 showLogin();
                                 throw new Error("Nicht autorisiert");
                             }
-
                             if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
                             const notes = await response.json();
                             renderNotes(notes);
                         }
@@ -165,8 +399,36 @@
             </section>
 
             <section>
+                <span class="badge badge--quiz">Quiz</span>
+                <h2>Was passiert hier?</h2>
+                <p class="small">Der Server antwortet auf den Request mit Status <b>403</b>.
+                    Was macht <span class="inline-code">loadNotes()</span>? Wird das Token gelöscht?</p>
+                <pre style="font-size: 0.42em"><code class="js" data-trim>
+                        async function loadNotes() {
+                            const response = await fetch(`${BASE_URL}/notes`, {
+                                headers: { Authorization: `Bearer ${getToken()}` }
+                            });
+                            if (response.status === 401) {
+                                clearToken();
+                                showLogin();
+                                throw new Error("Nicht autorisiert");
+                            }
+                            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                            const notes = await response.json();
+                            renderNotes(notes);
+                        }
+                    </code></pre>
+                <p class="fragment answer">
+                    Es wird <span class="inline-code">Error("HTTP 403")</span> geworfen.
+                    Nur bei 401 werden <span class="inline-code">clearToken()</span> und
+                    <span class="inline-code">showLogin()</span> aufgerufen – das Token bleibt also gespeichert.
+                </p>
+            </section>
+
+            <section>
+                <span class="badge">Login</span>
                 <h2>Login-Submit</h2>
-                <pre><code class="js" data-trim>
+                <pre class="code-sm"><code class="js" data-trim>
                         loginForm.addEventListener("submit", async (event) => {
                             event.preventDefault();
 
@@ -184,6 +446,7 @@
             </section>
 
             <section>
+                <span class="badge">Login</span>
                 <h2>Logout</h2>
                 <pre><code class="js" data-trim>
                         logoutButton.addEventListener("click", () => {
@@ -195,26 +458,47 @@
             </section>
 
             <section>
+                <span class="badge badge--danger">Sicherheit</span>
                 <h2>Sicherheits-Hinweise (einfach)</h2>
-                <ul>
-                    <li>Passwörter niemals im Frontend hardcoden</li>
-                    <li>Token nicht in Logs ausgeben</li>
-                    <li>In Produktion nur über HTTPS arbeiten</li>
-                    <li>Token-Ablauf und Refresh kommen später</li>
-                </ul>
+                <div class="grid-2">
+                    <div class="callout callout--danger" style="margin-top: 0">
+                        <ul style="padding-left: 1em">
+                            <li>Passwörter niemals im Frontend hardcoden</li>
+                            <li>Token nicht in Logs ausgeben</li>
+                        </ul>
+                    </div>
+                    <div class="callout callout--warn" style="margin-top: 0">
+                        <ul style="padding-left: 1em">
+                            <li>In Produktion nur über HTTPS arbeiten</li>
+                            <li>Token-Ablauf und Refresh kommen später</li>
+                        </ul>
+                    </div>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Projekt</span>
                 <h2>Definition of Done</h2>
-                <ul>
-                    <li>Login mit gültigen Daten funktioniert</li>
-                    <li>Token wird gespeichert und verwendet</li>
-                    <li>Ohne Token schlagen geschützte Requests fehl</li>
-                    <li>Logout entfernt Token und sperrt Zugriff</li>
-                </ul>
+                <div class="grid-2">
+                    <div class="panel">
+                        <h3>Login</h3>
+                        <ul>
+                            <li>Login mit gültigen Daten funktioniert</li>
+                            <li>Token wird gespeichert und verwendet</li>
+                        </ul>
+                    </div>
+                    <div class="panel">
+                        <h3>Schutz</h3>
+                        <ul>
+                            <li>Ohne Token schlagen geschützte Requests fehl</li>
+                            <li>Logout entfernt Token und sperrt Zugriff</li>
+                        </ul>
+                    </div>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Projekt</span>
                 <h2>Arbeitsauftrag</h2>
                 <ol>
                     <li>Login-Form + Login-Request implementieren</li>

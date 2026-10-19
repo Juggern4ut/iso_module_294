@@ -13,17 +13,211 @@
     <link rel="stylesheet" href="plugin/highlight/monokai.css" />
 
     <style>
-        td {
-            font-size: 21px;
-        }
+      :root {
+        --accent: #80ed99;
+        --accent-2: #ffd166;
+        --panel: rgba(255, 255, 255, 0.07);
+        --border: rgba(255, 255, 255, 0.22);
+        --danger: #ff6b6b;
+        --ok: #7bd88f;
+      }
 
-        .inline-code {
-            font-family: Consolas, Monaco, monospace;
-            background-color: #2d2d2d;
-            padding: 2px 4px;
-            border-radius: 2px;
-            font-size: 75%;
-        }
+      td {
+        font-size: 21px;
+      }
+
+      .inline-code {
+        font-family:
+          "Consolas", "Monaco", "Andale Mono", "Ubuntu Mono", monospace;
+        display: inline-block;
+        background-color: #2d2d2d;
+        padding: 2px 4px;
+        border-radius: 2px;
+        font-size: 75%;
+      }
+
+      thead td {
+        font-weight: bold;
+        font-size: 24px;
+      }
+
+      .reveal p {
+        line-height: 1.35;
+      }
+
+      .lead {
+        font-size: 0.85em;
+      }
+
+      .small {
+        font-size: 0.7em;
+      }
+
+      .muted {
+        color: #bbbbbb;
+      }
+
+      .accent {
+        color: var(--accent);
+      }
+
+      .ok {
+        color: var(--ok);
+      }
+
+      .danger {
+        color: var(--danger);
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      /* verhindert, dass breite Code-Blöcke ein Grid sprengen */
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .grid-2 > *,
+      .grid-3 > * {
+        min-width: 0;
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px;
+        background: var(--panel);
+        text-align: left;
+        font-size: 70%;
+      }
+
+      .panel h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: var(--accent);
+        font-size: 1.3em;
+      }
+
+      .panel ul {
+        margin: 0 0 0 1em;
+      }
+
+      .panel p {
+        margin: 0;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.55em;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        border: 1px solid var(--border);
+        margin-bottom: 10px;
+      }
+
+      .badge--quiz {
+        color: var(--accent-2);
+        border-color: var(--accent-2);
+      }
+
+      .badge--danger {
+        color: var(--danger);
+        border-color: var(--danger);
+      }
+
+      .flow {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1fr;
+        gap: 10px;
+        align-items: center;
+        margin-top: 24px;
+        font-size: 0.62em;
+      }
+
+      .flow--5 {
+        grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+        font-size: 0.55em;
+      }
+
+      .flow .box {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 18px 12px;
+        background: var(--panel);
+      }
+
+      .flow .arrow {
+        font-size: 1.15em;
+        color: var(--accent-2);
+      }
+
+      .reveal table.compare {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .reveal table.compare td,
+      .reveal table.compare th {
+        border: 1px solid var(--border);
+        padding: 8px 10px;
+        font-size: 24px;
+        text-align: left;
+      }
+
+      .reveal table.compare th {
+        color: var(--accent);
+        font-size: 26px;
+      }
+
+      .callout {
+        margin-top: 24px;
+        padding: 14px 20px;
+        border-left: 4px solid var(--accent);
+        background: rgba(128, 237, 153, 0.12);
+        text-align: left;
+        font-size: 0.66em;
+      }
+
+      .callout--danger {
+        border-left-color: var(--danger);
+        background: rgba(237, 128, 128, 0.12);
+      }
+
+      .callout--warn {
+        border-left-color: var(--accent-2);
+        background: rgba(255, 209, 102, 0.12);
+      }
+
+      .callout > * {
+        margin: 0 !important;
+      }
+
+      .answer {
+        font-size: 0.7em;
+        color: var(--accent-2);
+      }
+
+      .reveal pre.code-sm {
+        width: 100%;
+        font-size: 0.48em;
+      }
+
+      .reveal pre.code-sm td {
+        font-size: 18px;
+      }
+
+      .tldr li {
+        font-size: 0.85em;
+      }
     </style>
 </head>
 
@@ -49,44 +243,75 @@
             </section>
 
             <section>
+                <span class="badge">Projekt</span>
                 <h2>Stand des Projekts</h2>
-                <ul>
-                    <li>Frontend-Struktur der Notiz-App steht</li>
-                    <li>Heute: echte Daten statt statischer Testdaten</li>
-                    <li>Ziel: Lesen + Erstellen von Notizen</li>
-                </ul>
+                <div class="grid-3">
+                    <div class="panel">
+                        <h3>Bisher</h3>
+                        <p>Frontend-Struktur der Notiz-App steht</p>
+                    </div>
+                    <div class="panel">
+                        <h3>Heute</h3>
+                        <p>echte Daten statt statischer Testdaten</p>
+                    </div>
+                    <div class="panel">
+                        <h3>Ziel</h3>
+                        <p>Lesen + Erstellen von Notizen</p>
+                    </div>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Grundlagen</span>
                 <h2>Allgemeiner Datenfluss</h2>
-                <p>
-                    Browser UI
-                    <span class="inline-code">-&gt;</span><br />
-                    Fetch Request
-                    <span class="inline-code">-&gt;</span><br />
-                    Backend API
-                    <span class="inline-code">-&gt;</span><br />
-                    JSON Response
-                    <span class="inline-code">-&gt;</span><br />
-                    DOM Update
-                </p>
+                <div class="flow flow--5">
+                    <div class="box">Browser UI</div>
+                    <div class="arrow">→</div>
+                    <div class="box">Fetch Request</div>
+                    <div class="arrow">→</div>
+                    <div class="box">Backend API</div>
+                    <div class="arrow">→</div>
+                    <div class="box">JSON Response</div>
+                    <div class="arrow">→</div>
+                    <div class="box">DOM Update</div>
+                </div>
             </section>
 
             <section>
+                <span class="badge">Projekt</span>
                 <h2>Bereitgestellte Endpoints</h2>
-                <p>Sie finden ein Pocketbase Backend unter der URL <span class="inline-code">notes.iso.lmeier.ch</span></p>
-                <ul>
-                    <li><span class="inline-code">GET</span> auf <span class="inline-code">/api/collections/notes/records</span> - alle Notizen laden</li>
-                    <li><span class="inline-code">POST</span> auf <span class="inline-code">/api/collections/notes/records</span> - neue Notiz erstellen</li>
-                </ul>
+                <p class="lead">Sie finden ein Pocketbase Backend unter der URL <span class="inline-code">notes.iso.lmeier.ch</span></p>
+                <table class="compare">
+                    <thead>
+                        <tr>
+                            <th>Methode</th>
+                            <th>Endpoint</th>
+                            <th>Zweck</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="inline-code">GET</span></td>
+                            <td><span class="inline-code">/api/collections/notes/records</span></td>
+                            <td>alle Notizen laden</td>
+                        </tr>
+                        <tr>
+                            <td><span class="inline-code">POST</span></td>
+                            <td><span class="inline-code">/api/collections/notes/records</span></td>
+                            <td>neue Notiz erstellen</td>
+                        </tr>
+                    </tbody>
+                </table>
             </section>
 
             <section>
+                <span class="badge">Projekt</span>
                 <h2>HTML-Basis</h2>
                 <pre><code class="html" data-trim>
 &lt;form id="note-form"&gt;
     &lt;input id="title" placeholder="Titel" required /&gt;
-    &lt;textarea id="content" placeholder="Notizinhalt" required&gt;&lt;/textarea&gt;
+    &lt;textarea id="content" placeholder="Notizinhalt"
+        required&gt;&lt;/textarea&gt;
     &lt;button type="submit"&gt;Speichern&lt;/button&gt;
 &lt;/form&gt;
 
@@ -95,10 +320,12 @@
             </section>
 
             <section>
+                <span class="badge">Projekt</span>
                 <h2>Konfiguration im JS</h2>
                 <pre><code class="js" data-trim>
 const BASE_URL = "http://notes.iso.lmeier.ch";
-const NOTES_ENDPOINT = `${BASE_URL}/api/collections/notes/records`;
+const NOTES_ENDPOINT =
+    `${BASE_URL}/api/collections/notes/records`;
 
 const form = document.querySelector("#note-form");
 const notesList = document.querySelector("#notes-list");
@@ -106,6 +333,7 @@ const notesList = document.querySelector("#notes-list");
             </section>
 
             <section>
+                <span class="badge">Fetch</span>
                 <h2>Notizen laden (GET)</h2>
                 <pre><code class="js" data-trim>
 async function loadNotes() {
@@ -120,6 +348,7 @@ async function loadNotes() {
             </section>
 
             <section>
+                <span class="badge">DOM</span>
                 <h2>Notizen darstellen</h2>
                 <pre><code class="js" data-trim>
 function renderNotes(notes) {
@@ -135,8 +364,9 @@ function renderNotes(notes) {
             </section>
 
             <section>
+                <span class="badge">Fetch</span>
                 <h2>Notiz erstellen (POST)</h2>
-                <pre><code class="js" data-trim>
+                <pre class="code-sm"><code class="js" data-trim>
 async function createNote(noteData) {
     const response = await fetch(NOTES_ENDPOINT, {
         method: "POST",
@@ -156,6 +386,24 @@ async function createNote(noteData) {
             </section>
 
             <section>
+                <span class="badge badge--quiz">Quiz</span>
+                <h2>Was gibt dieser Code aus?</h2>
+                <pre><code class="js" data-trim>
+const noteData = { title: "Einkauf", content: "Milch" };
+const body = JSON.stringify(noteData);
+
+console.log(typeof body);
+console.log(body);
+                </code></pre>
+                <p class="fragment answer">
+                    <span class="inline-code">string</span> und
+                    <span class="inline-code">{"title":"Einkauf","content":"Milch"}</span>
+                    – der Body eines POST-Requests ist Text, kein Objekt
+                </p>
+            </section>
+
+            <section>
+                <span class="badge">Projekt</span>
                 <h2>Formular absenden</h2>
                 <pre><code class="js" data-trim>
 form.addEventListener("submit", async (event) => {
@@ -174,6 +422,7 @@ form.addEventListener("submit", async (event) => {
             </section>
 
             <section>
+                <span class="badge">Fehler</span>
                 <h2>Fehlerbehandlung im UI</h2>
                 <pre><code class="js" data-trim>
 async function init() {
@@ -181,7 +430,8 @@ async function init() {
         await loadNotes();
     } catch (error) {
         console.error(error);
-        notesList.innerHTML = "&lt;li&gt;Fehler beim Laden der Notizen&lt;/li&gt;";
+        notesList.innerHTML =
+            "&lt;li&gt;Fehler beim Laden der Notizen&lt;/li&gt;";
     }
 }
 
@@ -190,16 +440,55 @@ init();
             </section>
 
             <section>
-                <h2>Typische Fehlerquellen</h2>
-                <ul>
-                    <li>Falscher Endpoint oder Port</li>
-                    <li>Backend nicht gestartet</li>
-                    <li>Fehlender Header <span class="inline-code">Content-Type</span></li>
-                    <li>CORS blockiert Request</li>
-                </ul>
+                <span class="badge badge--quiz">Quiz</span>
+                <h2>Was gibt dieser Code aus?</h2>
+                <pre class="code-sm"><code class="js" data-trim>
+async function loadNotes() {
+    throw new Error("HTTP 404");
+}
+
+async function init() {
+    try {
+        await loadNotes();
+        console.log("geladen");
+    } catch (error) {
+        console.log("Fehler:", error.message);
+    }
+}
+
+init();
+                </code></pre>
+                <p class="fragment answer">
+                    <span class="inline-code">Fehler: HTTP 404</span> – nach dem
+                    Fehler springt der Code direkt in den
+                    <span class="inline-code">catch</span>-Block, "geladen" wird
+                    nie ausgegeben
+                </p>
             </section>
 
             <section>
+                <span class="badge badge--danger">Fehlerquellen</span>
+                <h2>Typische Fehlerquellen</h2>
+                <div class="grid-2">
+                    <div class="panel">
+                        <h3>Backend</h3>
+                        <ul>
+                            <li>Falscher Endpoint oder Port</li>
+                            <li>Backend nicht gestartet</li>
+                        </ul>
+                    </div>
+                    <div class="panel">
+                        <h3>Request</h3>
+                        <ul>
+                            <li>Fehlender Header <span class="inline-code">Content-Type</span></li>
+                            <li>CORS blockiert Request</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <span class="badge">Checkliste</span>
                 <h2>Mini-Checkliste</h2>
                 <ul>
                     <li>Kann ich Notizen laden?</li>
@@ -210,6 +499,7 @@ init();
             </section>
 
             <section>
+                <span class="badge">Praxis</span>
                 <h2>Arbeitsauftrag heute</h2>
                 <ol>
                     <li>GET-Integration fertigstellen</li>

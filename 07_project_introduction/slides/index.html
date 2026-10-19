@@ -15,16 +15,204 @@
     <link rel="stylesheet" href="plugin/highlight/monokai.css" />
 
     <style>
+      :root {
+        --accent: #80ed99;
+        --accent-2: #ffd166;
+        --panel: rgba(255, 255, 255, 0.07);
+        --border: rgba(255, 255, 255, 0.22);
+        --danger: #ff6b6b;
+        --ok: #7bd88f;
+      }
+
       td {
         font-size: 21px;
       }
 
       .inline-code {
-        font-family: Consolas, Monaco, monospace;
+        font-family:
+          "Consolas", "Monaco", "Andale Mono", "Ubuntu Mono", monospace;
+        display: inline-block;
         background-color: #2d2d2d;
         padding: 2px 4px;
         border-radius: 2px;
         font-size: 75%;
+      }
+
+      thead td {
+        font-weight: bold;
+        font-size: 24px;
+      }
+
+      .reveal p {
+        line-height: 1.35;
+      }
+
+      .lead {
+        font-size: 0.85em;
+      }
+
+      .small {
+        font-size: 0.7em;
+      }
+
+      .muted {
+        color: #bbbbbb;
+      }
+
+      .accent {
+        color: var(--accent);
+      }
+
+      .ok {
+        color: var(--ok);
+      }
+
+      .danger {
+        color: var(--danger);
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      /* verhindert, dass breite Code-Blöcke ein Grid sprengen */
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .grid-2 > *,
+      .grid-3 > * {
+        min-width: 0;
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px;
+        background: var(--panel);
+        text-align: left;
+        font-size: 70%;
+      }
+
+      .panel h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: var(--accent);
+        font-size: 1.3em;
+      }
+
+      .panel ul {
+        margin: 0 0 0 1em;
+      }
+
+      .panel p {
+        margin: 0;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.55em;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        border: 1px solid var(--border);
+        margin-bottom: 10px;
+      }
+
+      .badge--quiz {
+        color: var(--accent-2);
+        border-color: var(--accent-2);
+      }
+
+      .badge--danger {
+        color: var(--danger);
+        border-color: var(--danger);
+      }
+
+      .flow {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1fr;
+        gap: 10px;
+        align-items: center;
+        margin-top: 24px;
+        font-size: 0.62em;
+      }
+
+      .flow .box {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 18px 12px;
+        background: var(--panel);
+      }
+
+      .flow .arrow {
+        font-size: 1.15em;
+        color: var(--accent-2);
+      }
+
+      .reveal table.compare {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .reveal table.compare td,
+      .reveal table.compare th {
+        border: 1px solid var(--border);
+        padding: 8px 10px;
+        font-size: 24px;
+        text-align: left;
+      }
+
+      .reveal table.compare th {
+        color: var(--accent);
+        font-size: 26px;
+      }
+
+      .callout {
+        margin-top: 24px;
+        padding: 14px 20px;
+        border-left: 4px solid var(--accent);
+        background: rgba(128, 237, 153, 0.12);
+        text-align: left;
+        font-size: 0.66em;
+      }
+
+      .callout--danger {
+        border-left-color: var(--danger);
+        background: rgba(237, 128, 128, 0.12);
+      }
+
+      .callout--warn {
+        border-left-color: var(--accent-2);
+        background: rgba(255, 209, 102, 0.12);
+      }
+
+      .callout > * {
+        margin: 0 !important;
+      }
+
+      .answer {
+        font-size: 0.7em;
+        color: var(--accent-2);
+      }
+
+      .reveal pre.code-sm {
+        width: 100%;
+      }
+
+      .reveal pre.code-sm td {
+        font-size: 18px;
+      }
+
+      .tldr li {
+        font-size: 0.85em;
       }
     </style>
   </head>
@@ -54,134 +242,229 @@
         </section>
 
         <section>
+          <span class="badge">Projekt</span>
           <h2>Projekteinführung</h2>
-          <p>
+          <p class="lead">
             Eine simple Notizenapp mit folgenden Features um das gelernte
             praktisch anzuwenden.
           </p>
-          <ul>
-            <li>Erfassen neuer Notizen via Web-Interface</li>
-            <li>Verwalten von Notizen (löschen, bearbeiten)</li>
-            <li>Versionsverwaltung mit Git</li>
-            <li>(Opt.) Login, Authentifizierung</li>
-          </ul>
+          <div class="grid-2">
+            <div class="panel">
+              <h3>Notizen</h3>
+              <ul>
+                <li>Erfassen neuer Notizen via Web-Interface</li>
+                <li>Verwalten von Notizen (löschen, bearbeiten)</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Drumherum</h3>
+              <ul>
+                <li>Versionsverwaltung mit Git</li>
+                <li>(Opt.) Login, Authentifizierung</li>
+              </ul>
+            </div>
+          </div>
         </section>
 
         <section>
+          <span class="badge">Git</span>
           <h2>Versionsverwaltung mit Git</h2>
           <p>Kurzüberblick für unser Projekt</p>
         </section>
 
         <section>
+          <span class="badge">Git</span>
           <h2>Was ist Git?</h2>
-          <ul>
-            <li>Git ist ein Versionsverwaltungssystem</li>
-            <li>Es speichert Änderungen am Code</li>
-            <li>Man kann jederzeit zu alten Versionen zurückkehren</li>
-          </ul>
+          <div class="callout">
+            <p>Git ist ein Versionsverwaltungssystem</p>
+          </div>
+          <div class="grid-2">
+            <div class="panel">
+              <h3>Speichern</h3>
+              <p>Es speichert Änderungen am Code</p>
+            </div>
+            <div class="panel">
+              <h3>Zurückkehren</h3>
+              <p>Man kann jederzeit zu alten Versionen zurückkehren</p>
+            </div>
+          </div>
         </section>
 
         <section>
+          <span class="badge">Git</span>
           <h2>Warum nutzen wir Git?</h2>
-          <ul>
-            <li>Übersicht über Änderungen</li>
-            <li>Sicherheit bei Fehlern</li>
-            <li>Zusammenarbeit im Team</li>
-            <li>Standard in der Softwareentwicklung</li>
-          </ul>
+          <div class="grid-2">
+            <div class="panel">
+              <h3>Für mich</h3>
+              <ul>
+                <li>Übersicht über Änderungen</li>
+                <li>Sicherheit bei Fehlern</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Für das Team</h3>
+              <ul>
+                <li>Zusammenarbeit im Team</li>
+                <li>Standard in der Softwareentwicklung</li>
+              </ul>
+            </div>
+          </div>
         </section>
 
         <section>
+          <span class="badge">Git</span>
           <h2>Wie arbeitet Git grundsätzlich?</h2>
-          <ul>
-            <li>Dateien werden geändert</li>
-            <li>Änderungen werden gespeichert (Commit)</li>
-            <li>Commits bilden die Projekt-Historie</li>
-          </ul>
+          <div class="flow">
+            <div class="box">Dateien werden geändert</div>
+            <div class="arrow">→</div>
+            <div class="box">Änderungen werden gespeichert (Commit)</div>
+            <div class="arrow">→</div>
+            <div class="box">Commits bilden die Projekt-Historie</div>
+          </div>
         </section>
 
         <section>
+          <span class="badge">Git</span>
           <h2>Wichtige Git-Begriffe</h2>
-          <ul>
-            <li><b>Repository</b> – das Projekt</li>
-            <li><b>Commit</b> – gespeicherter Stand</li>
-            <li><b>History</b> – alle bisherigen Versionen</li>
-          </ul>
+          <div class="grid-3">
+            <div class="panel">
+              <h3>Repository</h3>
+              <p>das Projekt</p>
+            </div>
+            <div class="panel">
+              <h3>Commit</h3>
+              <p>gespeicherter Stand</p>
+            </div>
+            <div class="panel">
+              <h3>History</h3>
+              <p>alle bisherigen Versionen</p>
+            </div>
+          </div>
         </section>
 
         <section>
+          <span class="badge">Git</span>
           <h2>Die wichtigsten Git-Commands</h2>
-          <ul>
-            <li>
-              <span class="inline-code">git init</span> – Repository erstellen
-            </li>
-            <li>
-              <span class="inline-code">git status</span> – Status anzeigen
-            </li>
-            <li>
-              <span class="inline-code">git add</span> – Dateien vormerken
-            </li>
-            <li>
-              <span class="inline-code">git commit</span> – Aenderungen
-              speichern
-            </li>
-          </ul>
+          <table class="compare">
+            <thead>
+              <tr>
+                <th>Command</th>
+                <th>Zweck</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="inline-code">git init</span></td>
+                <td>Repository erstellen</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">git status</span></td>
+                <td>Status anzeigen</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">git add</span></td>
+                <td>Dateien vormerken</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">git commit</span></td>
+                <td>Aenderungen speichern</td>
+              </tr>
+            </tbody>
+          </table>
         </section>
 
         <section>
+          <span class="badge">Git</span>
           <h2>git add</h2>
           <pre><code class="bash" data-trim>
                         git add .
                     </code></pre>
-          <p>Fügt alle aktuellen Änderungen zum nächsten Commit hinzu.</p>
+          <div class="callout">
+            <p>Fügt alle aktuellen Änderungen zum nächsten Commit hinzu.</p>
+          </div>
         </section>
 
         <section>
+          <span class="badge">Git</span>
           <h2>git commit</h2>
           <pre><code class="bash" data-trim>
                         git commit -m "Erste Version der App"
                     </code></pre>
-          <p>Speichert einen festen Stand des Projekts.</p>
+          <div class="callout">
+            <p>Speichert einen festen Stand des Projekts.</p>
+          </div>
         </section>
 
         <section>
-          <h2>Remote Repositories</h2>
-          <ul>
-            <li>Code kann online gespeichert werden</li>
-            <li>z.B. auf GitHub oder GitLab</li>
-            <li>Erlaubt Zusammenarbeit und Backup</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>git push</h2>
+          <span class="badge badge--quiz">Quiz</span>
+          <h2>Was passiert hier?</h2>
           <pre><code class="bash" data-trim>
-                        git push
+                        git init
+                        # neue Datei index.html anlegen
+                        git commit -m "Erste Version der App"
                     </code></pre>
-          <p>Lädt die lokalen Commits ins Remote-Repository hoch.</p>
-        </section>
-
-        <section>
-          <h2>Wichtig für dieses Projekt</h2>
-          <ul>
-            <li>Regelmässig committen</li>
-            <li>Sinnvolle Commit-Nachrichten schreiben</li>
-            <li>Git dient als Sicherheitsnetz</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>Merksatz</h2>
-          <p>
-            <span class="inline-code">add</span> →
-            <span class="inline-code">commit</span> →
-            <span class="inline-code">push</span>
+          <p class="fragment answer">
+            Es wird kein Commit erstellt: Git meldet "nothing added to commit
+            but untracked files present". Ohne
+            <span class="inline-code">git add</span> ist nichts vorgemerkt.
           </p>
         </section>
 
         <section>
+          <span class="badge">Git</span>
+          <h2>Remote Repositories</h2>
+          <ul>
+            <li>Code kann online gespeichert werden</li>
+            <li>z.B. auf GitHub oder GitLab</li>
+          </ul>
+          <div class="callout">
+            <p>Erlaubt Zusammenarbeit und Backup</p>
+          </div>
+        </section>
+
+        <section>
+          <span class="badge">Git</span>
+          <h2>git push</h2>
+          <pre><code class="bash" data-trim>
+                        git push
+                    </code></pre>
+          <div class="callout">
+            <p>Lädt die lokalen Commits ins Remote-Repository hoch.</p>
+          </div>
+        </section>
+
+        <section>
+          <span class="badge">Projekt</span>
+          <h2>Wichtig für dieses Projekt</h2>
+          <div class="grid-3">
+            <div class="panel">
+              <p>Regelmässig committen</p>
+            </div>
+            <div class="panel">
+              <p>Sinnvolle Commit-Nachrichten schreiben</p>
+            </div>
+            <div class="panel">
+              <p>Git dient als Sicherheitsnetz</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <span class="badge">Git</span>
+          <h2>Merksatz</h2>
+          <div class="flow">
+            <div class="box"><span class="inline-code">add</span></div>
+            <div class="arrow">→</div>
+            <div class="box"><span class="inline-code">commit</span></div>
+            <div class="arrow">→</div>
+            <div class="box"><span class="inline-code">push</span></div>
+          </div>
+        </section>
+
+        <section>
+          <span class="badge">Praxis</span>
           <h2>Erstellen einer Codebase</h2>
-          <ol>
+          <ol class="lead">
             <li>
               Erstellen Sie einen neuen Ordner
               <span class="inline-code">notes-app</span>
@@ -203,16 +486,20 @@
         </section>
 
         <section>
+          <span class="badge">Praxis</span>
           <h2>Git-Repository initialisieren</h2>
-          <p>
-            Navigieren Sie in ihrem Terminal in ihren Projektordner und führen
-            Sie <span class="inline-code">git init</span> aus
-          </p>
+          <div class="callout">
+            <p>
+              Navigieren Sie in ihrem Terminal in ihren Projektordner und führen
+              Sie <span class="inline-code">git init</span> aus
+            </p>
+          </div>
         </section>
 
         <section>
+          <span class="badge">Praxis</span>
           <h2>Github authentifizieren</h2>
-          <ol>
+          <ol class="lead">
             <li>
               Neuen SSH-Key erstellen:<br /><span class="inline-code"
                 >ssh-keygen -t ed25519 -C "&lt;mail&gt;"</span
@@ -235,30 +522,33 @@
         </section>
 
         <section>
+          <span class="badge">Praxis</span>
           <h2>Remote erstellen</h2>
-          <ul>
-            <li>
-              Erstellen Sie in Ihrem GitHub-Account (oder ähnlich) ein neues
-              Repository.
-            </li>
-            <li>
+          <div class="grid-2">
+            <div class="panel">
+              <h3>1. Auf GitHub</h3>
+              <p>
+                Erstellen Sie in Ihrem GitHub-Account (oder ähnlich) ein neues
+                Repository.
+              </p>
+            </div>
+            <div class="panel">
+              <h3>2. Lokal</h3>
               <p>
                 Fügen Sie das Remote-Repository in ihrem lokalen Repository
                 hinzu.
               </p>
-              <p>
-                <span class="inline-code"
-                  >git remote add origin
-                  git@github.com:&lt;username&gt;/&lt;project-name&gt;.git</span
-                >
-              </p>
-            </li>
-          </ul>
+            </div>
+          </div>
+          <pre class="code-sm"><code class="bash" data-trim>
+                        git remote add origin git@github.com:&lt;username&gt;/&lt;project-name&gt;.git
+                    </code></pre>
         </section>
 
         <section>
+          <span class="badge">Praxis</span>
           <h2>Ersten Commit erstellen</h2>
-          <ol>
+          <ol class="lead">
             <li>
               Im Ordner der Codebase, alle Änderungen zum Repository hinzufügen:
               <span class="inline-code">git add .</span>
@@ -271,11 +561,13 @@
               Lokalen Commit auf die GitHub-Remote pushen:
               <span class="inline-code">git push</span>
             </li>
-            <li>
+          </ol>
+          <div class="callout">
+            <p>
               Auf GitHub.com sollte der Code nun in Ihrem Repository vorhanden
               sein
-            </li>
-          </ol>
+            </p>
+          </div>
         </section>
       </div>
     </div>

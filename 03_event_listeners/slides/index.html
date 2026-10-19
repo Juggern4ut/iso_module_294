@@ -15,38 +15,220 @@
     <link rel="stylesheet" href="plugin/highlight/monokai.css" />
 
     <style>
-        td {
-            font-size: 21px;
+      :root {
+        --accent: #80ed99;
+        --accent-2: #ffd166;
+        --panel: rgba(255, 255, 255, 0.07);
+        --border: rgba(255, 255, 255, 0.22);
+        --danger: #ff6b6b;
+        --ok: #7bd88f;
+      }
+
+      td {
+        font-size: 21px;
+      }
+
+      .inline-code {
+        font-family:
+          "Consolas", "Monaco", "Andale Mono", "Ubuntu Mono", monospace;
+        display: inline-block;
+        background-color: #2d2d2d;
+        padding: 2px 4px;
+        border-radius: 2px;
+        font-size: 75%;
+      }
+
+      thead td {
+        font-weight: bold;
+        font-size: 24px;
+      }
+
+      .reveal p {
+        line-height: 1.35;
+      }
+
+      .lead {
+        font-size: 0.85em;
+      }
+
+      .small {
+        font-size: 0.7em;
+      }
+
+      .muted {
+        color: #bbbbbb;
+      }
+
+      .accent {
+        color: var(--accent);
+      }
+
+      .ok {
+        color: var(--ok);
+      }
+
+      .danger {
+        color: var(--danger);
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      /* verhindert, dass breite Code-Blöcke ein Grid sprengen */
+      .grid-2 > *,
+      .grid-3 > * {
+        min-width: 0;
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px;
+        background: var(--panel);
+        text-align: left;
+        font-size: 70%;
+      }
+
+      .panel h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: var(--accent);
+        font-size: 1.3em;
+      }
+
+      .panel ul {
+        margin: 0 0 0 1em;
+      }
+
+      .panel p {
+        margin: 0;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.55em;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        border: 1px solid var(--border);
+        margin-bottom: 10px;
+      }
+
+      .badge--quiz {
+        color: var(--accent-2);
+        border-color: var(--accent-2);
+      }
+
+      .badge--danger {
+        color: var(--danger);
+        border-color: var(--danger);
+      }
+
+      .flow {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1fr;
+        gap: 10px;
+        align-items: center;
+        margin-top: 24px;
+        font-size: 0.62em;
+      }
+
+      .flow .box {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 18px 12px;
+        background: var(--panel);
+      }
+
+      .flow .arrow {
+        font-size: 1.15em;
+        color: var(--accent-2);
+      }
+
+      .reveal table.compare {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .reveal table.compare td,
+      .reveal table.compare th {
+        border: 1px solid var(--border);
+        padding: 8px 10px;
+        font-size: 24px;
+        text-align: left;
+      }
+
+      .reveal table.compare th {
+        color: var(--accent);
+        font-size: 26px;
+      }
+
+      .callout {
+        margin-top: 24px;
+        padding: 14px 20px;
+        border-left: 4px solid var(--accent);
+        background: rgba(128, 237, 153, 0.12);
+        text-align: left;
+        font-size: 0.66em;
+      }
+
+      .callout--danger {
+        border-left-color: var(--danger);
+        background: rgba(237, 128, 128, 0.12);
+      }
+
+      .callout--warn {
+        border-left-color: var(--accent-2);
+        background: rgba(255, 209, 102, 0.12);
+      }
+
+      .callout > * {
+        margin: 0 !important;
+      }
+
+      .answer {
+        font-size: 0.7em;
+        color: var(--accent-2);
+      }
+
+      /* kompakter Code, z.B. in grid-2-Spalten */
+      .reveal pre.code-sm {
+        width: 100%;
+      }
+
+      .reveal pre.code-sm td {
+        font-size: 18px;
+      }
+
+      .tldr li {
+        font-size: 0.85em;
+      }
+
+      .tile.blink {
+        animation: 200ms blink infinite;
+      }
+
+      @keyframes blink {
+        0% {
+          opacity: 1;
         }
 
-        .inline-code {
-            font-family: "Consolas", "Monaco", "Andale Mono", "Ubuntu Mono",
-                monospace;
-            display: inline-block;
-            background-color: #2d2d2d;
-            padding: 2px 4px;
-            border-radius: 2px;
-            font-size: 75%;
+        100% {
+          opacity: 0;
         }
-
-        thead td {
-            font-weight: bold;
-            font-size: 24px;
-        }
-
-        .tile.blink {
-            animation: 200ms blink infinite;
-        }
-
-        @keyframes blink {
-            0% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 0;
-            }
-        }
+      }
     </style>
 </head>
 
@@ -76,17 +258,28 @@
 
             <!-- Theorie Funktionen -->
             <section>
+                <span class="badge">Grundlagen</span>
                 <h2>Funktionen</h2>
-                <p>Funktionen sind wiederverwendbare Code-Blöcke, welche eine spezifische Aufgabe erfüllen.</p>
-                <ul>
-                    <li>Sie verhindern Code-Wiederholung</li>
-                    <li>Erhöhen Lesbarkeit und Struktur</li>
-                    <li>Erlauben komplexe Logik zu kapseln</li>
-                </ul>
+                <p class="lead">Funktionen sind wiederverwendbare Code-Blöcke, welche eine spezifische Aufgabe erfüllen.</p>
+                <div class="grid-3">
+                    <div class="panel">
+                        <h3>Wiederverwendung</h3>
+                        <p>Sie verhindern Code-Wiederholung</p>
+                    </div>
+                    <div class="panel">
+                        <h3>Struktur</h3>
+                        <p>Erhöhen Lesbarkeit und Struktur</p>
+                    </div>
+                    <div class="panel">
+                        <h3>Kapselung</h3>
+                        <p>Erlauben komplexe Logik zu kapseln</p>
+                    </div>
+                </div>
             </section>
 
             <!-- Aufbau Funktion -->
             <section>
+                <span class="badge">Grundlagen</span>
                 <h2>Wie ist eine Funktion aufgebaut?</h2>
                 <pre>
                     <code class="js" data-trim data-line-numbers>
@@ -101,8 +294,11 @@
 
             <!-- Return-Werte -->
             <section>
+                <span class="badge">Grundlagen</span>
                 <h2>Return-Werte</h2>
-                <p>Eine Funktion kann einen Wert zurückgeben, der weiterverwendet werden kann.</p>
+                <div class="callout">
+                    <p>Eine Funktion kann einen Wert zurückgeben, der weiterverwendet werden kann.</p>
+                </div>
                 <pre>
                     <code class="js" data-trim data-line-numbers>
                         function add(a, b) {
@@ -117,17 +313,30 @@
 
             <!-- Funktionstypen -->
             <section>
+                <span class="badge">Überblick</span>
                 <h2>Funktionstypen</h2>
-                <ul>
-                    <li>Normale Funktionen (Function Declaration)</li>
-                    <li>Anonyme Funktionen (Function Expression)</li>
-                    <li>Arrow Functions</li>
-                    <li>IIFE (Selbstausführende Funktion)</li>
-                </ul>
+                <div class="grid-2">
+                    <div class="panel">
+                        <h3>Normale Funktionen</h3>
+                        <p>(Function Declaration)</p>
+                    </div>
+                    <div class="panel">
+                        <h3>Anonyme Funktionen</h3>
+                        <p>(Function Expression)</p>
+                    </div>
+                    <div class="panel">
+                        <h3>Arrow Functions</h3>
+                    </div>
+                    <div class="panel">
+                        <h3>IIFE</h3>
+                        <p>(Selbstausführende Funktion)</p>
+                    </div>
+                </div>
             </section>
 
             <!-- Normale Funktion -->
             <section>
+                <span class="badge">Funktionstypen</span>
                 <h2>Normale Funktion</h2>
                 <pre>
                     <code class="js" data-trim data-line-numbers>
@@ -142,8 +351,9 @@
 
             <!-- Anonyme Funktion -->
             <section>
+                <span class="badge">Funktionstypen</span>
                 <h2>Anonyme Funktion</h2>
-                <p>Wird häufig Variablen oder EventListeners zugeordnet.</p>
+                <p class="lead">Wird häufig Variablen oder EventListeners zugeordnet.</p>
                 <pre>
                     <code class="js" data-trim data-line-numbers>
                         const multiply = function(a, b) {
@@ -157,8 +367,8 @@
 
             <!-- Arrow Function -->
             <section>
+                <span class="badge">Funktionstypen</span>
                 <h2>Arrow Function</h2>
-                <p>Kürzere Schreibweise, kein eigenes <code class="inline-code">this</code>.</p>
                 <pre>
                     <code class="js" data-trim data-line-numbers>
                         const subtract = (a, b) => {
@@ -168,12 +378,35 @@
                         console.log(subtract(10, 4)); // -> 6
                     </code>
                 </pre>
+                <div class="callout callout--warn">
+                    <p>Kürzere Schreibweise, kein eigenes <code class="inline-code">this</code>.</p>
+                </div>
+            </section>
+
+            <!-- Quiz 1 -->
+            <section>
+                <span class="badge badge--quiz">Quiz</span>
+                <h2>Was gibt dieser Code aus?</h2>
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        const square = (x) => {
+                            x * x;
+                        };
+
+                        console.log(square(4));
+                    </code>
+                </pre>
+                <p class="fragment answer">
+                    undefined - in geschweiften Klammern braucht es ein
+                    <code class="inline-code">return</code>, sonst gibt die Funktion nichts zurück
+                </p>
             </section>
 
             <!-- IIFE -->
             <section>
+                <span class="badge">Funktionstypen</span>
                 <h2>IIFE – Immediately Invoked Function Expression</h2>
-                <p>Selbstausführende Funktion, nützlich zur Kapselung.</p>
+                <p class="lead">Selbstausführende Funktion, nützlich zur Kapselung.</p>
                 <pre>
                     <code class="js" data-trim data-line-numbers>
                         (function() {
@@ -185,20 +418,32 @@
 
             <!-- EventListeners -->
             <section>
+                <span class="badge">Events</span>
                 <h2>EventListeners</h2>
-                <p>EventListeners reagieren auf Benutzeraktionen.</p>
-                <ul>
-                    <li>Klicks</li>
-                    <li>Tastatureingaben</li>
-                    <li>Mausbewegungen</li>
-                    <li>Seiten-Interaktionen (z.B. Scroll)</li>
-                </ul>
+                <p class="lead">EventListeners reagieren auf Benutzeraktionen.</p>
+                <div class="grid-2">
+                    <div class="panel">
+                        <h3>Maus</h3>
+                        <ul>
+                            <li>Klicks</li>
+                            <li>Mausbewegungen</li>
+                        </ul>
+                    </div>
+                    <div class="panel">
+                        <h3>Tastatur &amp; Seite</h3>
+                        <ul>
+                            <li>Tastatureingaben</li>
+                            <li>Seiten-Interaktionen (z.B. Scroll)</li>
+                        </ul>
+                    </div>
+                </div>
             </section>
 
             <!-- Häufig genutzte EventListener -->
             <section>
+                <span class="badge">Events</span>
                 <h2>Meist genutzte EventListener</h2>
-                <table>
+                <table class="compare">
                     <tr>
                         <td><code class="inline-code">click</code></td>
                         <td>Reagiert auf Mausklicks</td>
@@ -220,6 +465,7 @@
 
             <!-- EventListener definieren -->
             <section>
+                <span class="badge">Praxis</span>
                 <h2>EventListener definieren</h2>
                 <pre>
                     <code class="html" data-trim data-line-numbers>
@@ -240,6 +486,7 @@
 
             <!-- Arrow Function im Event -->
             <section>
+                <span class="badge">Praxis</span>
                 <h2>EventListener mit Arrow Function</h2>
                 <pre>
                     <code class="js" data-trim data-line-numbers>
@@ -252,8 +499,8 @@
 
             <!-- EventListener entfernen -->
             <section>
+                <span class="badge">Praxis</span>
                 <h2>EventListener entfernen</h2>
-                <p>Ein Event kann nur entfernt werden, wenn die Funktion benannt ist.</p>
                 <pre>
                     <code class="js" data-trim data-line-numbers>
                         function onClick() {
@@ -264,6 +511,32 @@
                         btn.removeEventListener("click", onClick);
                     </code>
                 </pre>
+                <div class="callout callout--danger">
+                    <p>Ein Event kann nur entfernt werden, wenn die Funktion benannt ist.</p>
+                </div>
+            </section>
+
+            <!-- Quiz 2 -->
+            <section>
+                <span class="badge badge--quiz">Quiz</span>
+                <h2>Was passiert beim Klick auf den Button?</h2>
+                <pre>
+                    <code class="js" data-trim data-line-numbers>
+                        // HTML: &lt;button id="btn"&gt;Klick mich&lt;/button&gt;
+                        const btn = document.getElementById("btn");
+
+                        btn.addEventListener("click", () => {
+                            console.log("Klick!");
+                        });
+                        btn.removeEventListener("click", () => {
+                            console.log("Klick!");
+                        });
+                    </code>
+                </pre>
+                <p class="fragment answer">
+                    "Klick!" erscheint trotzdem - es sind zwei verschiedene
+                    anonyme Funktionen, entfernt wird also nichts
+                </p>
             </section>
 
             <!-- TL;DR -->
