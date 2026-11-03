@@ -1,0 +1,333 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+\setlength{\parindent}{0pt}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue!70!black}\bfseries,
+    commentstyle=\color{gray}\itshape,
+    stringstyle=\color{green!45!black},
+    backgroundcolor=\color{gray!8},
+    frame=single,
+    rulecolor=\color{gray!40},
+    breaklines=true,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    tabsize=4,
+    literate={ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1 {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+}
+
+\lstdefinelanguage{JavaScript}{
+    keywords={const, let, var, function, return, if, else, for, of, in, while, async, await, try, catch, throw, new, class, constructor, this, import, export, from, default, true, false, null, undefined},
+    sensitive=true,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+    morestring=[b]',
+    morestring=[b]`
+}
+
+\lstdefinelanguage{HTML5}{
+    morekeywords={form, input, button, ul, li, p, label},
+    sensitive=false,
+    morestring=[b]",
+    morecomment=[s]{<!--}{-->}
+}
+
+\title{Modul 294 - Lösung Aufgabenblatt 11}
+\author{von Lukas Meier}
+\date{Unterricht vom 10.11.2026}
+
+\begin{document}
+
+\maketitle
+
+\textit{Hinweis: Viele Aufgaben dieser Repetition sind offen formuliert. Die folgenden Antworten sind Musterlösungen -- eigene Formulierungen und Lösungswege sind ebenso korrekt, sofern sie inhaltlich stimmen.}
+
+\section{Teil 1: Theorie kurz zusammenfassen}
+
+\subsection*{Variablen, Datentypen, Arrays, Objekte}
+\begin{itemize}
+    \item \texttt{const} für Werte, die nicht neu zugewiesen werden; \texttt{let} für veränderbare Werte. \texttt{var} wird nicht mehr verwendet.
+    \item Primitive Datentypen: \texttt{string}, \texttt{number}, \texttt{boolean}, \texttt{null}, \texttt{undefined}. Prüfen mit \texttt{typeof}.
+    \item Arrays sind geordnete Listen: \texttt{const notes = [];}, Zugriff per Index, wichtige Methoden: \texttt{push}, \texttt{find}, \texttt{filter}, \texttt{map}, \texttt{forEach}, \texttt{sort}.
+    \item Objekte speichern Schlüssel-Wert-Paare: \texttt{const note = \{ title: "A", content: "B" \};}, Zugriff mit \texttt{note.title}.
+\end{itemize}
+
+\subsection*{Bedingungen, Schleifen, Funktionen}
+\begin{itemize}
+    \item Bedingungen: \texttt{if / else if / else}, Vergleiche immer mit \texttt{===} bzw. \texttt{!==}.
+    \item Schleifen: \texttt{for}, \texttt{for...of} (über Arrays), \texttt{while}, oder \texttt{array.forEach(...)}.
+    \item Funktionen kapseln wiederverwendbare Logik, nehmen Parameter entgegen und geben mit \texttt{return} ein Resultat zurück. Schreibweisen: \texttt{function name() \{\}} oder Arrow-Function \texttt{const name = () => \{\}}.
+\end{itemize}
+
+\subsection*{DOM-Zugriff und Event-Handling}
+\begin{itemize}
+    \item Elemente finden: \texttt{document.querySelector(...)} / \texttt{querySelectorAll(...)}.
+    \item Elemente erstellen und einfügen: \texttt{createElement}, \texttt{append} / \texttt{appendChild}.
+    \item Inhalte setzen: \texttt{textContent} (sicher, nur Text) oder \texttt{innerHTML} (interpretiert HTML).
+    \item Auf Benutzeraktionen reagieren: \texttt{element.addEventListener("click", ...)}; bei Formularen \texttt{"submit"} und \texttt{event.preventDefault()}.
+\end{itemize}
+
+\subsection*{Klassen, Module und saubere Struktur}
+\begin{itemize}
+    \item Klassen sind Baupläne für Objekte (\texttt{class}, \texttt{constructor}, Methoden, \texttt{new}).
+    \item Module teilen Code in Dateien auf: \texttt{export} / \texttt{import}, im HTML mit \texttt{<script type="module">}.
+    \item Saubere Struktur: kleine Funktionen mit einer Aufgabe (laden, rendern, erstellen \ldots), sprechende Namen, Konstanten für URLs, keine doppelte Logik.
+\end{itemize}
+
+\subsection*{\texttt{fetch}, \texttt{async}/\texttt{await}, Fehlerbehandlung}
+\begin{itemize}
+    \item \texttt{fetch(url, options)} sendet einen HTTP-Request und gibt ein Promise auf eine \texttt{Response} zurück.
+    \item Mit \texttt{async}/\texttt{await} wird asynchroner Code lesbar wie synchroner Code geschrieben.
+    \item \texttt{fetch} wirft nur bei Netzwerkfehlern. HTTP-Fehler (404, 500) müssen selbst mit \texttt{response.ok} erkannt werden.
+    \item Fehler mit \texttt{try / catch} abfangen, in der Konsole loggen und dem Benutzer eine Meldung im UI zeigen.
+\end{itemize}
+
+\subsection*{CRUD-Ablauf im Projekt}
+\begin{itemize}
+    \item \textbf{C}reate = \texttt{POST}, \textbf{R}ead = \texttt{GET}, \textbf{U}pdate = \texttt{PATCH}, \textbf{D}elete = \texttt{DELETE}.
+    \item Nach jeder Änderung wird die Liste neu geladen (\texttt{loadNotes()}) und neu gerendert (\texttt{renderNotes()}).
+\end{itemize}
+
+\section{Teil 2: Begriffe sicher beherrschen}
+
+\begin{description}
+    \item[\texttt{addEventListener}] Registriert eine Funktion, die ausgeführt wird, sobald auf einem Element ein bestimmtes Ereignis eintritt (z.\,B. \texttt{click}, \texttt{submit}, \texttt{input}).
+    \item[\texttt{querySelector}] Sucht mit einem CSS-Selektor das \emph{erste} passende Element im DOM und gibt es zurück (oder \texttt{null}, wenn keines existiert).
+    \item[\texttt{await}] Pausiert eine \texttt{async}-Funktion, bis ein Promise erfüllt ist, und liefert dessen Ergebnis zurück. Kann nur innerhalb von \texttt{async}-Funktionen (oder Modulen) verwendet werden.
+    \item[\texttt{response.ok}] Boolescher Wert der Response, der \texttt{true} ist, wenn der HTTP-Status im Bereich 200--299 liegt. Damit erkennt man, ob ein Request erfolgreich war.
+    \item[JSON] \emph{JavaScript Object Notation} -- ein textbasiertes Format zum Austausch von Daten zwischen Frontend und Backend. Umwandlung mit \texttt{JSON.stringify()} (Objekt $\rightarrow$ Text) und \texttt{JSON.parse()} bzw. \texttt{response.json()} (Text $\rightarrow$ Objekt).
+    \item[CRUD] Steht für \emph{Create, Read, Update, Delete} -- die vier Grundoperationen auf Daten. Sie entsprechen den HTTP-Methoden \texttt{POST}, \texttt{GET}, \texttt{PATCH}/\texttt{PUT} und \texttt{DELETE}.
+\end{description}
+
+\section{Teil 3: Code lesen}
+
+\begin{description}
+    \item[Welche Daten kommen rein?] Ein Array \texttt{notes} mit Notiz-Objekten. Jedes Objekt hat mindestens die Eigenschaften \texttt{title} und \texttt{content}.
+    \item[Was macht die Funktion Schritt für Schritt?] \hfill
+    \begin{enumerate}
+        \item Die bestehende Liste \texttt{notesList} wird mit \texttt{innerHTML = ""} geleert, damit keine alten Einträge doppelt angezeigt werden.
+        \item Mit \texttt{for...of} wird über jede Notiz im Array iteriert.
+        \item Für jede Notiz wird ein neues \texttt{<li>}-Element erstellt.
+        \item Der Text des \texttt{<li>} wird per Template-String auf \glqq Titel: Inhalt\grqq{} gesetzt.
+        \item Das \texttt{<li>} wird mit \texttt{append} an die Liste angehängt.
+    \end{enumerate}
+    \item[Welche DOM-Elemente werden verändert/erstellt?] Verändert wird das bestehende Element \texttt{notesList} (vermutlich ein \texttt{<ul>}); es wird geleert und befüllt. Neu erstellt wird pro Notiz ein \texttt{<li>}-Element.
+    \item[Wo könnte ein typischer Fehler entstehen?] \hfill
+    \begin{itemize}
+        \item \texttt{notesList} ist nicht definiert oder \texttt{null}, weil der Selektor falsch ist oder das Script vor dem HTML geladen wird $\rightarrow$ \texttt{TypeError: Cannot set properties of null}.
+        \item \texttt{notes} ist kein Array -- z.\,B. wenn die ganze Backend-Antwort statt \texttt{data.items} übergeben wird $\rightarrow$ \texttt{notes is not iterable}.
+        \item Fehlende Felder führen zu Ausgaben wie \glqq undefined: undefined\grqq.
+        \item Wird \texttt{innerHTML = ""} vergessen, erscheinen Einträge bei jedem Aufruf doppelt.
+    \end{itemize}
+\end{description}
+
+\section{Teil 4: Mini-Aufgabe DOM}
+
+\textbf{HTML}
+\begin{lstlisting}[language=HTML5]
+<form id="item-form">
+    <input type="text" id="item-input" placeholder="Neuer Eintrag">
+    <button type="submit">Hinzufügen</button>
+</form>
+<p id="error" class="error"></p>
+<ul id="item-list"></ul>
+\end{lstlisting}
+
+\textbf{JavaScript}
+\begin{lstlisting}[language=JavaScript]
+const form = document.querySelector("#item-form");
+const input = document.querySelector("#item-input");
+const list = document.querySelector("#item-list");
+const error = document.querySelector("#error");
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault(); // Seite nicht neu laden
+
+    // 1. Wert lesen (Leerzeichen entfernen)
+    const value = input.value.trim();
+
+    // 2. Prüfen, ob der Wert leer ist
+    if (value === "") {
+        error.textContent = "Bitte einen Text eingeben.";
+        return;
+    }
+    error.textContent = "";
+
+    // 3. Neuen Listeneintrag erzeugen
+    const li = document.createElement("li");
+    li.textContent = value;
+    list.append(li);
+
+    input.value = "";
+    input.focus();
+});
+\end{lstlisting}
+
+Statt \texttt{submit} auf dem Formular kann auch ein \texttt{click}-Listener auf dem Button verwendet werden. Der \texttt{submit}-Listener hat den Vorteil, dass auch das Absenden mit der Enter-Taste funktioniert.
+
+\section{Teil 5: Mini-Aufgabe Async}
+
+\begin{lstlisting}[language=JavaScript]
+const BASE_URL = "http://notes.iso.lmeier.ch";
+const NOTES_ENDPOINT = "/api/collections/notes/records";
+
+async function loadData() {
+    try {
+        // 1. Daten laden
+        const response = await fetch(BASE_URL + NOTES_ENDPOINT);
+
+        // 2. HTTP-Status prüfen
+        if (!response.ok) {
+            throw new Error(`HTTP-Fehler: ${response.status}`);
+        }
+
+        // 3. Resultat als JSON verarbeiten
+        const data = await response.json();
+        return data.items;
+    } catch (error) {
+        // 4. Fehler sauber behandeln
+        console.error("Fehler beim Laden:", error);
+        document.querySelector("#error").textContent =
+            "Backend nicht erreichbar.";
+        return [];
+    }
+}
+
+// Verwendung
+loadData().then(notes => renderNotes(notes));
+\end{lstlisting}
+
+Wichtig: Ohne die Prüfung von \texttt{response.ok} würde ein 404 oder 500 nicht im \texttt{catch} landen, da \texttt{fetch} nur bei Netzwerkfehlern eine Exception wirft. Durch die Rückgabe eines leeren Arrays im Fehlerfall stürzt der nachfolgende Code (\texttt{renderNotes}) nicht ab.
+
+\section{Teil 6: Mini-Aufgabe CRUD}
+
+Basis: \texttt{NOTES\_URL = BASE\_URL + "/api/collections/notes/records"}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+ & \textbf{Request} & \textbf{Gesendete Daten} & \textbf{UI-Aktualisierung} \\
+\midrule
+\textbf{Create} & \texttt{POST NOTES\_URL} & JSON-Body mit \texttt{title}, \texttt{content} (und ggf. \texttt{user}), Header \texttt{Content-Type: application/json} & Formular leeren, \texttt{loadNotes()} aufrufen und Liste neu rendern \\
+\addlinespace
+\textbf{Read} & \texttt{GET NOTES\_URL} & Keine Daten (optional Query-Parameter für Filter/Sortierung) & Antwort \texttt{data.items} an \texttt{renderNotes()} übergeben \\
+\addlinespace
+\textbf{Update} & \texttt{PATCH NOTES\_URL/:id} & ID in der URL, geänderte Felder (\texttt{title}, \texttt{content}) als JSON-Body & Bearbeitungsmodus beenden (\texttt{editNoteId = null}), Formular leeren, Liste neu laden \\
+\addlinespace
+\textbf{Delete} & \texttt{DELETE NOTES\_URL/:id} & Nur die ID in der URL, kein Body & Notiz verschwindet: Liste neu laden oder Element direkt aus dem DOM entfernen \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Beispiel Update:
+\begin{lstlisting}[language=JavaScript]
+async function updateNote(id, noteData) {
+    const response = await fetch(`${NOTES_URL}/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(noteData)
+    });
+    if (!response.ok) {
+        throw new Error(`HTTP-Fehler: ${response.status}`);
+    }
+    renderNotes(await loadData());
+}
+\end{lstlisting}
+
+\section{Teil 7: Prüfungssimulation}
+
+Beispiel-Übung: Ein Benutzer gibt einen Notiztitel und Inhalt ein. Nach dem Absenden wird die Notiz im Backend gespeichert und anschliessend in der Liste angezeigt.
+
+\begin{lstlisting}[language=JavaScript]
+const form = document.querySelector(".note-form");
+const titleInput = document.querySelector("#title");
+const contentInput = document.querySelector("#content");
+const message = document.querySelector("#message");
+const notesList = document.querySelector("#notes");
+
+// Schritt 3: asynchrone Funktion
+async function createNote(noteData) {
+    const response = await fetch(NOTES_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(noteData)
+    });
+    if (!response.ok) {
+        throw new Error(`HTTP-Fehler: ${response.status}`);
+    }
+    return await response.json();
+}
+
+// Schritt 1: Event auf das Formular binden
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    // Schritt 2: Eingaben validieren
+    const title = titleInput.value.trim();
+    const content = contentInput.value.trim();
+    if (title === "" || content === "") {
+        message.textContent = "Titel und Inhalt sind Pflicht.";
+        return;
+    }
+
+    try {
+        message.textContent = "Speichere...";
+        const note = await createNote({ title, content });
+
+        // Schritt 4: Ergebnis im DOM anzeigen
+        const li = document.createElement("li");
+        li.textContent = `${note.title}: ${note.content}`;
+        notesList.append(li);
+
+        message.textContent = "Notiz gespeichert.";
+        form.reset();
+    } catch (error) {
+        console.error(error);
+        message.textContent = "Speichern fehlgeschlagen.";
+    }
+});
+\end{lstlisting}
+
+Empfohlenes Vorgehen in kleinen Schritten:
+\begin{enumerate}
+    \item Listener registrieren und mit \texttt{console.log} prüfen, ob er ausgelöst wird.
+    \item Eingaben auslesen und loggen, danach Validierung ergänzen.
+    \item \texttt{createNote} einzeln testen (Netzwerk-Tab in den DevTools prüfen).
+    \item Erst zum Schluss die DOM-Ausgabe und Fehlermeldungen ergänzen.
+\end{enumerate}
+
+\section{Teil 8: Persönliche Checkliste}
+
+Diese Aufgabe ist individuell. Ein mögliches Beispiel:
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Sicher beherrscht} & \textbf{Nochmals anschauen} \\
+\midrule
+Elemente mit \texttt{querySelector} finden und \texttt{addEventListener} verwenden & Unterschied \texttt{.then()}-Ketten vs. \texttt{async}/\texttt{await} \\
+\addlinespace
+Arrays mit \texttt{for...of} durchlaufen und Elemente im DOM erzeugen & Fehlerbehandlung mit \texttt{response.ok} und \texttt{try / catch} \\
+\addlinespace
+GET-Request ausführen und Daten rendern & \texttt{PATCH} und \texttt{DELETE} mit ID in der URL \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Tipp: Für jedes Thema der rechten Spalte eine kleine Übung aus den Lektionen 1 bis 9 nochmals selbstständig lösen.
+
+\end{document}
